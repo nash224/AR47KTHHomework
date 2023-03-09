@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{87cb953b-a2d3-4b78-befa-dcaa649aa0b7}</ProjectGuid>
-    <RootNamespace>My004Variation</RootNamespace>
+    <ProjectGuid>{ff41ce85-f566-4014-a78c-2f6b2dec8212}</ProjectGuid>
+    <RootNamespace>HotkeyMemo</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="004_Variable.cpp" />
+    <ClCompile Include="HotkeyMemo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
