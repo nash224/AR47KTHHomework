@@ -9,9 +9,11 @@
 //
 //  4.hello.s →  Assemble → hello.o
 //
-//  5.hello.o + library →  Link → hello.exe
+//  5.hello.o(목적파일) + library →  Link → hello.exe
 
-#include <iostream>
+//  불필요한 헤더 파일이 있을 경우 컴파일 시간이 길어진다.
+
+#include <iostream> // iostram 헤더는 표준 라이브러리이다.
 
 //  전처리기(Preprocessor) 지시문은 C컴파일러가 쉽게 인식할 수 있도록
 //  /*  */ 와 같은 Comment는 불필요한 부분임으로 제거하고 C언어를 재정리함
