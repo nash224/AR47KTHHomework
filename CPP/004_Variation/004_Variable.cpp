@@ -13,6 +13,8 @@ int main()
 {
 	int VariTemp1;
 	//	int 는 자료형, 데이터 타입이고, VariTemp1은 변수의 이름이다.
+
+	//	Tip) 모든 자료형 변수는 byte로 볼 수 있어야함
 	
 }
 
