@@ -55,22 +55,15 @@ int TrimDelete(char* _String)
 int StringToInt(const char* _String)
 {
     int num = PtrStringCount(_String);
-
     int Value = 0;
     int count = 0;
-    while (num - count != 0)
+
+    while ('\0' != _String[count])
     {
-        char ASC = _String[count];
-        int a = ASC - '0';
-        int loop = num - count;
+        int StringInt = _String[count] - '0';
+        Value = Value * 10 + StringInt;
 
-        while (--loop)
-        {
-            a = a * 10;
-        }
-        Value = Value + a;
         count++;
-
     }
 
     return Value;
@@ -109,4 +102,6 @@ int main()
     int RValue3 = StringToInt("432231");
 
     std::cout << "Hello World!\n";
+
+
 }
