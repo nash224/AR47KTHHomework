@@ -1,53 +1,97 @@
-﻿
+﻿// 038_Class.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+
 #include <iostream>
+#include <conio.h>
 
-int StringCount(const char* _String)
+
+int PlayerHp = 100;
+int PlayerAtt = 10;
+
+int MonsterHp = 100;
+int MonsterAtt = 10;
+
+void Damage(
+    const char* const _AttName,
+    const char* const _DefName, 
+    const int& _Att,  
+    int& _Hp 
+)
 {
+    _Hp -= _Att;
 
-    int count = 0;
-
-    while (int value = _String[count] != 0)
-    {
-        count++;
-    }
-
-    return count;
 }
 
-
-
-
-int StringToInt(const char* _String)
+void Damagelog(
+    const char* const _AttName,
+    const char* const _DefName,
+    const int& _Att
+)
 {
-    int num = StringCount(_String);
-    
-    int Value = 0;
-    int count = 0;
-    while (num - count != 0)
-    {
-        char ASC = _String[count];
-        int a = ASC - '0';
-        int loop = num - count;
+    printf_s("%s가 공격을 시작합니다\n", _AttName);
+    printf_s("%s가 %d의 데미지를 입었습니다.\n", _DefName, _Att);
+}
 
-        while (--loop)
-        {
-            a = a * 10;
-        }
-        Value = Value + a;
-        count++;
+void StatusRender(
+    const char* const _Name, 
+    const int& _Att, 
+    const int& _Hp 
+)
+{
+    printf_s("%s 의 스테이터스 ------------\n", _Name);
+    printf_s("공격력 : %d\n", _Att);
+    printf_s("체력 : %d\n", _Hp);
+    printf_s("---------------------------\n");
+}
 
-    }
+void ConsoleRender()
+{
+    system("cls");
+    StatusRender("Player", PlayerAtt, PlayerHp);
+    StatusRender("Monster", MonsterAtt, MonsterHp);
+    Damagelog("Player", "Monster", PlayerAtt);
+}
 
-    return Value;
+void ConsoleRender2()
+{
+    ConsoleRender();
+    Damagelog("Monster", "Player", MonsterAtt);
+
 }
 
 int main()
 {
-    
-    int value = StringToInt("6236222");
 
-    char Str = '7';
-    int Value = Str;
+    while (true)
+    {
+        system("cls");
 
-    int a = 0;
+        StatusRender("Player", PlayerAtt, PlayerHp);
+        StatusRender("Monster", MonsterAtt, MonsterHp);
+
+        Damage("Player", "Monster", PlayerAtt, MonsterHp);
+
+        ConsoleRender();
+        _getch();
+
+        if (0 >= MonsterHp)
+        {
+            printf_s("몬스터가 죽었습니다.");
+            printf_s("플레이어의 승리입니다.");
+            _getch();
+            break;
+        }
+
+        Damage("Monster", "Player", MonsterAtt, PlayerHp);
+        ConsoleRender2();
+        _getch();
+
+        if (0 >= PlayerHp)
+        {
+            printf_s("플레이어가 죽었습니다.");
+            printf_s("몬스터의 승리입니다.");
+            _getch();
+            break;
+        }
+    }
 }
