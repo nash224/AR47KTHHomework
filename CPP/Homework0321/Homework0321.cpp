@@ -12,8 +12,6 @@ int MonsterHp = 100;
 int MonsterAtt = 10;
 
 void Damage(
-	const char* const _AttName,
-	const char* const _DefName,
 	const int& _Att,
 	int& _Hp
 )
@@ -67,8 +65,9 @@ int main()
 
 		StatusRender("Player", PlayerAtt, PlayerHp);
 		StatusRender("Monster", MonsterAtt, MonsterHp);
+		_getch();
 
-		Damage("Player", "Monster", PlayerAtt, MonsterHp);
+		Damage(PlayerAtt, MonsterHp);
 
 		ConsoleRender();
 		_getch();
@@ -81,7 +80,7 @@ int main()
 			break;
 		}
 
-		Damage("Monster", "Player", MonsterAtt, PlayerHp);
+		Damage(MonsterAtt, PlayerHp);
 
 		ConsoleRender2();
 		_getch();
