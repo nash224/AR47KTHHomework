@@ -3,18 +3,63 @@
 
 #include <iostream>
 
+// short 2바이트 정수형;
+
+class Player
+{
+public:
+    int Hp;          // 4
+    short Value3;    // 4
+    int Value4;      // 4
+    short Value9;    // 4
+    char TTT;
+
+    // 8바이트 이하 가장큰 바이트의 자료형을 찾아요.
+    // 4바이트
+    // 먼저 4바이트를 할당했다고 쳐보자
+    // 딱맞거나 들어갈수 있으면 그대로 픽스
+    // 4바이트 할당한다.
+    // char
+    // 8바이트
+};
+
+class Monster
+{
+public:
+    int Hp = 10;
+    int Value1 = 2;
+    //short Value2 = 6;
+    int A = 70;
+    __int64 Address555;
+};
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    Player NewPlayer;
+
+    int* Ptr = &NewPlayer.Hp;
+
+    int Size = sizeof(Player);
+
+    printf_s("%d\n", Size);
+
+    Monster NewMonster;
+    int Size2 = sizeof(Monster);
+
+    printf_s("%d\n", Size2);
+
+    int value04 = 0;
+
+    int* Ptr1 = &NewMonster.Hp;
+    __int64 Address1 = (__int64)Ptr1;
+    
+    int* Ptr2 = &NewMonster.Value1;
+    __int64 Address2 = (__int64)Ptr2;
+   
+    int* Ptr3 = &NewMonster.A;
+    __int64 Address3 = (__int64)Ptr3;
+
+
+    int a = 0;
+
 }
-
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
