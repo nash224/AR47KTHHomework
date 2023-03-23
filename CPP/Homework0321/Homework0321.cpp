@@ -1,6 +1,4 @@
-﻿// 038_Class.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
-
+﻿
 #include <iostream>
 #include <conio.h>
 
@@ -57,10 +55,8 @@ inline void ConsoleRender2()
 
 int main()
 {
-
 	while (true)
 	{
-
 		system("cls");
 
 		StatusRender("Player", PlayerAtt, PlayerHp);
@@ -89,7 +85,7 @@ int main()
 		{
 			printf_s("플레이어가 죽었습니다.");
 			printf_s("몬스터의 승리입니다.");
-			_getch();
+			_getch(); 
 			break;
 		}
 	}

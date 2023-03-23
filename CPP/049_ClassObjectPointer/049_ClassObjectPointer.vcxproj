@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8c8ef37c-361b-4b9b-8c6d-1bbf30137a5a}</ProjectGuid>
-    <RootNamespace>My041Class03Struct</RootNamespace>
+    <ProjectGuid>{318cc982-2b29-4c7b-af3d-c3575c76f54b}</ProjectGuid>
+    <RootNamespace>My049ClassObjectPointer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="041_Class03_Struct.cpp" />
+    <ClCompile Include="049_ClassObjectPointer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
