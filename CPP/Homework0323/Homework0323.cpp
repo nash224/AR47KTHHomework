@@ -156,12 +156,30 @@ public:
 
 		return temp;
 	}
+
 	int operator--(int)
 	{
 		int temp = Value;
 		Value--;
 
 		return temp;
+	}
+
+	//	비트 연산자
+
+	int operator|(int _Value)
+	{
+		return Value | _Value;
+	}
+
+	int operator&(int _Value)
+	{
+		return Value & _Value;
+	}
+
+	int operator^(int _Value)
+	{
+		return Value ^ _Value;
 	}
 
 	//int operator++(int _Value)
