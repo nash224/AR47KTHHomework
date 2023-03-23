@@ -41,6 +41,7 @@ public:
 
 	inline void SetAtt(int _value)
 	{
+
 		Att = _value;
 	}
 
@@ -50,6 +51,29 @@ private:
 	int Hp = 100;
 	int Att = 30;
 	int Def = 5;
+};
+
+
+class Position
+{
+private:
+	int Asite;
+	int Bsite;
+
+public:
+	Position()
+		: Asite(50)
+		, Bsite(30)
+	{
+
+	}
+	int DistanceBetweenAtoB(/*Position* const this*/)
+	{
+		int value = this->Asite;
+		return Asite + Bsite;
+	}
+
+
 };
 
 void GlobalDamage()
@@ -82,5 +106,8 @@ int main()
 	NewPlayer1.Damage1(/*&NewPlayer1,*/ 50);
 	//	각 객체들이 자신의 멤버변수를 바꿨다.
 	
+	Position SniperDistance = Position();
+	SniperDistance.DistanceBetweenAtoB(/*&SniperDistance*/);
+
 	int a = 0;
 }

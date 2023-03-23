@@ -189,12 +189,12 @@ int main()
 		value = Test - 10;
 	}
 
-	if (value >= 40)
+	if (value <= 40)
 	{
 		value = Test % 8;
 	}
 
-	int valueSizeof = sizeof(value);
+	int Sizeofvalue = sizeof(value);
 
 	value = Test * 2;
 
