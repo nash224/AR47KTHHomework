@@ -34,9 +34,9 @@ public:
 
 	//	산술 연산자
 
-	int operator+(int _Value)
+	TestOperator& operator+(int _Value)
 	{
-		return Value + _Value;
+		return *this + _Value;
 	}
 
 	int operator-(int _Value)
@@ -139,9 +139,11 @@ public:
 
 	//	증감 연산자
 
-	int operator++()
+	TestOperator& operator++()
 	{
-		return ++ this->Value;
+		//return ++ this->Value;
+		++Value;
+		return *this;
 	}
 
 	int operator--()
@@ -156,6 +158,8 @@ public:
 
 		return temp;
 	}
+
+	//	후위 연산자는 인자만 넣고 값을 넣지 않아도 동작한다.
 
 	int operator--(int)
 	{
@@ -189,6 +193,13 @@ public:
 	//	return temp;
 	//}
 
+	//	참조연산자
+
+	TestOperator* operator&()
+	{
+		return this;
+	}
+
 };
 
 
@@ -200,6 +211,8 @@ int main()
 
 	// 연산자 겹지정 함수라고 부릅니다.
 	value = Test + 10;
+
+
 	//value = Test.operator+(10);
 
 	if (Test == 30)
@@ -224,7 +237,9 @@ int main()
 
 	int count = 0;
 
-	value = ++Test;
+	Test = 0;
+	++Test = 10;
+	Test + 1 = 20;
 
 
 	for (int i = 0;
@@ -234,6 +249,8 @@ int main()
 		count++;
 		printf_s("%d번째 Test: %d \n", count, Test.Value);
 	}
+
+	Test = 10;
 
 	int a = 0;
 
