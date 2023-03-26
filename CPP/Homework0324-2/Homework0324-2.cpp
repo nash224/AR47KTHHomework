@@ -30,9 +30,10 @@
 //     @
 //     @
 
+
 //	지도 크기
-const int ScreenYSize = 5;
-const int ScreenXSize = 11;
+const int ScreenYSize = 11;
+const int ScreenXSize = 21;
 
 //	지도 최소치 또는 최대치
 const int MinScreenXSize = 0;
@@ -46,6 +47,8 @@ int PlayerX = ScreenXSize / 2;
 int PlayerY = ScreenYSize / 2;
 
 int count = 0;
+int aftercount = 1;
+int afterimage_count = 0;
 
 
 //	지도 생성
@@ -53,17 +56,47 @@ inline void MapComposition()
 {
 	//Arr[2][2] = 'b';
 
-	for (size_t y = 0; y < ScreenYSize; y++)
+	for (int y = 0; y < ScreenYSize; y++)
 	{
-		for (size_t x = 0; x < ScreenXSize; x++)
+		for (int x = 0; x < ScreenXSize; x++)
 		{
 			if (Arr[y][x] == 'b')
 			{
 				Arr[y][x] = 'b';
 			}
+			else if (Arr[y][x] == 'B')
+			{
+				Arr[y][x] = 'B';
+
+				count++;
+
+				if (count == 7)
+				{
+					Arr[y][x] = 'P';
+
+					for (int i = 0; i < 5; i++)
+					{
+						Arr[y][x - i] = '@';
+						Arr[y][x + i] = '@';
+						Arr[y - i][x] = '@';
+						Arr[y + i][x] = '@';
+					}
+				}
+			}
+			else if (Arr[y][x] == 'P')
+			{
+				Arr[y][x] = 'P';
+			}
 			else if (Arr[y][x] == '@')
 			{
 				Arr[y][x] = '@';
+
+				afterimage_count++;
+
+				if (afterimage_count > 10)
+				{
+					Arr[y][x] = 'a';
+				}
 			}
 			else if (x == MinScreenXSize)
 			{
@@ -89,13 +122,15 @@ inline void MapComposition()
 	}
 }
 
+//	물체 판정
 void Interact_Objects()
 {
-	if (Arr[PlayerY][PlayerX] != 'b' && Arr[PlayerY][PlayerX] != '@')
+	if (Arr[PlayerY][PlayerX] != 'b' && Arr[PlayerY][PlayerX] != 'B' && Arr[PlayerX][PlayerY] != '@')
 	{
 		Arr[PlayerY][PlayerX] = '*';
 	}
 }
+
 
 //	벽 로직
 void Plant_Wall()
@@ -106,7 +141,7 @@ void Plant_Wall()
 //	폭탄 로직
 void Plant_Bomb()
 {
-	Arr[PlayerY][PlayerX] = '@';
+	Arr[PlayerY][PlayerX] = 'B';
 
 }
 
@@ -125,6 +160,7 @@ inline void KeyInputProcessing()
 		{
 			PlayerX -= 1;
 		}
+
 	}
 	break;
 	case 'd':
@@ -134,6 +170,7 @@ inline void KeyInputProcessing()
 		{
 			PlayerX += 1;
 		}
+
 	}
 	break;
 	case 'w':
@@ -143,6 +180,7 @@ inline void KeyInputProcessing()
 		{
 			PlayerY -= 1;
 		}
+
 	}
 	break;
 	case 's':
@@ -152,6 +190,7 @@ inline void KeyInputProcessing()
 		{
 			PlayerY += 1;
 		}
+
 	}
 	break;
 
@@ -177,9 +216,9 @@ inline void GameRender()
 {
 	system("cls");
 
-	for (size_t y = 0; y < ScreenYSize; y++)
+	for (int y = 0; y < ScreenYSize; y++)
 	{
-		for (size_t x = 0; x < ScreenXSize; x++)
+		for (int x = 0; x < ScreenXSize; x++)
 		{
 			printf_s("%c", Arr[y][x]);
 		}
@@ -199,8 +238,8 @@ int main()
 		{
 			KeyInputProcessing();
 		}
-
 		GameRender();
+
 
 		if (0 == _kbhit())
 		{
