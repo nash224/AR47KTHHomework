@@ -46,8 +46,8 @@ char Arr[ScreenYSize][ScreenXSize] = { 0, };
 int PlayerX = ScreenXSize / 2;
 int PlayerY = ScreenYSize / 2;
 
-int count = 0;
-int aftercount = 1;
+int Bombcount = 0;	
+int aftercount = 0;
 int afterimage_count = 0;
 
 
@@ -64,23 +64,28 @@ inline void MapComposition()
 			{
 				Arr[y][x] = 'b';
 			}
-			else if (Arr[y][x] == 'B')
+			else if (Arr[y][x] == 'B')	//	폭탄 로직
 			{
 				Arr[y][x] = 'B';
 
-				count++;
+				Bombcount++;
 
-				if (count == 7)
+				if (Bombcount == 7)	//	폭탄 터지는 시간
 				{
 					Arr[y][x] = 'P';
 
 					for (int i = 0; i < 5; i++)
 					{
+						aftercount++;
 						Arr[y][x - i] = '@';
 						Arr[y][x + i] = '@';
 						Arr[y - i][x] = '@';
 						Arr[y + i][x] = '@';
 					}
+
+
+					Bombcount = 0;
+					aftercount = 0;
 				}
 			}
 			else if (Arr[y][x] == 'P')
@@ -210,6 +215,14 @@ inline void KeyInputProcessing()
 		break;
 	}
 }
+void NoticetheGame()
+{
+	printf_s("\n\n");
+	printf_s("=====================\n\n");
+	printf_s("벽 설치 : T\n");
+	printf_s("폭탄 설치 : F\n");
+}
+
 
 //	게임 출력
 inline void GameRender()
@@ -224,6 +237,8 @@ inline void GameRender()
 		}
 		printf_s("\n");
 	}
+
+	NoticetheGame();
 }
 
 
