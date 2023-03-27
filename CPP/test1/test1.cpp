@@ -1,137 +1,536 @@
 ﻿#include <iostream>
+#include <conio.h>
+#include <Windows.h>
 
-// short 2바이트 정수형;
-// 클래스의 바이트 크기를 알아보자.
-// 클래스 내부에 여러 자료형이 선언됨에 따라 클래스의 크기는 어떻게 달라지나를 확인해보기.
-class Player0     // 16바이트 예상.    정답 : 16바이트.
+// 폭탄의 시간을 재주는 함수
+void BombTimeCounting(short* _BombTimerArr, const short _MaxBombNum)
 {
-public:
-    int Hp;          // 4  int 
-    short Value1;    // 4  short  //2바이트 남음.
-    int Value2;      // 4  short와 int를 같이 4바이트에 담을수 없으므로 다시 int만 4바이트
-    short Value3;    // 4  short와 char를 4바이트에 같이 담을수있으므로 둘이서 4바이트. //1바이트남음
-    char TTT;
-
-    // 8바이트 이하 가장큰 바이트의 자료형을 찾아요.
-    // 4바이트
-    // 먼저 4바이트를 할당했다고 쳐보자
-    // 딱맞거나 들어갈수 있으면 그대로 픽스
-    // 4바이트 할당한다.
-    // char
-    // 8바이트
-};
-
-class Player1  // 먼저 나오는 자료형의 바이트가 더 낮고 나중에 나오는 바이트가 큰 경우.
-{              // 8바이트 예상.   정답 : 8바이트.
-public:
-    char i;    // 4바이트     빈공간 3바이트 빈공간을 패딩바이트라고 한다.
-    int Hp;    // 4바이트
-};
-
-class Player2   // 위에 선언된 Player1과의 차이는?
-{               // 16바이트 예상.   정답: 16바이트.
-public:
-    char i;       // 8   char과 int를 8바이트에 담고 패딩바이트 3만큼 발생.
-    int Hp;
-    __int64 Value; // 8
-};
-
-class Player3     //  16바이트예상  정답: 16바이트.
-{
-public:
-    int A;      // 4
-    char i;     // 4    패딩 바이트 3 발생.
-    int Hp;     // 4
-    short B;    // 4    패딩 바이트 2 발생.
-};
-
-class Player4     // 24바이트 예상.  정답 : 24바이트.
-{
-public:
-    int A;
-    char i;        //  8    패딩바이트 3발생.
-    int Hp;
-    short B;       //  8    패딩 바이트 2 발생.
-    __int64 C;     //  8  
-};
-
-class Player5   // 클래스안에 클래스가 선언 된다면?
-{                  //  24 바이트 예상.  정답 : 24 바이트.
-public:
-    int A;
-    char i;          // 8
-    int Hp;
-    short B;         // 8
-    Player1 New;     // 8  8이하인 자료형 중 가장 큰 자료형에 class가 8바이트로 작용.
-};
-
-class Player6   // 클래스안에 클래스가 선언 된다면?
-{                  // 48바이트 예상.    정답 : 40 바이트.
-public:
-    int A;
-    char i;        // 8
-    int Hp;
-    short B;       // 8
-    Player1 New;   // 8   8이하인 자료형 중 가장 큰 자료형에 player1가 8바이트로 작용.
-    Player2 New1;  // 16    8보다큰 자료형을 가진 자료형은 자신이 가진 바이트를 할당.
-};
-
+	for (size_t i = 0; i < _MaxBombNum; i++)
+	{
+		if (_BombTimerArr[i] > 3)
+		{
+			--_BombTimerArr[i];
+		}
+	}
+}
 
 int main()
 {
-    int Size0 = sizeof(Player0);
-    int Size1 = sizeof(Player1);
-    int Size2 = sizeof(Player2);
-    int Size3 = sizeof(Player3);
-    int Size4 = sizeof(Player4);
-    int Size5 = sizeof(Player5);
-    int Size6 = sizeof(Player6);
+	// 기본 맵 틀 생성
+	const short ScreenYSize = 20;
+	const short ScreenXSize = 20;
 
-    printf_s("%d\n", Size0);
-    printf_s("%d\n", Size1);
-    printf_s("%d\n", Size2);
-    printf_s("%d\n", Size3);
-    printf_s("%d\n", Size4);
-    printf_s("%d\n", Size5);
-    printf_s("%d\n", Size6);
+	// 맵 출력 구조물 구분 숫자
+	const short EmptySpaceIconNum = 0;
+	const short WallIconNum = 1;
+	const short InstallWallIconNum = 2;
+	const short BombIconNum = 3;
+	const short Explosion = 5;
 
+	// 폭탄 기준 데이터 구조물 구분 숫자
+	const short BombLocEmptySpaceIconNum = -1;
+	const short BombLocWallIconNum = -2;
+	const short BombLocInstallWallIconNum = -3;
 
-    // 그렇다면 패딩 바이트의 주소는 어떻게 될까?
-    Player0 NewPlayer;
+	// 맵 초기화
+	short MapDataArr[ScreenYSize][ScreenXSize] = {
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+		{1,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,2,2,2,2,2,2,0,0,0,0,1,0,1},
+		{1,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,2,0,2,2,0,2,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,2,0,2,2,0,2,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0,1},
+		{1,0,1,0,0,0,0,2,2,2,2,2,2,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+		{1,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,1},
+		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+	};
 
-    NewPlayer.Hp = 0;            // int
-    NewPlayer.Value1 = 1;        // sohrt
-    NewPlayer.Value2 = 2;        // int
-    NewPlayer.Value3 = 3;        // short
-    NewPlayer.TTT = 4;           // char
+	// 폭탄 위치 배열 : 0 ~ 최대폭탄개수 의 숫자는 각각 폭탄의 시간과 위치를 저장시킨다.
+	short BombLocationArr[ScreenYSize][ScreenXSize];
 
-    int* Ptr0 = &NewPlayer.Hp; // 주소값 찾아보기 .
-    short* PtrS = &NewPlayer.Value1;
+	// 폭발 위치 제어 배열 : 0이면 지나가고 1이면 지나갈 수 없음
+	short AnimationArr[ScreenYSize][ScreenXSize];
 
-    __int64 address = (__int64)Ptr0;
-    __int64 addressS = (__int64)PtrS;
+	// 맵 초기화
+	for (short y = 0; y < ScreenYSize; y++)
+	{
+		for (short x = 0; x < ScreenXSize; x++)
+		{
+			if (MapDataArr[y][x] == 1)
+			{
+				BombLocationArr[y][x] = BombLocWallIconNum;
+				AnimationArr[y][x] = WallIconNum;
+			}
+			else if (MapDataArr[y][x] == 0)
+			{
+				BombLocationArr[y][x] = BombLocEmptySpaceIconNum;
+				AnimationArr[y][x] = EmptySpaceIconNum;
+			}
+			else if (MapDataArr[y][x] == 2)
+			{
+				BombLocationArr[y][x] = BombLocEmptySpaceIconNum;
+				AnimationArr[y][x] = WallIconNum;
+			}
+		}
+	}
 
-    printf_s("%d\n", *Ptr0);       // NewPlayer.Hp 의 주소
-    address = address + 4;
-    printf_s("%d\n", address);     // NewPlayer.Value1 의 주소를 계산하여 접근한 주소.
-    printf_s("%d\n", addressS);    // Newplayer.Value1을 short로 직접 찾아간 주소.
-    // 이 두개가 같다면 4바이트 이후에 왼쪽부터 바이트가 채워진다.
-    // 4바이트 공간에 short는 왼쪽부터 채워지고 그 이후가 패딩바이트가 된다.
+	// 30프레임
+	const short ScreenFrame = 33;
 
-    // 그렇다면 NewPlayer.TTT의 char변수의 주소는
-    // NewPlayer.Hp 의 주소에서 14번째다음 주소가 될것이다.
+	// 화면 변환
+	short ChangeWindow = 0;
 
-    //확인
-    address = address + 10;
-    char* PtrCH = &NewPlayer.TTT;
-    __int64 addressCH = (__int64)PtrCH;
+	const short MaxBombNum = 5; // 폭탄 설치 개수
+	short BombNumCount = 0; // 설치된 폭탄 개수
+	const short TimeOfBomb = 30; // 폭탄의 시간
+	short BombTimerArr[MaxBombNum] = { 0, }; // 폭탄마다 시간 저장
+	const short BombAnimCount = 1; // 폭탄 애니메이션 주기값
 
-    printf_s("%d\n", address);
-    printf_s("%d\n", addressCH);
-    // 동일함을 확인.
+	// 플레이어 좌표
+	int PlayerY = ScreenYSize / 2;
+	int PlayerX = ScreenXSize / 4;
 
-    // 결론 : 클래스에서 남는 패딩 파이트는 오른쪽에 위치한다.
+	while (true)
+	{
+		// 화면 초기화
+		system("cls");
 
+		for (short y = 0; y < ScreenYSize; y++)
+		{
+			for (short x = 0; x < ScreenXSize; x++)
+			{
+				if (BombLocationArr[y][x] >= 0) // 폭탄의 위치번호는 0보다 크거나 같음
+				{
+					// 첫 번째 애니메이션 조건
+					if (BombTimerArr[BombLocationArr[y][x]] == 3)
+					{
+						// 세로 폭발
+						for (short i = y - 1; i <= y + 1; i += 2)
+						{
+							if (MapDataArr[i][x] == InstallWallIconNum) // 이곳에 설치 된 벽이 있는가?
+							{
+								MapDataArr[i][x] = Explosion;
+							}
+							else if (MapDataArr[i][x] == BombIconNum) // 이곳에 폭탄이 있는가?
+							{
+								BombTimerArr[BombLocationArr[i][x]] = 3;
+							}
+							else if (MapDataArr[i][x] == EmptySpaceIconNum) // 이곳에 아무것도 없는가?
+							{
+								MapDataArr[i][x] = Explosion;
+							}
+						}
+						// 가로 폭발
+						for (short i = x - 1; i <= x + 1; i += 2)
+						{
+							if (MapDataArr[y][i] == InstallWallIconNum) // 이곳에 설치 된 벽이 있는가?
+							{
+								MapDataArr[y][i] = Explosion;
+							}
+							else if (MapDataArr[y][i] == BombIconNum) // 이곳에 폭탄이 있는가? 
+							{
+								BombTimerArr[BombLocationArr[y][i]] = 3;
+							}
+							else if (MapDataArr[y][i] == EmptySpaceIconNum) // 이곳에 아무것도 없는가?
+							{
+								MapDataArr[y][i] = Explosion;
+							}
+						}
+						// 중심
+						MapDataArr[y][x] = Explosion;
+						BombTimerArr[BombLocationArr[y][x]]--;
+					}
+					// 두 번째 애니메이션 조건
+					else if (BombTimerArr[BombLocationArr[y][x]] == 2)
+					{
+						// 세로 폭발
+						for (short i = y - 2; i <= y + 2; i += 4)
+						{
+							if (i < y)
+							{
+								if (AnimationArr[i + 1][x] != WallIconNum)
+								{
+									if (MapDataArr[i][x] == InstallWallIconNum)
+									{
+										MapDataArr[i][x] = Explosion;
+										AnimationArr[i][x] = EmptySpaceIconNum;
+									}
+									else if (MapDataArr[i][x] == BombIconNum)
+									{
+										BombTimerArr[BombLocationArr[i][x]] = 3;
+									}
+									else if (MapDataArr[i][x] == EmptySpaceIconNum)
+									{
+										MapDataArr[i][x] = Explosion;
+									}
+								}
+								else if (AnimationArr[i + 1][x] == WallIconNum)
+								{
+									if (MapDataArr[i + 1][x] != WallIconNum)
+									{
+										AnimationArr[i + 1][x] = EmptySpaceIconNum;
+									}
+								}
+							}
+							else if (i > y)
+							{
+								if (AnimationArr[i - 1][x] != 1)
+								{
+									if (MapDataArr[i][x] == InstallWallIconNum)
+									{
+										MapDataArr[i][x] = Explosion;
+										AnimationArr[i][x] = EmptySpaceIconNum;
+									}
+									else if (MapDataArr[i][x] == BombIconNum)
+									{
+										BombTimerArr[BombLocationArr[i][x]] = 3;
+									}
+									else if (MapDataArr[i][x] == EmptySpaceIconNum)
+									{
+										MapDataArr[i][x] = Explosion;
+									}
+								}
+								else if (AnimationArr[i - 1][x] == WallIconNum)
+								{
+									if (MapDataArr[i - 1][x] != WallIconNum)
+									{
+										AnimationArr[i - 1][x] = EmptySpaceIconNum;
+									}
+								}
+							}
+						}
+						// 가로 폭발
+						for (short i = x - 2; i <= x + 2; i += 4)
+						{
+							if (i < x)
+							{
+								if (AnimationArr[y][i + 1] != WallIconNum)
+								{
+									if (MapDataArr[y][i] == InstallWallIconNum)
+									{
+										MapDataArr[y][i] = Explosion;
+										AnimationArr[y][i] = EmptySpaceIconNum;
+									}
+									else if (MapDataArr[y][i] == BombIconNum)
+									{
+										BombTimerArr[BombLocationArr[y][i]] = 3;
+									}
+									else if (MapDataArr[y][i] == EmptySpaceIconNum)
+									{
+										MapDataArr[y][i] = Explosion;
+									}
+								}
+								else if (AnimationArr[y][i + 1] == WallIconNum)
+								{
+									if (MapDataArr[y][i + 1] != WallIconNum)
+									{
+										AnimationArr[y][i + 1] = EmptySpaceIconNum;
+									}
+								}
+							}
+							else if (i > x)
+							{
+								if (AnimationArr[y][i - 1] != 1)
+								{
+									if (MapDataArr[y][i] == InstallWallIconNum)
+									{
+										MapDataArr[y][i] = Explosion;
+										AnimationArr[y][i] = EmptySpaceIconNum;
+									}
+									else if (MapDataArr[y][i] == BombIconNum)
+									{
+										BombTimerArr[BombLocationArr[y][i]] = 3;
+									}
+									else if (MapDataArr[y][i] == EmptySpaceIconNum)
+									{
+										MapDataArr[y][i] = Explosion;
+									}
+								}
+								else if (AnimationArr[y][i - 1] == 1)
+								{
+									if (MapDataArr[y][i - 1] != 1)
+									{
+										AnimationArr[y][i - 1] = 0;
+									}
+								}
+							}
+						}
+						BombTimerArr[BombLocationArr[y][x]]--;
+					}
+					// 폭발 이펙트 초기화
+					else if (BombTimerArr[BombLocationArr[y][x]] == 1)
+					{
+						// 폭탄 시간 배열 초기화
+						BombTimerArr[BombLocationArr[y][x]] = 0;
 
+						// 폭탄 위치 배열 초기화
+						BombLocationArr[y][x] = BombLocEmptySpaceIconNum;
 
+						// 맵 폭발 이펙트 초기화
+						for (short i = y - 2; i <= y + 2; i++)
+						{
+							if (MapDataArr[i][x] == Explosion)
+							{
+								MapDataArr[i][x] = EmptySpaceIconNum;
+							}
+						}
+						for (short i = x - 2; i <= x + 2; i++)
+						{
+							if (MapDataArr[y][i] == Explosion)
+							{
+								MapDataArr[y][i] = EmptySpaceIconNum;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// 실시간 폭탄 개수 카운트
+		BombNumCount = 0;
+		for (short i = 0; i < MaxBombNum; i++)
+		{
+			if (BombTimerArr[i] > 0)
+			{
+				BombNumCount++;
+			}
+		}
+
+		// 메인 화면 출력
+		for (short y = 0; y < ScreenYSize; y++)
+		{
+			for (short x = 0; x < ScreenXSize; x++)
+			{
+				if (x == PlayerX && y == PlayerY)
+				{
+					printf_s("●");
+				}
+				else {
+					switch (MapDataArr[y][x])
+					{
+					case EmptySpaceIconNum:
+						printf_s("  ");
+						break;
+
+					case WallIconNum:
+						printf_s("■");
+						break;
+
+					case InstallWallIconNum:
+						printf_s("▣");
+						break;
+
+					case BombIconNum:
+						printf_s("δ");
+						break;
+
+					case Explosion:
+						printf_s("＠");
+						break;
+					}
+				}
+			}
+			// 개발자 화면 1 : 폭탄 위치 저장 배열
+			if (ChangeWindow == 1)
+			{
+				printf_s("  ");
+
+				for (short x = 0; x < ScreenXSize; x++)
+				{
+					if (BombLocationArr[y][x] == BombLocWallIconNum)
+					{
+						printf_s("■");
+					}
+					else {
+						printf_s("%2d", BombLocationArr[y][x]);
+					}
+
+				}
+			}
+			// 개발자 화면 2 : 메인 화면 실제 배열
+			else if (ChangeWindow == 2)
+			{
+				printf_s("  ");
+
+				for (short x = 0; x < ScreenXSize; x++)
+				{
+					printf_s("%2d", MapDataArr[y][x]);
+				}
+			}
+			// 개발자 화면 3 : 폭발 위치 제어 배열
+			else if (ChangeWindow == 3)
+			{
+				printf_s("  ");
+
+				for (short x = 0; x < ScreenXSize; x++)
+				{
+					printf_s("%2d", AnimationArr[y][x]);
+				}
+			}
+			printf_s("\n");
+		}
+
+		switch (ChangeWindow)
+		{
+		case 0:
+			printf_s("\n  [ G ]: 장애물 설치  [ F ]: 폭탄 설치                                \n");
+			break;
+		case 1:
+			printf_s("\n  [ G ]: 장애물 설치  [ F ]: 폭탄 설치              폭탄 위치 저장 배열\n");
+			break;
+		case 2:
+			printf_s("\n  [ G ]: 장애물 설치  [ F ]: 폭탄 설치              메인 화면 실제 배열\n");
+			break;
+		case 3:
+			printf_s("\n  [ G ]: 장애물 설치  [ F ]: 폭탄 설치              폭발 위치 제어 배열\n");
+			break;
+		}
+		printf_s("\n                                                    [ M ]: 개발 모드(%d)\n        ", ChangeWindow);
+
+		// 폭탄 정보 출력 화면
+		for (short i = 0; i < MaxBombNum; i++)
+		{
+			printf_s(" %2d ", BombTimerArr[i]);
+		}
+		printf_s("\n\n    설치된 폭탄 수: %2d  (최대 %d개)      \n", BombNumCount, MaxBombNum);
+
+		// 키를 누르지 않을 때 작업
+		if (0 == _kbhit())
+		{
+			// 키 입력 없을 시 폭탄 시간 감소
+			BombTimeCounting(BombTimerArr, MaxBombNum);
+
+			Sleep(ScreenFrame);
+			continue;
+		}
+
+		// 키 입력
+		char Ch = _getch();
+
+		// 키 입력 중 폭탄 시간 감소
+		BombTimeCounting(BombTimerArr, MaxBombNum);
+
+		// 키 값 대응
+		switch (Ch)
+		{
+		case 'w':
+		case 'W':
+			if (MapDataArr[PlayerY - 1][PlayerX] == WallIconNum ||
+				MapDataArr[PlayerY - 1][PlayerX] == InstallWallIconNum ||
+				MapDataArr[PlayerY - 1][PlayerX] == BombIconNum)
+			{
+				break;
+			}
+			else
+			{
+				--PlayerY;
+				break;
+			}
+
+		case 's':
+		case 'S':
+			if (MapDataArr[PlayerY + 1][PlayerX] == WallIconNum ||
+				MapDataArr[PlayerY + 1][PlayerX] == InstallWallIconNum ||
+				MapDataArr[PlayerY + 1][PlayerX] == BombIconNum)
+			{
+				break;
+			}
+			else
+			{
+				++PlayerY;
+				break;
+			}
+
+		case 'a':
+		case 'A':
+			if (MapDataArr[PlayerY][PlayerX - 1] == WallIconNum ||
+				MapDataArr[PlayerY][PlayerX - 1] == InstallWallIconNum ||
+				MapDataArr[PlayerY][PlayerX - 1] == BombIconNum)
+			{
+				break;
+			}
+			else
+			{
+				--PlayerX;
+				break;
+			}
+
+		case 'd':
+		case 'D':
+			if (MapDataArr[PlayerY][PlayerX + 1] == WallIconNum ||
+				MapDataArr[PlayerY][PlayerX + 1] == InstallWallIconNum ||
+				MapDataArr[PlayerY][PlayerX + 1] == BombIconNum)
+			{
+				break;
+			}
+			else
+			{
+				++PlayerX;
+				break;
+			}
+
+			// 장애물 설치
+		case 'g':
+		case 'G':
+			if (MapDataArr[PlayerY][PlayerX] != EmptySpaceIconNum)
+			{
+				break;
+			}
+			MapDataArr[PlayerY][PlayerX] = InstallWallIconNum;
+			AnimationArr[PlayerY][PlayerX] = WallIconNum;
+			break;
+
+			// 폭탄
+		case 'f':
+		case 'F':
+
+			// 폭탄은 빈 공간일 경우에만 설치 가능하다.
+			// 폭탄의 최대 설치 수 제한
+			if (MapDataArr[PlayerY][PlayerX] != 0 || BombNumCount == MaxBombNum)
+			{
+				break;
+			}
+
+			MapDataArr[PlayerY][PlayerX] = BombIconNum;
+
+			// 위치 저장
+			for (short i = 0; i < MaxBombNum; i++)
+			{
+				if (BombTimerArr[i] == 0)
+				{
+					BombLocationArr[PlayerY][PlayerX] = i;
+					BombTimerArr[i] = TimeOfBomb;
+					break;
+				}
+			}
+			break;
+
+		case 'm':
+		case 'M':
+			if (ChangeWindow != 3)
+			{
+				ChangeWindow++;
+			}
+			else {
+				ChangeWindow -= 3;
+			}
+			break;
+
+		default:
+			break;
+		}
+
+		Sleep(ScreenFrame);
+	}
 }

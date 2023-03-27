@@ -30,25 +30,36 @@
 //     @
 //     @
 
+class BomberMan_Game
+{
+public:
+	//	지도 크기
 
-//	지도 크기
-const int ScreenYSize = 11;
-const int ScreenXSize = 21;
+	//	class안으로 들어가게 되면 메모리 영역이 어디에든 넣을 수 있어서 변수로 선언되므로,
+	//	배열안에 변수를 넣을 수 없다.
 
-//	지도 최소치 또는 최대치
-const int MinScreenXSize = 0;
-const int MinScreenYSize = 0;
-const int MaxScreenXSize = ScreenXSize - 1;
-const int MaxScreenYSize = ScreenYSize - 1;
+	//	static을 선언하면 클래스 내부에서 전역변수로 사용할 수 있다.
+	static const int ScreenYSize = 11;
+	static const int ScreenXSize = 21;
+	char Arr[ScreenYSize][ScreenXSize] = { 0, };
 
-char Arr[ScreenYSize][ScreenXSize] = { 0, };
+	//	지도 최소치 또는 최대치
+	const int MinScreenXSize = 0;
+	const int MinScreenYSize = 0;
+	const int MaxScreenXSize = ScreenXSize - 1;
+	const int MaxScreenYSize = ScreenYSize - 1;
 
-int PlayerX = ScreenXSize / 2;
-int PlayerY = ScreenYSize / 2;
 
-int Bombcount = 0;	
-int aftercount = 0;
-int afterimage_count = 0;
+	int PlayerX = ScreenXSize / 2;
+	int PlayerY = ScreenYSize / 2;
+
+	int Bombcount = 0;	
+	int aftercount = 0;
+	int afterimage_count = 0;
+
+};
+
+
 
 
 //	지도 생성
@@ -73,6 +84,7 @@ inline void MapComposition()
 				if (Bombcount == 7)	//	폭탄 터지는 시간
 				{
 					Arr[y][x] = 'P';
+					Bombcount = 0;
 
 					for (int i = 0; i < 5; i++)
 					{
@@ -82,17 +94,13 @@ inline void MapComposition()
 						Arr[y - i][x] = '@';
 						Arr[y + i][x] = '@';
 					}
-
-
-					Bombcount = 0;
-					aftercount = 0;
 				}
 			}
 			else if (Arr[y][x] == 'P')
 			{
 				Arr[y][x] = 'P';
 			}
-			else if (Arr[y][x] == '@')
+			else if (Arr[y][x] == '@')	//	잔상 처리
 			{
 				Arr[y][x] = '@';
 
@@ -103,26 +111,27 @@ inline void MapComposition()
 					Arr[y][x] = 'a';
 				}
 			}
-			else if (x == MinScreenXSize)
+			else if (x == MinScreenXSize)	//	윗쪽 외벽
 			{
 				Arr[y][x] = 'b';
 			}
-			else if (x == MaxScreenXSize)
+			else if (x == MaxScreenXSize)	//	아랫쪽 외벽
 			{
 				Arr[y][x] = 'b';
 			}
-			else if (y == MinScreenXSize)
+			else if (y == MinScreenXSize)	//	왼쪽 외벽
 			{
 				Arr[y][x] = 'b';
 			}
-			else if (y == MaxScreenYSize)
+			else if (y == MaxScreenYSize)	//	오른쪽 외벽
 			{
 				Arr[y][x] = 'b';
 			}
-			else
+			else	//	필드
 			{
 				Arr[y][x] = 'a';
 			}
+			aftercount++;
 		}
 	}
 }
