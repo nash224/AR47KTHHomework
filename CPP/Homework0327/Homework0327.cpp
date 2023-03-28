@@ -35,10 +35,19 @@ public:
 class ConsoleGameScreen
 {
 	// 메모리 영역 자체가 달라졌다고 봐야합니다.
+
+private:
+	ConsoleGameScreen() 
+	{
+
+	}
+
 public:
 	// 클래스 내부에 전역변수를 선언할수가 있습니다.
 	static const int ScreenYSize = 10;
 	static const int ScreenXSize = 20;
+
+	static ConsoleGameScreen NewScreen;
 
 	static int2 GetScreenSize()
 	{
@@ -71,7 +80,7 @@ public:
 	}
 
 	// 이녀석을 무조건 사용해서 플레이어가 바깥으로 못나가게 만드세요.
-	bool IsScreenOver(const int2& _Pos)
+	bool IsScreenOver(const int2& _Pos) const
 	{
 		if (0 > _Pos.X)
 		{
@@ -112,6 +121,7 @@ private:
 };
 
 /////////////////////////////////////////////////////////////////// 엔진
+ConsoleGameScreen ConsoleGameScreen::NewScreen;
 
 
 // 2단계 컨텐츠
@@ -131,7 +141,7 @@ public:
 	
 
 	// 화면바깥으로 못나가게 하세요. 
-	void Input(ConsoleGameScreen& _Boundary)
+	void Input(const ConsoleGameScreen& _Boundary)
 	{
 		if (0 == _kbhit())
 		{
@@ -142,7 +152,7 @@ public:
 			return;
 		}
 		
-		
+		int2 NextPos = { 0, 0 };
 
 		char Ch = _getch();
 
@@ -151,7 +161,7 @@ public:
 		case 'a':
 		case 'A':
 			Pos.X -= 1;
-			if (_Boundary.IsScreenOver(Pos))
+			if (ConsoleGameScreen::NewScreen.IsScreenOver(Pos))
 			{
 				Pos.X += 1;
 			}
@@ -159,7 +169,7 @@ public:
 		case 'd':
 		case 'D':
 			Pos.X += 1;
-			if (_Boundary.IsScreenOver(Pos))
+			if (ConsoleGameScreen::NewScreen.IsScreenOver(Pos))
 			{
 				Pos.X -= 1;
 			}
@@ -167,7 +177,7 @@ public:
 		case 'w':
 		case 'W':
 			Pos.Y -= 1;
-			if (_Boundary.IsScreenOver(Pos))
+			if (ConsoleGameScreen::NewScreen.IsScreenOver(Pos))
 			{
 				Pos.Y += 1;
 			}
@@ -175,7 +185,7 @@ public:
 		case 's':
 		case 'S':
 			Pos.Y += 1;
-			if (_Boundary.IsScreenOver(Pos))
+			if (ConsoleGameScreen::NewScreen.IsScreenOver(Pos))
 			{
 				Pos.Y -= 1;
 			}
@@ -198,25 +208,25 @@ private:
 
 int main()
 {
-	ConsoleGameScreen NewScreen;
 	Player NewPlayer;
 
 	// int2 NewPos = int2{ 5, 5 };
 
-	int2 ScreenSize = NewScreen.GetScreenSize();
+
+	int2 ScreenSize = ConsoleGameScreen::NewScreen.GetScreenSize();
 	NewPlayer.SetPos(ScreenSize.Half());
 
 	while (true)
 	{
 		system("cls");
 
-		NewScreen.ScreenClear();
+		ConsoleGameScreen::NewScreen.ScreenClear();
 
-		NewScreen.SetScreenCharacter(NewPlayer.GetPos(), '*');
+		ConsoleGameScreen::NewScreen.SetScreenCharacter(NewPlayer.GetPos(), '*');
 
-		NewScreen.ScreenPrint();
+		ConsoleGameScreen::NewScreen.ScreenPrint();
 
-		NewPlayer.Input(NewScreen);
+		NewPlayer.Input(ConsoleGameScreen::NewScreen);
 
 	}
 
