@@ -107,7 +107,7 @@ public:
 
 	void SetScreenCharacter(const int2& _Pos, char _Ch)
 	{
-		if (true == IsScreenOver(_Pos))
+		if (false == IsScreenOver(_Pos))
 		{
 			return;
 		}

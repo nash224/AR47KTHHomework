@@ -67,7 +67,6 @@ void Player::Input()
 		{
 			Fire = true;
 		}
-
 		break;
 	default:
 		break;

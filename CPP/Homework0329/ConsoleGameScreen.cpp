@@ -77,7 +77,6 @@ void ConsoleGameScreen::SetScreenBullet(const int2& _Pos, char _Bull)
 	/*if (true == )*/
 	if (true == Fire)
 	{
-	
 		Arr[BullPosY][BullPosX++] = _Bull;
 	}
 }
