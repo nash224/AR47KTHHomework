@@ -86,4 +86,5 @@ int main()
     Player New2 = Player(20);
 
     New0.Function();
+    New0.Function((short)5, 6);
 }

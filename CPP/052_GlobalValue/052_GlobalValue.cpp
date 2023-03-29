@@ -32,6 +32,7 @@ public:
     //  Player 클래스에 속한 전역변수, 플레이어 클래스에서만 사용할 수 있음
     static int Playercount;
 
+    int level = 0;
     int Exp = 0;
 
     int2 LevelAndExp = int2(3, 260);
@@ -51,13 +52,23 @@ public:
 
     int GetALLPlayercount()
     {
-
         return Playercount;
     }
 
+    int2 GetExp_And_Level() const
+    {
+        return Level_And_Exp;
+    }
 
-    
+    int2 Set_Exp_And_Level(const int2& _Value)
+    {
+        return Level_And_Exp = _Value;
+    }
+
     //void print();
+
+private:
+    int2 Level_And_Exp = int2(3, 600);
 };
 
 //  실체를 둔다.

@@ -44,7 +44,7 @@ public:
 
 	void SetScreenCharacter(const int2 _Pos, char _Ch)
 	{
-
+		Arr[_Pos.X][_Pos.Y] = _Ch;
 	}
 
 private:
@@ -65,6 +65,8 @@ int main()
 {
 	ConsoleGameScreen Game;
 
+	Player NewPlayer;
+
 
 
 	while (true)
@@ -72,6 +74,7 @@ int main()
 		system("cls");
 
 		Game.ScreenClear();
+
 
 
 		Game.ScreenPrint();

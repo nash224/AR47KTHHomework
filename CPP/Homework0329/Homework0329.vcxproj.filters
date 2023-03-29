@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Homework0329.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ConsoleGameMath.cpp" />
+    <ClCompile Include="ConsoleGameScreen.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ConsoleGameMath.h" />
+    <ClInclude Include="ConsoleGameScreen.h" />
+  </ItemGroup>
+</Project>

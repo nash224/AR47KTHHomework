@@ -20,9 +20,23 @@ void Function1();
 void Function1();
 void Function2();
 
+void test2();
+
 
 //  외부 기호 Error => 실체가 없다. 구현을 해주지 않았다.
 
+
+void test1()
+{
+	test2();	//	test1()은 자신 코드의 위의 함수를 참조하게 되는데 test2()가 없다.
+				//	C3861 ; test2 식별자를 찾을 수 없습니다.
+				//	해결법 : test2 함수를 위에 선언만 해주고 구현은 밑에서 한다.
+}
+
+void test2()
+{
+
+}
 
 void Function()
 //  함수체
@@ -50,6 +64,7 @@ public:
 	}
 
 
+	void StatusRender();
 
 private:
 	//	static 변수에 const가 붙으면 코드 영역에 존재함으로 여러번 초기화 할 수 없다.
@@ -58,7 +73,6 @@ private:
 	//	컴파일러의 입장으로 봤을때 전부 5로 만들어버린다.
 	static const int Value = 5;
 
-	void StatusRender();
 	void Damage();
 
 	static void GlobalFunction()
@@ -77,7 +91,6 @@ private:
 	
 };
 
-Monster NewMosnter;
 
 
 class Monster
@@ -115,6 +128,8 @@ int main()
 
 	Player NewPlayer0 = Player();
 	NewPlayer0.Function0();
+
+	NewPlayer0.StatusRender();
 }
 
 
