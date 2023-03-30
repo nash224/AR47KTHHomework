@@ -1,50 +1,46 @@
 #pragma once
-#include "ConsoleGameScreen.h"
+#include "ConsoleGameMath.h"
 
+
+class ConsoleGameScreen;
+class Player;
 class Bullet
 {
 public:
-	Bullet()/*
-		: BulletFire(false)*/
-	{
+	Bullet();
 
+
+
+	inline void SetPos(const int2& _Value)
+	{
+		Pos = _Value;
 	}
 
-	int2 GetBulletPos() const
+	inline int2 GetPos() const
 	{
-		return BulletPos;
+		return Pos;
 	}
 
-	inline void SetBulletPos(const int2& _Pos)
+	void SetPlayer(Player* _m_Player)
 	{
-		BulletPos = _Pos;
+		if (nullptr == _m_Player)
+		{
+			return;
+		}
+
+		m_Player = _m_Player;
 	}
 
-	//inline void SetBulletFire(bool _triggerpulled)
-	//{
-	//	BulletFire = _triggerpulled;
-	//}
+	void Update();
 
-	//inline bool GetBulletFire() const
-	//{
-	//	return BulletFire;
-	//}
+	void BulletRender();
 
-	// 링크를 어떻게 끊어야할까
-	// 링크를 왜 끊어야할까
-	// 트레킹이 풀려서 독립적으로 움직일수 있음
-	// 
-	// 한번만 좌표를 받게 하면 될 것같은데..
-	// 임시 총알 좌표를 만들면 될까?
-	// 그리고 주는 좌표함수 또한 바꿀필요가 있는가
-	inline void MoveBulletPos()
-	{
-		++BulletPos.X;
-	}
-
+protected:
 
 private:
-	int2 BulletPos = int2(0, 0);
+	bool trigger;
 
-	//bool BulletFire;
+	Player* m_Player;
+
+	int2 Pos = int2(0, 0);
 };

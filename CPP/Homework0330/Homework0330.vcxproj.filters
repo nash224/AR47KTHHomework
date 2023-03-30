@@ -1,54 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="0330Main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="0330Main.cpp" />
+    <ClCompile Include="ConsoleGameMath.cpp">
+      <Filter>Level0</Filter>
     </ClCompile>
     <ClCompile Include="ConsoleGameScreen.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Level1</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleGameMath.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Level2</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Level2</Filter>
     </ClCompile>
     <ClCompile Include="ShootingGame.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Level3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="ConsoleGameMath.h">
+      <Filter>Level0</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleGameScreen.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Level1</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleGameMath.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Bullet.h">
+      <Filter>Level2</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Level2</Filter>
     </ClInclude>
     <ClInclude Include="ShootingGame.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Level3</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Level0">
+      <UniqueIdentifier>{9f4c668e-fb9c-4552-b344-252c5f779895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level1">
+      <UniqueIdentifier>{d4f7ca4f-26c6-4e91-89d3-9b5872c06e30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level2">
+      <UniqueIdentifier>{5ccc24b1-50d4-4e77-a6a1-2b751d994965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level3">
+      <UniqueIdentifier>{eb67de7a-adc0-4d84-83a6-90d93fb8ec46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

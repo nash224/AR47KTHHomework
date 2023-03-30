@@ -61,13 +61,17 @@ void Player::Input()
 			Pos.Y += 1;
 		}
 		break;
-	case 'x':
-	case 'X':
-		Trigger = true;
+	case 'f':
+	case 'F':
+		Fire = true;
 		break;
 	default:
 		break;
 	}
-
 	Sleep(InterFrame);
+}
+
+void Player::Render()
+{
+	ConsoleGameScreen::GetMainScreen().SetScreenCharacter(Pos, '*');
 }

@@ -1,9 +1,7 @@
 #include "ConsoleGameScreen.h"
-#include "ConsoleGameScreen.h"
 #include <iostream>
 
 ConsoleGameScreen ConsoleGameScreen::MainScreen;
-class Player;
 
 void ConsoleGameScreen::ScreenClear()
 {
@@ -55,39 +53,15 @@ bool ConsoleGameScreen::IsScreenOver(const int2& _Pos) const
 	return false;
 }
 
-
-
-//bool ConsoleGameScreen::IsBulletScreenOver()
-
 void ConsoleGameScreen::SetScreenCharacter(const int2& _Pos, char _Ch)
 {
-	// 만약 나갔으면 함수에서 빠져나온다
 	if (true == IsScreenOver(_Pos))
 	{
 		return;
 	}
 
-	// 나가지 않았으면 위치에 플레이어를 배치한다
 	Arr[_Pos.Y][_Pos.X] = _Ch;
 }
-
-
-
-void ConsoleGameScreen::SetScreenBullet(const int2& _BulletPos, char _Bull)
-
-{
-	if (true == IsScreenOver(_BulletPos))
-	{
-		return;
-	}
-
-	if (true == PlayerIsFire)
-	{
-		Arr[_BulletPos.Y][_BulletPos.X] = _Bull;
-	}
-	
-}
-
 
 
 

@@ -132,12 +132,14 @@
     <ClCompile Include="ConsoleGameScreen.cpp" />
     <ClCompile Include="Homework0329.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ShootingGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="ConsoleGameMath.h" />
     <ClInclude Include="ConsoleGameScreen.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ShootingGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

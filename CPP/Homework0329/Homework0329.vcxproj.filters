@@ -14,6 +14,7 @@
     <ClCompile Include="ConsoleGameScreen.cpp">
       <Filter>Level1</Filter>
     </ClCompile>
+    <ClCompile Include="ShootingGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleGameMath.h">
@@ -28,6 +29,7 @@
     <ClInclude Include="ConsoleGameScreen.h">
       <Filter>Level1</Filter>
     </ClInclude>
+    <ClInclude Include="ShootingGame.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level0">
