@@ -4,8 +4,8 @@
 class Bullet
 {
 public:
-	Bullet()
-		: BulletFire(false)
+	Bullet()/*
+		: BulletFire(false)*/
 	{
 
 	}
@@ -20,15 +20,15 @@ public:
 		BulletPos = _Pos;
 	}
 
-	inline void SetBulletFire(bool _triggerpulled)
-	{
-		BulletFire = _triggerpulled;
-	}
+	//inline void SetBulletFire(bool _triggerpulled)
+	//{
+	//	BulletFire = _triggerpulled;
+	//}
 
-	inline bool GetBulletFire() const
-	{
-		return BulletFire;
-	}
+	//inline bool GetBulletFire() const
+	//{
+	//	return BulletFire;
+	//}
 
 	// 링크를 어떻게 끊어야할까
 	// 링크를 왜 끊어야할까
@@ -39,14 +39,12 @@ public:
 	// 그리고 주는 좌표함수 또한 바꿀필요가 있는가
 	inline void MoveBulletPos()
 	{
-		BulletPos.X++;
-		BulletPos.X++;
-		BulletPos.X++;
+		++BulletPos.X;
 	}
 
 
 private:
 	int2 BulletPos = int2(0, 0);
 
-	bool BulletFire;
+	//bool BulletFire;
 };
