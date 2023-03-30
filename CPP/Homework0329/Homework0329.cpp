@@ -37,15 +37,20 @@ int main()
 
 		bool istriggerpulled = NewPlayer.IsTriggerPulled();
 
+		// 이 플레이어가 방아쇠를 당겼으면
 		if (NewPlayer.IsTriggerPulled() == true)
-		{
+		{	// 총알의 위치에 플레이어 위치를 대입한다.
 			OneBullet.SetBulletPos(NewPlayer.GetBulletPos());
 		}
 
+		// 플레이어가 방아쇠를 다겼으면 총알은 나갈준비가 되어있다.
 		OneBullet.SetBulletFire(NewPlayer.IsTriggerPulled());
 
+		// 총알이 나갈준비가 되어있으면 화면에 총알을 출력할 준비가 되어있다.
 		ConsoleGameScreen::GetMainScreen().SetPlayerIsFire(OneBullet.GetBulletFire());
 
+		// 총알의 위치를 알면 ConsoleGmaeScreen클래스의 내부에서 총알의 발사유무를 확인하고, 
+		// 총알을 화면에 출력한다.
 		ConsoleGameScreen::GetMainScreen().SetScreenBullet(OneBullet.GetBulletPos(), '>');
 
 

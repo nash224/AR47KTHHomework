@@ -15,19 +15,25 @@ public:
 		return BulletPos;
 	}
 
-	void SetBulletPos(const int2& _Value)
+	inline void SetBulletPos(const int2& _Value)
 	{
 		BulletPos = _Value;
 	}
 
-	void SetBulletFire(bool _triggerpulled)
+	inline void SetBulletFire(bool _triggerpulled)
 	{
 		BulletFire = _triggerpulled;
 	}
 
-	bool GetBulletFire() const
+	inline bool GetBulletFire() const
 	{
 		return BulletFire;
+	}
+
+	inline void MoveBulletPos()
+	{
+		BulletPos.X = (BulletPos.X)++;
+		// ¿¹¿Ü°¡ throwµÊ
 	}
 
 
