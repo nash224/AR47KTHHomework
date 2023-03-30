@@ -18,6 +18,11 @@ public:
 		return Pos;
 	}
 
+	inline int2 GetBulletPos() const
+	{
+		return currentBullPos;
+	}
+
 
 	void Input();
 
@@ -46,7 +51,7 @@ private:
 	bool Trigger = false;
 
 
-
+	int2 currentBullPos = int2{ 0,0 };
 	int2 Pos = int2(0, 0);
 
 	// 이런 구조를 Has a라고 한다. Player Has a Bullet

@@ -66,6 +66,7 @@ void Player::Input()
 		if (false == Trigger)
 		{
 			Trigger = true;
+			currentBullPos = Pos;
 		}
 		break;
 	default:

@@ -85,6 +85,7 @@ void ConsoleGameScreen::SetScreenBullet(const int2& _BulletPos, char _Bull)
 	{
 		Arr[_BulletPos.Y][_BulletPos.X] = _Bull;
 	}
+	
 }
 
 

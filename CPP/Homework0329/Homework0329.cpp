@@ -32,18 +32,23 @@ int main()
 
 		ConsoleGameScreen::GetMainScreen().SetScreenCharacter(NewPlayer.GetPos(), '*');
 
+
+
+
 		bool istriggerpulled = NewPlayer.IsTriggerPulled();
 
 		if (NewPlayer.IsTriggerPulled() == true)
 		{
-			OneBullet.SetBulletPos(NewPlayer.GetPos());
+			OneBullet.SetBulletPos(NewPlayer.GetBulletPos());
 		}
 
 		OneBullet.SetBulletFire(NewPlayer.IsTriggerPulled());
 
+		ConsoleGameScreen::GetMainScreen().SetPlayerIsFire(OneBullet.GetBulletFire());
+
 		ConsoleGameScreen::GetMainScreen().SetScreenBullet(OneBullet.GetBulletPos(), '>');
 
-		ConsoleGameScreen::GetMainScreen().SetPlayerIsFire(OneBullet.GetBulletFire());
+
 
 		ConsoleGameScreen::GetMainScreen().ScreenPrint();
 
