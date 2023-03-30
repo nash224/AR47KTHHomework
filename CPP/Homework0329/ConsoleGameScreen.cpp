@@ -55,6 +55,8 @@ bool ConsoleGameScreen::IsScreenOver(const int2& _Pos) const
 	return false;
 }
 
+
+
 //bool ConsoleGameScreen::IsBulletScreenOver()
 
 void ConsoleGameScreen::SetScreenCharacter(const int2& _Pos, char _Ch)
@@ -69,15 +71,19 @@ void ConsoleGameScreen::SetScreenCharacter(const int2& _Pos, char _Ch)
 	Arr[_Pos.Y][_Pos.X] = _Ch;
 }
 
-void ConsoleGameScreen::SetScreenBullet(const int2& _Pos, char _Bull)
-{
-	BullPosX = _Pos.X;
-	BullPosY = _Pos.Y;
 
-	/*if (true == )*/
-	if (true == Fire)
+
+void ConsoleGameScreen::SetScreenBullet(const int2& _BulletPos, char _Bull)
+
+{
+	if (true == IsScreenOver(_BulletPos))
 	{
-		Arr[BullPosY][BullPosX++] = _Bull;
+		return;
+	}
+
+	if (true == PlayerIsFire)
+	{
+		Arr[_BulletPos.Y][_BulletPos.X] = _Bull;
 	}
 }
 

@@ -5,6 +5,8 @@ public:
 	Player();
 	void Damage(int _value);
 
+	void Heal(int _value);
+
 	void Test();
 
 

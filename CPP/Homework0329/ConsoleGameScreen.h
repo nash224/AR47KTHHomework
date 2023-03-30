@@ -40,11 +40,18 @@ public:
 
 	void SetScreenBullet(const int2& _Pos, char _Bull);
 
+	void SetPlayerIsFire(bool _IsFire)
+	{
+		PlayerIsFire = _IsFire;
+	}
+
 protected:
 
 private:
 	// 스크린에 
 	char Arr[ScreenYSize][ScreenXSize] = { 0, };
+
+	bool PlayerIsFire = false;
 
 	ConsoleGameScreen();
 
@@ -55,4 +62,5 @@ private:
 	// 그걸 디자인 패턴이라고 하고.
 	// 아무도 안써요.
 	static ConsoleGameScreen MainScreen;
+
 };

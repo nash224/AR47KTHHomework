@@ -1,13 +1,11 @@
 #pragma once
 #include "ConsoleGameMath.h"
 
-class Bullet;
-class ConsoleGameScreen;
 class Player
 {
 public:
 	Player();
-	bool Fire = false;
+
 
 	// 플레이어의 위치를 좌표값을 사용함으로 
 	inline void SetPos(const int2& _Value)
@@ -20,13 +18,19 @@ public:
 		return Pos;
 	}
 
+
 	void Input();
 
 	// 이상적인 방법은 보통 이걸 추천한다.
 	// 
-	inline bool IsFire()
+	inline bool IsTriggerPulled() const
 	{
-		return Fire;
+		return Trigger;
+	}
+
+	void SetBulletFire(bool isFire)
+	{
+		Trigger = isFire;
 	}
 
 	//void Test(Bullet Test) 
@@ -38,6 +42,8 @@ protected:
 
 private:
 	static const int InterFrame = 200;
+
+	bool Trigger = false;
 
 
 

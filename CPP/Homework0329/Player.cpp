@@ -63,9 +63,9 @@ void Player::Input()
 		break;
 	case 'x':
 	case 'X':
-		if (false == IsFire)
+		if (false == Trigger)
 		{
-			Fire = true;
+			Trigger = true;
 		}
 		break;
 	default:

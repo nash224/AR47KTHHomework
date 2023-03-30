@@ -18,8 +18,11 @@ int main()
 	// int2의 스크린 크기 객체는 콘솔영역의 
 	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
 
+	Bullet OneBullet;
+
 	// NewPlayer 객체는 스크린의 반만큼의 인자를 SetPos함수로 전달한다.
 	NewPlayer.SetPos(ScreenSize.Half());
+
 
 	while (true)
 	{
@@ -29,13 +32,23 @@ int main()
 
 		ConsoleGameScreen::GetMainScreen().SetScreenCharacter(NewPlayer.GetPos(), '*');
 
-		if ()
-		ConsoleGameScreen::GetMainScreen().SetScreenBullet(NewPlayer.GetPos(), '>');
+		bool istriggerpulled = NewPlayer.IsTriggerPulled();
+
+		if (NewPlayer.IsTriggerPulled() == true)
+		{
+			OneBullet.SetBulletPos(NewPlayer.GetPos());
+		}
+
+		OneBullet.SetBulletFire(NewPlayer.IsTriggerPulled());
+
+		ConsoleGameScreen::GetMainScreen().SetScreenBullet(OneBullet.GetBulletPos(), '>');
+
+		ConsoleGameScreen::GetMainScreen().SetPlayerIsFire(OneBullet.GetBulletFire());
 
 		ConsoleGameScreen::GetMainScreen().ScreenPrint();
 
-		NewPlayer.Input();
 
+		NewPlayer.Input();
 	}
 
 	std::cout << "Hello World!\n";
