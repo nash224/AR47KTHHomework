@@ -41,6 +41,7 @@ int main()
 		if (NewPlayer.IsTriggerPulled() == true)
 		{	// 총알의 위치에 플레이어 위치를 대입한다.
 			OneBullet.SetBulletPos(NewPlayer.GetBulletPos());
+			OneBullet.MoveBulletPos();
 		}
 
 		// 플레이어가 방아쇠를 다겼으면 총알은 나갈준비가 되어있다.
