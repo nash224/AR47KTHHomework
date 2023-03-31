@@ -4,18 +4,10 @@
 #include <Windows.h>
 #include "Bullet.h"
 
-int Player::Bulletcount;
-
 Player::Player()
 {
-
+	RenderChar = '*';
 }
-
-void Player::ShootCount()
-{
-	Bulletcount++;
-}
-
 // 화면바깥으로 못나가게 하세요. 
 void Player::Input()
 {
@@ -72,10 +64,10 @@ void Player::Input()
 		break;
 	case 'f':
 	case 'F':
-		BulletPtr[Bulletcount].SetPos(Pos);
-		BulletPtr[Bulletcount].FireOn();
-		ShootCount();
+	{
+		ShotUpdate();
 		break;
+	}
 	default:
 		break;
 	}
@@ -83,8 +75,15 @@ void Player::Input()
 	Sleep(InterFrame);
 }
 
-
-void Player::Render()
+void Player::ShotUpdate()
 {
-	ConsoleGameScreen::GetMainScreen().SetScreenCharacter(Pos, '*');
+	Bullet& NewBullet = BulletPtr[BulletCount];
+	NewBullet.SetPos(Pos);
+	NewBullet.On();
+
+	++BulletCount;
+	if (BulletCount >= Bullet::ArrBulletCount)
+	{
+		BulletCount = 0;
+	}
 }

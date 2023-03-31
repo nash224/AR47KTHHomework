@@ -23,18 +23,23 @@ public:
 		return Pos;
 	}
 
+	void ShootCountReset()
+	{
+		Bulletcount = 0;
+	}
+
 	inline void ShootCount();
 
 	void Input();
 
-	void Render() const;
+	void Render();
 
 protected:
 
 private:
 	static const int InterFrame = 200;
 
-	static int count;
+	static int Bulletcount;
 
 	int2 Pos = int2(0, 0);
 
