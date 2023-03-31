@@ -7,6 +7,12 @@ class Player
 public:
 	Player();
 
+// 전방선언은 이렇게 해도 된다.
+	void SetBulletArr(class Bullet* _BulletPtr)
+	{
+		BulletPtr = _BulletPtr;
+	}
+
 	inline void SetPos(const int2& _Value)
 	{
 		Pos = _Value;
@@ -21,13 +27,7 @@ public:
 
 	void Input();
 
-	void Render();
-
-	// 전방선언은 이렇게 해도 된다.
-	void SetBulletArr(class Bullet* _BulletPtr)
-	{
-		BulletPtr = _BulletPtr;
-	}
+	void Render() const;
 
 protected:
 

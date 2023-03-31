@@ -2,6 +2,7 @@
 #include "ConsoleGameMath.h"
 
 class ConsoleGameScreen;
+class Bullet;
 class Player
 {
 public:
@@ -28,12 +29,24 @@ public:
 
 	void Render();
 
+	void SetBullet(Bullet* _m_ArrBuleltPtr)
+	{
+		if (nullptr == _m_ArrBuleltPtr)
+		{
+			return;
+		}
+
+		m_ArrBuleltPtr = _m_ArrBuleltPtr;
+	}
+
 protected:
 
 private:
 	static const int InterFrame = 200;
 
 	bool Fire = false;
+
+	Bullet* m_ArrBuleltPtr;
 
 	int2 Pos = int2(0, 0);
 

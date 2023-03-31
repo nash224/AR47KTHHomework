@@ -10,6 +10,7 @@ public:
 	static const int ScreenYSize = 10;
 	static const int ScreenXSize = 20;
 
+	// 전역 클래스이름-참조 함수()
 	static ConsoleGameScreen& GetMainScreen()
 	{
 		return MainScreen;
@@ -38,5 +39,7 @@ private:
 	// 클래스간의 관계나 구조를 짜는 방식이 비슷한 녀석들을 모아서 이름을 붙였는데.
 	// 그걸 디자인 패턴이라고 하고.
 	// 아무도 안써요.
+
+	// 전역 클래스이름       멤버 변수
 	static ConsoleGameScreen MainScreen;
 };

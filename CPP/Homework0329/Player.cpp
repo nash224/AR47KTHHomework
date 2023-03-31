@@ -2,6 +2,7 @@
 #include "ConsoleGameScreen.h"
 #include <conio.h>
 #include <Windows.h>
+#include "Bullet.h"
 
 Player::Player()
 {
@@ -63,7 +64,8 @@ void Player::Input()
 		break;
 	case 'f':
 	case 'F':
-		Fire = true;
+		m_ArrBuleltPtr[0].SetPos(Pos);
+		m_ArrBuleltPtr[0].FireOn();
 		break;
 	default:
 		break;

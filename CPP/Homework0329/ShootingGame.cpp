@@ -9,11 +9,8 @@ void ShootingGame::GameProcess()
 {
 
 	Player NewPlayer = Player();
-	Bullet NewBullet = Bullet();
 
-	NewBullet.SetPlayer(&NewPlayer);
-
-
+	NewPlayer.SetBullet(Bullet::GetArrBullet());
 
 	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
 	NewPlayer.SetPos(ScreenSize.Half());
@@ -25,15 +22,13 @@ void ShootingGame::GameProcess()
 		ConsoleGameScreen::GetMainScreen().ScreenClear();
 
 		NewPlayer.Render();
-
-		NewBullet.BulletRender();
+		Bullet::AllRender();
 
 		ConsoleGameScreen::GetMainScreen().ScreenPrint();
 
 		NewPlayer.Input();
-		
-		NewBullet.Update();
+
+		Bullet::AllUpdata();
 
 	}
-
 }

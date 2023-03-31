@@ -1,6 +1,8 @@
 #include "ConsoleGameScreen.h"
 #include <iostream>
 
+//				  참조::변수 이름
+// 자료형 타입에  클래스 객체를 만들꺼야
 ConsoleGameScreen ConsoleGameScreen::MainScreen;
 
 void ConsoleGameScreen::ScreenClear()

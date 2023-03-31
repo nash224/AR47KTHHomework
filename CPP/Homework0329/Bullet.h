@@ -1,15 +1,20 @@
 #pragma once
 #include "ConsoleGameMath.h"
-
+#include "ShootingGame.h"
 
 class ConsoleGameScreen;
 class Player;
 class Bullet
 {
 public:
-	Bullet();
+	static Bullet* GetArrBullet()
+	{
+		return ArrBullet;
+	}
 
+	static void AllRender();
 
+	static void AllUpdata();
 
 	inline void SetPos(const int2& _Value)
 	{
@@ -21,26 +26,31 @@ public:
 		return Pos;
 	}
 
-	void SetPlayer(Player* _m_Player)
+	inline bool GetIsBulletFire() const
 	{
-		if (nullptr == _m_Player)
-		{
-			return;
-		}
-
-		m_Player = _m_Player;
+		return Fire;
 	}
 
-	void Update();
-
+	inline void FireOn()
+	{
+		Fire = true;
+	}
+	
 	void BulletRender();
+
+	void Update();
 
 protected:
 
 private:
-	bool trigger;
+	Bullet();
 
-	Player* m_Player;
+	static const int ArrBulletCount = 30;
+
+	static Bullet ArrBullet[ArrBulletCount];
+
+	bool Fire = false;
 
 	int2 Pos = int2(0, 0);
 };
+
