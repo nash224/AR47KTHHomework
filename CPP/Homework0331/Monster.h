@@ -6,6 +6,7 @@ class Monster : public ConsoleGameObject
 public:
 	Monster();
 	void Update();
+	void Forward();
 
 	static int GetAllDirection()
 	{
@@ -17,22 +18,9 @@ public:
 		EntireDirection = -_Reverse;
 	}
 
-	void Forward();
-
-	static bool GetCanMosnterGo()
-	{
-		return CanMosnterGo;
-	}
-
-
-
-
 private:
 	int Dir = 1;
 	static int EntireDirection;
 
-	bool IsForward = false;
-
-	static bool CanMosnterGo;
 };
 

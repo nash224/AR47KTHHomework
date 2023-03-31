@@ -71,50 +71,76 @@ void ShootingGame::Collision()
 // 2, 7, 22
 void ShootingGame::MonsterEndCheck()
 {
+
 	// 1. 움직이게 한다.
 	for (size_t MonsterIndex = 0; MonsterIndex < ShootingGame::ArrMonsterCount; MonsterIndex++)
 	{
 		Monster& CurMonster = ArrMonster[MonsterIndex];
-
 		if (false == CurMonster.IsUpdate())
 		{
 			continue;
 		}
 
-		//ArrMonster[MonsterIndex].GetPos().X = ArrMonster[MonsterIndex].GetPos().X
-
-
-		if (0 == ArrMonster[MonsterIndex].GetPos().X)
+		if (0 == CurMonster.GetPos().X)
 		{
-			for (size_t MonsterIndex_Y = 0; MonsterIndex_Y < ShootingGame::ArrMonsterCount; MonsterIndex_Y++)
+			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
 				if (false == CurMonster.IsUpdate())
 				{
 					continue;
 				}
 
-				ArrMonster[MonsterIndex_Y].Forward();
+				/*int Dirvalue = ArrMonster[MonsterIndex_i].Dir;*/
+				
+				if (-1 == ArrMonster[MonsterIndex_i].Dir)
+				{
+					ArrMonster[MonsterIndex_i].Dir *= -1;
+				}
 			}
 
-			//int value = ArrMonster[MonsterIndex].GetDirection();
-			ArrMonster[MonsterIndex].Reverse(Monster::GetAllDirection());
+			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
+			{
+				if (false == CurMonster.IsUpdate())
+				{
+					continue;
+				}
+				ArrMonster[MonsterIndex_i].GetPos().Y += 1;
+			}
 		}
+		/*ArrMonster[MonsterIndex].GetPos().X -= ArrMonster[MonsterIndex].Dir;*/
 
-		if (ConsoleGameScreen::ScreenXSize - 1 == ArrMonster[MonsterIndex].GetPos().X)
+		if (ConsoleGameScreen::ScreenXSize -1 == ArrMonster[MonsterIndex].GetPos().X)
 		{
-			for (size_t MonsterIndex_Y = 0; MonsterIndex_Y < ShootingGame::ArrMonsterCount; MonsterIndex_Y++)
+			int value0 = ArrMonster[0].GetPos().X;
+			int value1 = ArrMonster[1].GetPos().X;
+			int value13 = ArrMonster[13].GetPos().X;
+			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
 				if (false == CurMonster.IsUpdate())
 				{
 					continue;
 				}
 
-				ArrMonster[MonsterIndex_Y].Forward();
+				if (1 == ArrMonster[MonsterIndex_i].Dir)
+				{
+					ArrMonster[MonsterIndex_i].Dir *= -1;
+				}
 			}
 
-			//int value = ArrMonster[MonsterIndex].GetDirection();
-			ArrMonster[MonsterIndex].Reverse(Monster::GetAllDirection());
+			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
+			{
+				if (false == CurMonster.IsUpdate())
+				{
+					continue;
+				}
+				//ArrMonster[MonsterIndex_i].GetPos().Y += 1;
+			}
 		}
+
+		
+		ArrMonster[MonsterIndex].GetPos().X += ArrMonster[MonsterIndex].Dir;
+		int valueCur = ArrMonster[13].GetPos().X;
+		const int a = 0;
 	}
 
 	// 2. 끝에 어떠한 몬스터중 단 1개라도 닿았는지 확인한다.
