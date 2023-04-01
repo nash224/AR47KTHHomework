@@ -11,7 +11,7 @@ void Bullet::AllRender()
 {
 	for (size_t i = 0; i < Bullet::ArrBulletCount; i++)
 	{
-		if (false == ArrBullet[i].IsFire())
+		if (false == ArrBullet[i].IsUpdate())
 		{
 			continue;
 		}
@@ -25,7 +25,7 @@ void Bullet::AllUpdate()
 {
 	for (size_t i = 0; i < Bullet::ArrBulletCount; i++)
 	{
-		if (false == ArrBullet[i].IsFire())
+		if (false == ArrBullet[i].IsUpdate())
 		{
 			continue;
 		}
@@ -41,7 +41,7 @@ Bullet::Bullet()
 
 void Bullet::Render()
 {
-	if (true == Fire)
+	if (true == UpdateValue)
 	{
 		ConsoleGameScreen::GetMainScreen().SetScreenCharacter(Pos, '^');
 	}
@@ -49,7 +49,7 @@ void Bullet::Render()
 
 void Bullet::Update()
 {
-	if (true == Fire)
+	if (true == UpdateValue)
 	{
 		--Pos.Y;
 	}

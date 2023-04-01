@@ -15,7 +15,10 @@
       <Filter>Level2</Filter>
     </ClCompile>
     <ClCompile Include="ShootingGame.cpp">
-      <Filter>Level3</Filter>
+      <Filter>Level2</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Level2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,7 +35,10 @@
       <Filter>Level2</Filter>
     </ClInclude>
     <ClInclude Include="ShootingGame.h">
-      <Filter>Level3</Filter>
+      <Filter>Level2</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Level2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -44,9 +50,6 @@
     </Filter>
     <Filter Include="Level2">
       <UniqueIdentifier>{5ccc24b1-50d4-4e77-a6a1-2b751d994965}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Level3">
-      <UniqueIdentifier>{eb67de7a-adc0-4d84-83a6-90d93fb8ec46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

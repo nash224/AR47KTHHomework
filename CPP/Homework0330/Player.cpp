@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include "Bullet.h"
 
-int Player::Bulletcount;
+int Player::Bulletcount = 10;
 
 Player::Player()
 {
@@ -73,7 +73,7 @@ void Player::Input()
 	case 'f':
 	case 'F':
 		BulletPtr[Bulletcount].SetPos(Pos);
-		BulletPtr[Bulletcount].FireOn();
+		BulletPtr[Bulletcount].On();
 		ShootCount();
 		break;
 	default:
