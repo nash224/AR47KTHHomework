@@ -68,25 +68,23 @@ void ShootingGame::Collision()
 }
 
 
-// 2, 7, 22
+// 2, 7, 11, 22
 void ShootingGame::MonsterEndCheck()
 {
-
 	for (size_t MonsterIndex = 0; MonsterIndex < ShootingGame::ArrMonsterCount; MonsterIndex++)
 	{
+		// 현재 몬스터의 객체에 대한 정보를 받아온다.
 		Monster& CurMonster = ArrMonster[MonsterIndex];
 		if (false == CurMonster.IsUpdate())
 		{
 			continue;
 		}
 
-
-
 		if (0 == CurMonster.GetPos().X)
 		{
 			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
-				if (false == CurMonster.IsUpdate())
+				if (false == ArrMonster[MonsterIndex_i].IsUpdate())
 				{
 					continue;
 				}
@@ -94,13 +92,18 @@ void ShootingGame::MonsterEndCheck()
 				
 				if (-1 == ArrMonster[MonsterIndex_i].Dir)
 				{
+					if (false == ArrMonster[MonsterIndex_i].IsUpdate())
+					{
+						continue;
+					}
+
 					ArrMonster[MonsterIndex_i].Dir *= -1;
 				}
 			}
 
 			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
-				if (false == CurMonster.IsUpdate())
+				if (false == ArrMonster[MonsterIndex_i].IsUpdate())
 				{
 					continue;
 				}
@@ -108,27 +111,37 @@ void ShootingGame::MonsterEndCheck()
 			}
 		}
 
-		if (ConsoleGameScreen::ScreenXSize -1 == ArrMonster[MonsterIndex].GetPos().X)
+		// 정상 작동
+		if (ConsoleGameScreen::ScreenXSize - 1 == ArrMonster[MonsterIndex].GetPos().X)
 		{
 			int value0 = ArrMonster[0].GetPos().X;
 			int value1 = ArrMonster[1].GetPos().X;
 			int value13 = ArrMonster[13].GetPos().X;
+
+			// 살아있는 객체만 방향전환
 			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
-				if (false == CurMonster.IsUpdate())
+				if (false == ArrMonster[MonsterIndex_i].IsUpdate())
 				{
 					continue;
 				}
 
 				if (1 == ArrMonster[MonsterIndex_i].Dir)
 				{
+
+					if (false == ArrMonster[MonsterIndex_i].IsUpdate())
+					{
+						continue;
+					}
+
 					ArrMonster[MonsterIndex_i].Dir *= -1;
 				}
 			}
 
+			// 살아있는 객체만 지정된 y 좌표에 1 더함
 			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
-				if (false == CurMonster.IsUpdate())
+				if (false == ArrMonster[MonsterIndex_i].IsUpdate())
 				{
 					continue;
 				}
@@ -144,6 +157,9 @@ void ShootingGame::MonsterEndCheck()
 		//{
 		//	ArrMonster[MonsterIndex].GetPos().X += ArrMonster[MonsterIndex].Dir;
 		//}
+
+		// 방향값에 따라 한칸씩 이동
+
 
 		ArrMonster[MonsterIndex].GetPos().X += ArrMonster[MonsterIndex].Dir;
 

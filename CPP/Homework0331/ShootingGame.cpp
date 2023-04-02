@@ -63,6 +63,8 @@ void ShootingGame::Collision()
 				CurBullet.Off();
 			}
 		}
+
+
 	}
 
 }
@@ -84,7 +86,8 @@ void ShootingGame::MonsterEndCheck()
 		//ArrMonster[MonsterIndex].GetPos().X = ArrMonster[MonsterIndex].GetPos().X
 
 
-		if (0 == ArrMonster[MonsterIndex].GetPos().X)
+		if (0 == ArrMonster[MonsterIndex].GetPos().X || 
+			ConsoleGameScreen::ScreenXSize - 1 == ArrMonster[MonsterIndex].GetPos().X)
 		{
 			for (size_t MonsterIndex_Y = 0; MonsterIndex_Y < ShootingGame::ArrMonsterCount; MonsterIndex_Y++)
 			{
@@ -100,21 +103,6 @@ void ShootingGame::MonsterEndCheck()
 			ArrMonster[MonsterIndex].Reverse(Monster::GetAllDirection());
 		}
 
-		if (ConsoleGameScreen::ScreenXSize - 1 == ArrMonster[MonsterIndex].GetPos().X)
-		{
-			for (size_t MonsterIndex_Y = 0; MonsterIndex_Y < ShootingGame::ArrMonsterCount; MonsterIndex_Y++)
-			{
-				if (false == CurMonster.IsUpdate())
-				{
-					continue;
-				}
-
-				ArrMonster[MonsterIndex_Y].Forward();
-			}
-
-			//int value = ArrMonster[MonsterIndex].GetDirection();
-			ArrMonster[MonsterIndex].Reverse(Monster::GetAllDirection());
-		}
 	}
 
 
