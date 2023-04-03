@@ -71,6 +71,7 @@ void ShootingGame::Collision()
 // 2, 7, 11, 22
 void ShootingGame::MonsterEndCheck()
 {
+	// 객체 전체를 선택하여
 	for (size_t MonsterIndex = 0; MonsterIndex < ShootingGame::ArrMonsterCount; MonsterIndex++)
 	{
 		// 현재 몬스터의 객체에 대한 정보를 받아온다.
@@ -80,6 +81,7 @@ void ShootingGame::MonsterEndCheck()
 			continue;
 		}
 
+		// 왼쪽벽 충돌검사
 		if (0 == CurMonster.GetPos().X)
 		{
 			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
@@ -89,29 +91,32 @@ void ShootingGame::MonsterEndCheck()
 					continue;
 				}
 
-				
+				// 방향전환
 				if (-1 == ArrMonster[MonsterIndex_i].Dir)
 				{
 					if (false == ArrMonster[MonsterIndex_i].IsUpdate())
 					{
 						continue;
 					}
-
+					// 값 변경
 					ArrMonster[MonsterIndex_i].Dir *= -1;
 				}
 			}
 
+			// 몬스터를 y축으로 한칸이동
 			for (size_t MonsterIndex_i = 0; MonsterIndex_i < ShootingGame::ArrMonsterCount; MonsterIndex_i++)
 			{
 				if (false == ArrMonster[MonsterIndex_i].IsUpdate())
 				{
 					continue;
 				}
+				// 값 변경
 				ArrMonster[MonsterIndex_i].GetPos().Y += 1;
 			}
 		}
 
 		// 정상 작동
+		// 오른쪽 벽에 대한 충돌 검사
 		if (ConsoleGameScreen::ScreenXSize - 1 == ArrMonster[MonsterIndex].GetPos().X)
 		{
 			int value0 = ArrMonster[0].GetPos().X;
@@ -134,6 +139,7 @@ void ShootingGame::MonsterEndCheck()
 						continue;
 					}
 
+					// 값 변경
 					ArrMonster[MonsterIndex_i].Dir *= -1;
 				}
 			}
@@ -145,6 +151,7 @@ void ShootingGame::MonsterEndCheck()
 				{
 					continue;
 				}
+				// 값 변경
 				ArrMonster[MonsterIndex_i].GetPos().Y += 1;
 			}
 		}
@@ -160,9 +167,12 @@ void ShootingGame::MonsterEndCheck()
 
 		// 방향값에 따라 한칸씩 이동
 
-
+		// 충돌검사가 끝난 객체 좌표 이동
 		ArrMonster[MonsterIndex].GetPos().X += ArrMonster[MonsterIndex].Dir;
 
+		// 버그 : 몬스터가 오른쪽 벽을 한칸 뚫고 들어감 
+		//        -> 오른쪽 벽 충돌 조건문은 정상
+		
 	}
 }
 
