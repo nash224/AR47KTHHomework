@@ -37,7 +37,7 @@ void Bullet::AllUpdate()
 		{
 			continue;
 		}
-
+		// 총알이 존재하면 위로 올려보낸다
 		ArrBullet[i].Update();
 	}
 }

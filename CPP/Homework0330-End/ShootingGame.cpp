@@ -164,8 +164,9 @@ void ShootingGame::GameUpdate()
 		// 객체들을 좌표대로 출력한다.
 		ConsoleGameScreen::GetMainScreen().ScreenPrint();
 
-
+		// 플레이어의 조작 정보를 불러온다.
 		NewPlayer.Input();
+		// 모든 총알을 검사한다.
 		Bullet::AllUpdate();
 
 		// 몬스터의 수만큼 검사한다.
