@@ -79,11 +79,15 @@ int main()
 		// 함수 포인터를 사용하여 Test1()함수의 주소를 호출
 		// Test1();
 		(*Ptr)();
+		
+		// void(*)() == void PlayerDetectTheMonster();
+
 
 		void(*PtrPlayer)();
 		// 포인터 변수에 받음 = 함수의 주소를 받음
 		PtrPlayer = &PlayerDetectTheMonster;
 		(*PtrPlayer)();
+
 
 		void(*PtrMonster)();
 		// 포인터 변수에 받음 = 함수를 받음 
