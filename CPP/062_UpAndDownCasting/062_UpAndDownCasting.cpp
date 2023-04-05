@@ -137,7 +137,11 @@ void Fight(FightUnit* _Left, FightUnit* _Right)
     int RightAtt = _Right->GetAtt();
 
     _Right->beDamaged(LeftAtt);
+    std::cout << LeftAtt << "값 만큼 피해를 입었습니다." << "남은 Hp : " << _Right->GetHp() << std::endl;
     _Left->beDamaged(RightAtt);
+    std::cout << RightAtt << "값 만큼 피해를 입었습니다." << "남은 Hp : " << _Left->GetHp() << std::endl;
+
+    printf_s("\n");
 }
 
 int main()
@@ -169,8 +173,15 @@ int main()
         int PlayerHpResult = NewPlayer.GetHp();
 
 
-        int a = 0;
 
+        void(*FuncPtr)(FightUnit* _Left, FightUnit* _Right);
+        FuncPtr = &Fight;
+        FuncPtr(&NewMonster, &NewPlayer);
+
+        MonsterHpResult = Ptr->GetHp();
+        PlayerHpResult = NewPlayer.GetHp();
+
+        int a = 0;
     }
 
     {
