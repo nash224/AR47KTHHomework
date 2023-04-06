@@ -58,6 +58,14 @@ int main()
         //    printf_s("DynamicArray[%d] : %d \n", i, DynamicArray[i]);
         //}
     }
+
+    {
+        GameEngineArray Array0(10);
+        GameEngineArray Array1(5);
+
+        Array0.ReSize(5);
+        Array1 = Array0;
+    }
     
     
 }

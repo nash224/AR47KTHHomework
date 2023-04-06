@@ -110,6 +110,8 @@ public:
 		// 임시 배열 생성 => 함수내에서 지울 예정 => 배열삭제
 		CheckNullptr(TemporaryArrPtr);
 
+		ArrCount = _value;
+
 
 			//ArrPtr = TemporaryArrPtr;
 
