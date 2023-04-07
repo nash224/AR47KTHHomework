@@ -6,6 +6,5 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineArray.h" />
-    <ClInclude Include="BaseHeader.h" />
   </ItemGroup>
 </Project>

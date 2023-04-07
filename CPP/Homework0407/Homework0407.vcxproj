@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5c1c4e18-9a7d-49b4-8af6-fd27b6d51a2b}</ProjectGuid>
-    <RootNamespace>Homework03310</RootNamespace>
+    <ProjectGuid>{4cb7f56d-d6f1-4675-a0d5-6dedb9cbb4b8}</ProjectGuid>
+    <RootNamespace>Homework0407</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Homework0331-0</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,23 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="ConsoleGameMath.cpp" />
-    <ClCompile Include="ConsoleGameObject.cpp" />
-    <ClCompile Include="ConsoleGameScreen.cpp" />
-    <ClCompile Include="Homework 0331-0.cpp" />
-    <ClCompile Include="Monster.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="ShootingGame.cpp" />
+    <ClCompile Include="Homework0407.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="ConsoleGameMath.h" />
-    <ClInclude Include="ConsoleGameObject.h" />
-    <ClInclude Include="ConsoleGameScreen.h" />
-    <ClInclude Include="Monster.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="ShootingGame.h" />
+    <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
+      <Project>{76a80769-e155-49ad-a0e1-fba8d347d5f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngineConsole\GameEngineConsole.vcxproj">
+      <Project>{3e1727da-0ab6-4aa4-9086-cab9bf80ed51}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

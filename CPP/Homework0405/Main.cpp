@@ -37,6 +37,11 @@ int main()
     }
 
     {
+
+        GameEngineArray DynamicArray(0);
+    }
+
+    {
         // DynamicArray의 객체를 Heap에 10개 생성
         GameEngineArray DynamicArray(10);
 
@@ -49,22 +54,34 @@ int main()
         int Arrayvalue1 = DynamicArray[1];
 
         //DynamicArray.ReSize(5);
-        DynamicArray.ReSize(5);
+        DynamicArray.ReSize(15);
 
         int Arrayvalue2 = DynamicArray[2];
 
-        //for (size_t i = 0; i < DynamicArray.GetCount(); i++)
-        //{
-        //    printf_s("DynamicArray[%d] : %d \n", i, DynamicArray[i]);
-        //}
+        for (size_t i = 0; i < DynamicArray.GetCount(); i++)
+        {
+            printf_s("DynamicArray[%d] : %d \n", i, DynamicArray[i]);
+        }
     }
 
     {
         GameEngineArray Array0(10);
         GameEngineArray Array1(5);
+        
+        int count = Array0.GetCount();
 
-        Array0.ReSize(5);
+        for (size_t i = 0; i < count; i++)
+        {
+            Array0[i] = i;
+        }
+
         Array1 = Array0;
+
+        for (size_t i = 0; i < count ; i++)
+        {
+            printf_s("%d\n", Array1[i]);
+        }
+
     }
     
     
