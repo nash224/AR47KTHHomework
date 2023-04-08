@@ -70,7 +70,8 @@ class Item : public Player
 // Master 사용하여 Player의 특성을 불러오는데 사용된다
 // 쉽게 생각하면 int* ArrPtr = Arr; 로 비추어 볼 수 있는데
 // Arr의 요소를 사용하기 위해서 ArrPtr을 사용하는 것과 같다.
-public: Player* Master;
+public: 
+    Player* Master;
     //int Gold = 0; // 속성
 
     //void Buy()

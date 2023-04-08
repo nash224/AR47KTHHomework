@@ -19,7 +19,7 @@ public:
 	{
 		if (0 >= _Value)
 		{
-			MessageBoxAssert("0크기의 배열은 만들수 없습니다.");
+			MessageBoxAssert("0크기의 배열은 만들수 없습니다");
 		}
 
 		ReSize(_Value);

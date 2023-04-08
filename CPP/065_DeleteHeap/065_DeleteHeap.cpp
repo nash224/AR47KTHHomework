@@ -34,7 +34,7 @@ int main()
 	// 중복할당
 	{
 		int* Newint = new int(); // 할당
-		Newint = new int(); // 할당
+		//Newint = new int(); // 재할당
 		delete Newint; // 4바이트 Leak
 	}
 
@@ -75,6 +75,7 @@ int main()
 
 	{
 		int Value = int(10);
+
 		int* Newint = new int(10);
 
 		// 안전한 삭제
@@ -87,6 +88,8 @@ int main()
 
 			Newint = nullptr;
 		}
+
+		
 
 		{
 			int* NewPtr = new int();

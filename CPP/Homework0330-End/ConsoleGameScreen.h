@@ -36,12 +36,12 @@ private: // 클래스 자신만 아는 내부
 	// 배열을 ScreenYSize(10), ScreenXSize(20)만큼 격자가 있다.
 	char Arr[ScreenYSize][ScreenXSize] = { 0, };
 
-	// 싱글톤 패턴 : 2번째
+	// 싱글톤 패턴 : 1번째
 	// 게임 스크린의 생성자를 private지정자에 선언함으로
 	// 일반적인 인스턴스 생성을 하지 못하게 막는다.
 	ConsoleGameScreen();
 
-	// 싱글톤 패턴 : 1번째
+	// 싱글톤 패턴 : 2번째
 	// 전역으로 클래스 타입의 게임스크린 변수가 있다.
 	static ConsoleGameScreen MainScreen;
 };
