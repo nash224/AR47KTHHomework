@@ -17,7 +17,7 @@ void ConsoleGameScreen::ScreenClear()
 	{	// x축을 위한 반복문
 		for (size_t x = 0; x < ScreenXSize; x++)
 		{	// (x,y)를 전부 a로 초기화한다.
-			Arr[y][x] = 'a';
+			ArrScreen[y][x] = 'a';
 		}
 	}
 }
@@ -30,7 +30,7 @@ void ConsoleGameScreen::ScreenPrint() const
 		for (size_t x = 0; x < ScreenXSize; x++)
 		{
 			// Arr[y][x] = 'b';
-			printf_s("%c", Arr[y][x]);
+			printf_s("%c", ArrScreen[y][x]);
 		}
 		printf_s("\n");
 	}
@@ -73,7 +73,7 @@ void ConsoleGameScreen::SetScreenCharacter(const int2& _Pos, char _Ch)
 		return;
 	}
 	// 지정위치에 _Ch를 넣는다
-	Arr[_Pos.Y][_Pos.X] = _Ch;
+	ArrScreen[_Pos.Y][_Pos.X] = _Ch;
 }
 
 
@@ -89,4 +89,17 @@ ConsoleGameScreen::ConsoleGameScreen()
 int2 ConsoleGameScreen::GetScreenSize()
 {
 	return int2{ ScreenXSize, ScreenYSize };
+}
+
+void ConsoleGameScreen::SetScreenSize(int2 _Size)
+{
+	Size = _Size; 
+
+
+	// int** 
+	// ArrScreen == new int* Arr[y]
+
+	ArrScreen = new char* [Size.Y];
+
+	
 }

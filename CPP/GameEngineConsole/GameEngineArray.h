@@ -4,6 +4,9 @@
 
 // typedef int DataType;
 
+// 템플릿은 여러 자료형에 대해 동작하도록 만들어 준다.
+// <>는 타입 매개변수를 나타내는 기호이다.
+// 타입 매개변수는 모든 자료형을 받아들일 수 있다.
 template<typename DataType>
 class GameEngineArray
 {

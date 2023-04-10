@@ -23,6 +23,8 @@ public:
 
 	static int2 GetScreenSize();
 
+	void SetScreenSize(int2 _Size);
+
 	void ScreenClear();
 
 	void ScreenPrint() const;
@@ -34,11 +36,20 @@ public:
 protected:
 
 private: // 클래스 자신만 아는 내부
-	// 배열을 ScreenYSize(10), ScreenXSize(20)만큼 격자가 있다.
-	//char Arr[ScreenYSize][ScreenXSize] = { 0, };
 
- 	GameEngineArray<GameEngineArray<char>> ArrScreen;
+	// char ArrScreen[][];
+	char** ArrScreen = nullptr;
 
+	// GameEngineArray은 1차원 배열을 나타내는 클래스이다.
+	// GameEngineArray<char>는 char 형태의 값을 가지는 1차원 배열
+	// GameEngineArray<GameEngineArray<char>>는 char형태의 값을 가지는 1차원 배열의 1차원 배열이다.
+	// 즉, 2원 배열이다.
+	// ArrScreen 변수는 2차원 배열을 나타낸다.
+	// 
+	
+ 	//GameEngineArray<GameEngineArray<char>> ArrScreen;
+
+	int2 Size;
 
 	// 싱글톤 패턴 : 2번째
 	// 게임 스크린의 생성자를 private지정자에 선언함으로
