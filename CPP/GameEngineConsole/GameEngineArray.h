@@ -30,6 +30,10 @@ public:
 		// ArrPtr = new int[100];
 	}
 
+	GameEngineArray()
+	{
+	}
+
 	~GameEngineArray()
 	{
 		if (nullptr != ArrPtr)
@@ -97,7 +101,7 @@ public:
 protected:
 
 private:
-	size_t ArrCount;
+	size_t ArrCount = 0;
 	DataType* ArrPtr = nullptr;
 
 };
