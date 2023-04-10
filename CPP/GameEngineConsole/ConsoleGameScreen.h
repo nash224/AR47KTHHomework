@@ -1,5 +1,5 @@
 #pragma once
-#include "GameEngineArray.h"
+#include <GameEngineConsole/GameEngineArray.h>
 #include "ConsoleGameMath.h"
 
 // 이게 1단계
@@ -38,7 +38,7 @@ protected:
 private: // 클래스 자신만 아는 내부
 
 	// char ArrScreen[][];
-	char** ArrScreen = nullptr;
+	//char** ArrScreen = nullptr;
 
 	// GameEngineArray은 1차원 배열을 나타내는 클래스이다.
 	// GameEngineArray<char>는 char 형태의 값을 가지는 1차원 배열
@@ -47,7 +47,7 @@ private: // 클래스 자신만 아는 내부
 	// ArrScreen 변수는 2차원 배열을 나타낸다.
 	// 
 	
- 	//GameEngineArray<GameEngineArray<char>> ArrScreen;
+ 	GameEngineArray<GameEngineArray<char>> ArrScreen;
 
 	int2 Size;
 
@@ -55,6 +55,7 @@ private: // 클래스 자신만 아는 내부
 	// 게임 스크린의 생성자를 private지정자에 선언함으로
 	// 일반적인 인스턴스 생성을 하지 못하게 막는다. 
 	ConsoleGameScreen();
+	~ConsoleGameScreen();
 
 	// 싱글톤 패턴 : 1번째
 	// 전역으로 클래스 타입의 게임스크린 변수가 있다.

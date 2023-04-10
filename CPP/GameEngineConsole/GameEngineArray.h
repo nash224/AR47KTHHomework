@@ -17,7 +17,8 @@ public:
 	GameEngineArray& operator=(GameEngineArray&& _Other) noexcept = delete;
 
 
-	// constrcuter destructer
+
+	// constrcuter
 	GameEngineArray(size_t _Value)
 	{
 		if (0 >= _Value)

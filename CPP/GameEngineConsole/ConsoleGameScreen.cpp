@@ -7,15 +7,42 @@
 // 게임 스크린의 객체를 생성한다.
 ConsoleGameScreen ConsoleGameScreen::MainScreen;
 
+// 좌표 타입의 함수를 반환한다.
+////
+//int2 ConsoleGameScreen::GetScreenSize()
+//{
+//	return Size;
+//}
+
+
+void ConsoleGameScreen::SetScreenSize(int2 _Size)
+{
+	Size = _Size;
+
+
+	// char** 
+	// ArrScreen == new char* Arr[y]
+
+	// 2 차원 배열 = new 1차원 Y배열
+	// GameEngineArray<GameEngineArray<char>>
+	ArrScreen.ReSize(Size.Y);
+
+	for (size_t i = 0; i < Size.Y; i++)
+	{
+		// GameEngineArray<char>
+		ArrScreen.ReSize(Size.X);
+	}
+}
+
 // 스크린을 전부 초기화 하겠다.
 void ConsoleGameScreen::ScreenClear()
 {
 	system("cls");
 
 	// y축을 위한 반복문
-	for (size_t y = 0; y < ScreenYSize; y++)
+	for (size_t y = 0; y < this->Size.Y; y++)
 	{	// x축을 위한 반복문
-		for (size_t x = 0; x < ScreenXSize; x++)
+		for (size_t x = 0; x < this->Size.X; x++)
 		{	// (x,y)를 전부 a로 초기화한다.
 			ArrScreen[y][x] = 'a';
 		}
@@ -25,9 +52,9 @@ void ConsoleGameScreen::ScreenClear()
 void ConsoleGameScreen::ScreenPrint() const
 {
 
-	for (size_t y = 0; y < ScreenYSize; y++)
+	for (size_t y = 0; y < this->Size.Y; y++)
 	{
-		for (size_t x = 0; x < ScreenXSize; x++)
+		for (size_t x = 0; x < this->Size.X; x++)
 		{
 			// Arr[y][x] = 'b';
 			printf_s("%c", ArrScreen[y][x]);
@@ -51,12 +78,12 @@ bool ConsoleGameScreen::IsScreenOver(const int2& _Pos) const
 		return true;
 	}
 
-	if (ScreenXSize <= _Pos.X)
+	if (this->Size.X <= _Pos.X)
 	{
 		return true;
 	}
 
-	if (ScreenYSize <= _Pos.Y)
+	if (this->Size.Y <= _Pos.Y)
 	{
 		return true;
 	}
@@ -84,22 +111,25 @@ ConsoleGameScreen::ConsoleGameScreen()
 {
 }
 
-// 좌표 타입의 함수를 반환한다.
-//
-int2 ConsoleGameScreen::GetScreenSize()
+
+ConsoleGameScreen::~ConsoleGameScreen()
 {
-	return int2{ ScreenXSize, ScreenYSize };
+	//for (size_t i = 0; i < Size.Y; i++)
+	//{ 
+	//	if (nullptr == ArrScreen[i])
+	//	{
+	//		continue;
+	//	}
+	//	delete[] ArrScreen[i];
+	//	ArrScreen[i] = nullptr;
+	//}
+
+	//if (nullptr == ArrScreen)
+	//{
+	//	return;
+	//}
+
+	//delete[] ArrScreen;
+	//ArrScreen = nullptr;
 }
 
-void ConsoleGameScreen::SetScreenSize(int2 _Size)
-{
-	Size = _Size; 
-
-
-	// int** 
-	// ArrScreen == new int* Arr[y]
-
-	ArrScreen = new char* [Size.Y];
-
-	
-}
