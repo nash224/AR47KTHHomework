@@ -5,8 +5,6 @@
 class ConsoleGameObject
 {
 public:
-	// 반환값이 없고, 값이 변하지 않는 int2형식의 값을 매개변수로 받아 
-	// 멤버 변수에 담는다
 	inline void SetPos(const int2& _Value)
 	{
 		Pos = _Value;
@@ -42,7 +40,8 @@ public:
 		UpdateValue = false;
 	}
 
-	void Render();
+	virtual void Update();
+	virtual void Render();
 
 protected:
 	int2 Pos;

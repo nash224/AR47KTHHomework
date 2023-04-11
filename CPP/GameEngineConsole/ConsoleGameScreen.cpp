@@ -1,49 +1,16 @@
 #include "ConsoleGameScreen.h"
 #include <iostream>
-#include <Windows.h>
-#include "GameEngineArray.h"
 
-// 싱글톤 패턴 : 3번째
-// 게임 스크린의 객체를 생성한다.
 ConsoleGameScreen ConsoleGameScreen::MainScreen;
 
-// 좌표 타입의 함수를 반환한다.
-////
-//int2 ConsoleGameScreen::GetScreenSize()
-//{
-//	return Size;
-//}
-
-
-void ConsoleGameScreen::SetScreenSize(int2 _Size)
-{
-	Size = _Size;
-
-
-	// char** 
-	// ArrScreen == new char* Arr[y]
-
-	// 2 차원 배열 = new 1차원 Y배열
-	// GameEngineArray<GameEngineArray<char>>
-	ArrScreen.ReSize(Size.Y);
-
-	for (size_t i = 0; i < Size.Y; i++)
-	{
-		// GameEngineArray<char>
-		ArrScreen.ReSize(Size.X);
-	}
-}
-
-// 스크린을 전부 초기화 하겠다.
 void ConsoleGameScreen::ScreenClear()
 {
 	system("cls");
 
-	// y축을 위한 반복문
 	for (size_t y = 0; y < this->Size.Y; y++)
-	{	// x축을 위한 반복문
+	{
 		for (size_t x = 0; x < this->Size.X; x++)
-		{	// (x,y)를 전부 a로 초기화한다.
+		{
 			ArrScreen[y][x] = 'a';
 		}
 	}
@@ -51,7 +18,6 @@ void ConsoleGameScreen::ScreenClear()
 
 void ConsoleGameScreen::ScreenPrint() const
 {
-
 	for (size_t y = 0; y < this->Size.Y; y++)
 	{
 		for (size_t x = 0; x < this->Size.X; x++)
@@ -63,16 +29,65 @@ void ConsoleGameScreen::ScreenPrint() const
 	}
 }
 
-// 반환값이 bool이고, 멤버 변수의 값을 변경 하지 못하게 하며,
-// int2 참조 타입의 상수 매개변수를 받는 IsScreenOver() 상수함수를 선언한다.
+ConsoleGameScreen::~ConsoleGameScreen()
+{
+	//for (size_t i = 0; i < Size.Y; i++)
+	//{
+	//	if (nullptr == ArrScreen[i])
+	//	{
+	//		continue;
+	//	}
+	//	delete[] ArrScreen[i];
+	//	ArrScreen[i] = nullptr;
+	//}
+
+	//if (nullptr != ArrScreen)
+	//{
+	//	delete[] ArrScreen;
+	//	ArrScreen = nullptr;
+	//}
+}
+
+void ConsoleGameScreen::SetScreenSize(int2 _Size)
+{
+	Size = _Size;
+
+	// ArrScreen[y][x]
+
+	// char**
+	// ArrScreen = new char* Arr[y];
+
+	//ArrScreen = new char*[Size.Y];
+
+	//for (size_t i = 0; i < Size.Y; i++)
+	//{
+	//	// ArrScreen == char**
+	//	// ArrScreen[i] == char*
+	//	ArrScreen[i] = new char[Size.X];
+	//}
+	
+	// ArrScreen == GameEngineArray<GameEngineArray<char>>
+	// ArrScreen DataType == GameEngineArray<char>
+	ArrScreen.ReSize(Size.Y);
+
+	for (size_t i = 0; i < Size.Y; i++)
+	{
+		// ArrScreen[i] == GameEngineArray<char>
+		// ArrScreen[i] DataType == char
+		ArrScreen[i].ReSize(Size.X);
+	}
+
+
+}
+
+// 이녀석을 무조건 사용해서 플레이어가 바깥으로 못나가게 만드세요.
 bool ConsoleGameScreen::IsScreenOver(const int2& _Pos) const
 {
-	// x가 0보다 작으면 참을 반환한다.
 	if (0 > _Pos.X)
 	{
 		return true;
 	}
-	// y가 0보다 작으면 참을 반환한다.
+
 	if (0 > _Pos.Y)
 	{
 		return true;
@@ -87,49 +102,27 @@ bool ConsoleGameScreen::IsScreenOver(const int2& _Pos) const
 	{
 		return true;
 	}
-	// 다 아니라면 false를 반환한다.
+
 	return false;
 }
 
-// 반환 타입이 없고, 두 매개변수를 받아 수행하겠다.
 void ConsoleGameScreen::SetScreenCharacter(const int2& _Pos, char _Ch)
 {
-	// 위치가 화면을 넘어가면 반환한다.
 	if (true == IsScreenOver(_Pos))
 	{
 		return;
 	}
-	// 지정위치에 _Ch를 넣는다
+
 	ArrScreen[_Pos.Y][_Pos.X] = _Ch;
 }
 
 
-// 게임 스크린의 생성자
-// 특별한 멤버 함수로서 자동으로 가장 먼저 호출되고, 
-// 주요 역할은 멤버 변수의 초기화이다.
+
 ConsoleGameScreen::ConsoleGameScreen()
 {
 }
 
-
-ConsoleGameScreen::~ConsoleGameScreen()
+int2 ConsoleGameScreen::GetScreenSize()
 {
-	//for (size_t i = 0; i < Size.Y; i++)
-	//{ 
-	//	if (nullptr == ArrScreen[i])
-	//	{
-	//		continue;
-	//	}
-	//	delete[] ArrScreen[i];
-	//	ArrScreen[i] = nullptr;
-	//}
-
-	//if (nullptr == ArrScreen)
-	//{
-	//	return;
-	//}
-
-	//delete[] ArrScreen;
-	//ArrScreen = nullptr;
+	return Size;
 }
-

@@ -21,9 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4cb7f56d-d6f1-4675-a0d5-6dedb9cbb4b8}</ProjectGuid>
-    <RootNamespace>Homework0407</RootNamespace>
+    <ProjectGuid>{6188ad5d-ce92-4aa1-888a-f4ce33b76721}</ProjectGuid>
+    <RootNamespace>Homework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Homework0410</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,27 +140,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bomb.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Homework0407.cpp" />
+    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="ConsoleObjectManager.cpp" />
+    <ClCompile Include="GameEnum.cpp" />
+    <ClCompile Include="Homework0410.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="ConsoleObjectManager.h" />
+    <ClInclude Include="GameEnum.h" />
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleGameArray\ConsoleGameArray.vcxproj">
+      <Project>{ff00b651-7ef7-423d-bdac-faacf66b3388}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
       <Project>{76a80769-e155-49ad-a0e1-fba8d347d5f0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\GameEngineConsole\GameEngineConsole.vcxproj">
       <Project>{3e1727da-0ab6-4aa4-9086-cab9bf80ed51}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Bomb.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,27 +1,23 @@
 #pragma once
-#include <GameEngineConsole/GameEngineArray.h>
 #include "ConsoleGameMath.h"
+#include "GameEngineArray.h"
 
 // 이게 1단계
 // 근본오브 근본 수학 물리 
 class ConsoleGameScreen
 {
 public:
-	// 외부에서 사용할 수 있는 스크린 크기의 전역 멤버 변수가 있다.
-	static const int ScreenYSize = 10;
-	static const int ScreenXSize = 20;
-
-	// 싱글톤 패턴 : 3번째
-	// 게임 스크린 참조 반환형식의 클래스 전역 함수를 선언
-	// 게임스크린인척하는 메인 스크린 형식의 변수를 반환한다.
-	// 선언방법: 외부에서 ConsoleGameScreen::GetMainScreen()함수를 사용하여 
-	// 객체의 이름과 같은 멤버 변수를 가져온다.
 	static ConsoleGameScreen& GetMainScreen()
 	{
 		return MainScreen;
 	}
 
-	static int2 GetScreenSize();
+	//static int2 GetMainScreenSize()
+	//{
+	//	return MainScreen.GetScreenSize();
+	//}
+
+	int2 GetScreenSize();
 
 	void SetScreenSize(int2 _Size);
 
@@ -35,29 +31,28 @@ public:
 
 protected:
 
-private: // 클래스 자신만 아는 내부
+private:
+	// char Arr[ScreenYSize][ScreenXSize] = { 0, };
 
-	// char ArrScreen[][];
-	//char** ArrScreen = nullptr;
+	// char** ArrScreen = nullptr;
 
-	// GameEngineArray은 1차원 배열을 나타내는 클래스이다.
-	// GameEngineArray<char>는 char 형태의 값을 가지는 1차원 배열
-	// GameEngineArray<GameEngineArray<char>>는 char형태의 값을 가지는 1차원 배열의 1차원 배열이다.
-	// 즉, 2원 배열이다.
-	// ArrScreen 변수는 2차원 배열을 나타낸다.
-	// 
-	
- 	GameEngineArray<GameEngineArray<char>> ArrScreen;
+	// GameEngineArray<char> ArrPtr 여러개 
+	// char를 여러개 가질수 있는 녀석
+	GameEngineArray<GameEngineArray<char>> ArrScreen;
 
 	int2 Size;
 
-	// 싱글톤 패턴 : 2번째
-	// 게임 스크린의 생성자를 private지정자에 선언함으로
-	// 일반적인 인스턴스 생성을 하지 못하게 막는다. 
+	// 캐릭터의 배열을 가진 또다른 배열이라고 할수 있어요.
+
+
 	ConsoleGameScreen();
 	~ConsoleGameScreen();
 
-	// 싱글톤 패턴 : 1번째
-	// 전역으로 클래스 타입의 게임스크린 변수가 있다.
+	// 싱글톤 패턴이라고 합니다.
+	// 패턴이란 => 클래스를 짤때 이러이러한 구조가 정말 많이 사용된다.
+	// 갱스오브포라고 불리는 프로그래머 동호회가 있었다.
+	// 클래스간의 관계나 구조를 짜는 방식이 비슷한 녀석들을 모아서 이름을 붙였는데.
+	// 그걸 디자인 패턴이라고 하고.
+	// 아무도 안써요.
 	static ConsoleGameScreen MainScreen;
 };

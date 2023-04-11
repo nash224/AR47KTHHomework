@@ -1,7 +1,6 @@
 #pragma once
-
-// #include <Program Files/Adobe/Adobe Creative Cloud Experience/>
 #include <GameEngineBase/GameEngineDebug.h>
+// #include <Program Files/Adobe/Adobe Creative Cloud Experience/>
 
 typedef int DataType;
 
@@ -20,7 +19,7 @@ public:
 	{
 		if (0 >= _Value)
 		{
-			MessageBoxAssert("0크기의 배열은 만들수 없습니다.");
+			MsgBoxAssert("0크기의 배열은 만들수 없습니다.");
 		}
 
 		ReSize(_Value);
