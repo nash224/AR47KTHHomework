@@ -7,6 +7,8 @@
 class ConsoleGameScreen
 {
 public:
+	// 전역변수 불러오는 함수
+	// 왜 레퍼런스지? : 리턴값이 참조형이면 변수를 복사하지 않음
 	static ConsoleGameScreen& GetMainScreen()
 	{
 		return MainScreen;
@@ -54,5 +56,7 @@ private:
 	// 클래스간의 관계나 구조를 짜는 방식이 비슷한 녀석들을 모아서 이름을 붙였는데.
 	// 그걸 디자인 패턴이라고 하고.
 	// 아무도 안써요.
+
+	// 전역변수
 	static ConsoleGameScreen MainScreen;
 };

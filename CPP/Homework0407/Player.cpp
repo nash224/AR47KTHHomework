@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <GameEngineConsole/ConsoleGameScreen.h>
 
+// IsGameUpdate의도 멈추기 전까지 계속 돌림
 bool Player::IsGameUpdate = true;
 
 
@@ -28,7 +29,7 @@ void Player::Update()
 	case 'A':
 		// 새로운 위치에 현재 위치를 담는다.
 		NextPos = Pos;
-		// 새로운 위치에 왼쪽으로 가게 한다.
+		// NextPos의 의도 현재 위치에서 다음으로 갈 위치를 넣음
 		NextPos.X -= 1;
 		// 다음위치가 넘지 않았다면
 		if (false == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos))
@@ -66,6 +67,7 @@ void Player::Update()
 	case 'q':
 	case 'Q':
 	{
+		// 게임을 끄게한다
 		IsGameUpdate = false;
 		break;
 	}

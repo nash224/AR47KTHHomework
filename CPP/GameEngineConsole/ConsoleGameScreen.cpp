@@ -1,8 +1,10 @@
 #include "ConsoleGameScreen.h"
 #include <iostream>
 
+// 객체생성
 ConsoleGameScreen ConsoleGameScreen::MainScreen;
 
+// 싹다 a로 초기화
 void ConsoleGameScreen::ScreenClear()
 {
 	system("cls");
@@ -16,6 +18,7 @@ void ConsoleGameScreen::ScreenClear()
 	}
 }
 
+// 객체들의 정보를 넣음
 void ConsoleGameScreen::ScreenPrint() const
 {
 	for (size_t y = 0; y < this->Size.Y; y++)
@@ -68,6 +71,8 @@ void ConsoleGameScreen::SetScreenSize(int2 _Size)
 	
 	// ArrScreen == GameEngineArray<GameEngineArray<char>>
 	// ArrScreen DataType == GameEngineArray<char>
+
+	// 크기에 맞게 할당받은 배열의 크기를 늘려줌
 	ArrScreen.ReSize(Size.Y);
 
 	for (size_t i = 0; i < Size.Y; i++)
@@ -93,6 +98,7 @@ bool ConsoleGameScreen::IsScreenOver(const int2& _Pos) const
 		return true;
 	}
 
+	// this는 여기 정보
 	if (this->Size.X <= _Pos.X)
 	{
 		return true;
