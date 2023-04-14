@@ -1,6 +1,8 @@
 #pragma once
-#include <GameEngineConsole/GameEngineArray.h>
-#include <GameEngineConsole/ConsoleGameObject.h>
+#include "GameEngineArray.h"
+#include "ConsoleGameObject.h"
+#include <vector>
+#include <list>
 
 // 설명 :
 class ConsoleObjectManager
@@ -12,37 +14,28 @@ class ConsoleObjectManager
 
 public:
 	template<typename ObjectType>
-	// Player(1)을 넘겨주게 되면
+	// (std::vector<std::list<ConsoleGameObject*>) AllObject에 NewObject를 추가하고 $ NewObject를 반환
 	static ObjectType* CreateConsoleObject(int _Order)
-	{
-		// 완전히 새로운 배열이 1개더 만들어지는 거죠
+	{// this
 		// GameEngineArray<ConsoleGameObject*> Group = AllObject[_Order];
 
 		// 0       ==   0
-		// AllObject에 들어있는 메모리 수와 매개변수 enum을 비교해서 AllObject의 메모리를 늘림
-		if (_Order >= AllObject.Count())
+		if (_Order >= AllObject.size())
 		{
-			AllObject.ReSize(_Order + 1);
+			AllObject.resize(_Order + 1);
 		}
 
-		// Array의 GameObject 자료형의 Group배열에 AllObject[i]의 정보를 넣음
-		GameEngineArray<ConsoleGameObject*>& Group = AllObject[_Order];
-		// 의도한 객체 생성
+		std::list<ConsoleGameObject*>& Group = AllObject[_Order];
 		ObjectType* NewObject = new ObjectType();
 		// Player* NewObject = new Player();
-		Group.ReSize(Group.Count() + 1);
-		Group[Group.Count() - 1] = NewObject;
-
+		// ListNode에 End->prev에 NewObject를 추가함
+		Group.push_back(NewObject);
 		return NewObject;
 	}
 
-	// 리턴의 자료형을 ObjectType으로 정할 수 있고,
-	// 인자 타입을 EnumType으로도 정할 수 있어.
 	template<typename ObjectType, typename EnumType>
-	// 인자형 : ObjectOrder이넘 클래스
 	static ObjectType* CreateConsoleObject(EnumType _Order)
 	{
-		// ObjectType 자료형의 CreateConsoleObject함수를 반환
 		return CreateConsoleObject<ObjectType>((int)_Order);
 	}
 
@@ -52,12 +45,12 @@ public:
 	static void ConsoleAllObjectDelete();
 
 	template<typename EnumType>
-	static GameEngineArray<ConsoleGameObject*>& GetGroup(EnumType _Order)
+	static std::list<ConsoleGameObject*>& GetGroup(EnumType _Order)
 	{
 		return AllObject[(int)_Order];
 	}
 
-	static GameEngineArray<ConsoleGameObject*>& GetGroup(int _Order)
+	static std::list<ConsoleGameObject*>& GetGroup(int _Order)
 	{
 		return AllObject[_Order];
 	}
@@ -73,6 +66,6 @@ private:
 	ConsoleObjectManager& operator=(const ConsoleObjectManager& _Other) = delete;
 	ConsoleObjectManager& operator=(ConsoleObjectManager&& _Other) noexcept = delete;
 
-	static GameEngineArray<GameEngineArray<ConsoleGameObject*>> AllObject;
+	static std::vector<std::list<ConsoleGameObject*>> AllObject;
 };
 

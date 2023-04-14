@@ -11,7 +11,7 @@ public:
 		Pos = _Value;
 	}
 
-	// 내 위치를 알려줌
+	// 내 위치를 반환함
 	inline int2 GetPos() const
 	{
 		return Pos;

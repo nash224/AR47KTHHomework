@@ -81,6 +81,8 @@ public:
         ListNode* CurNode = nullptr;
     };
 
+
+
     GameEngineList()
     {
         StartNode->Next = EndNode;
@@ -106,6 +108,8 @@ public:
         return iterator(EndNode);
     }
 
+    // startNode가 가리키고 있는 노드를 삭제하고 앞의 노드와 뒤의 노드를 서로 연결하여 
+    // $ NextNode를 iterator::StartNode로 반환함
     iterator erase(iterator& _DeleteNode)
     {
         ListNode* DeleteNode = _DeleteNode.CurNode;
@@ -150,18 +154,21 @@ public:
 
     void push_front(const DataType& _Data)
     {
+        ListNode* NewListNode = new ListNode();
+        NewListNode->Value = _Data;
 
+        ListNode* NextListNode = StartNode->Next;
+
+        StartNode->Next = NewListNode;
+        NewListNode->Prev = StartNode;
+        NewListNode->Next = NextListNode;
+        NextListNode->Prev = NewListNode;
     }
 
 private:
-
-
-
     // 더미노트
     ListNode* StartNode = new ListNode();
     ListNode* EndNode = new ListNode();
-
-
 };
 
 int main()

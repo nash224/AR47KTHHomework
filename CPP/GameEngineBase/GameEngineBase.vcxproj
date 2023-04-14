@@ -144,12 +144,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineRandom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngineDebug.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineRandom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,10 +25,13 @@ public:
 
 	void ScreenClear();
 
+	// 나의 사이즈 크기
 	void ScreenPrint() const;
 
+	// 누구(상속받은 자식)의 _Pos값을 받아 0과 나의 Size에 $ 나가면 true를 반환하고 $ 아니면 false를 반환함
 	bool IsScreenOver(const int2& _Pos) const;
 
+	// 누구(상속받은 자식)의 _Pos와 _Ch를 받아 나의 ArrScreen의 요소에 _Ch를 저장함
 	void SetScreenCharacter(const int2& _Pos, char _Ch);
 
 protected:

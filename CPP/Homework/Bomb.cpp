@@ -1,12 +1,11 @@
 #include "Bomb.h"
 #include <GameEngineConsole/ConsoleGameScreen.h>
-#include "Player.h"
 
-Bomb::Bomb() 
+Bomb::Bomb()
 {
 }
 
-Bomb::~Bomb() 
+Bomb::~Bomb()
 {
 }
 
@@ -19,7 +18,7 @@ void Bomb::Init(int _BombPower)
 
 // explogen
 
-void Bomb::Update() 
+void Bomb::Update()
 {
 	ConsoleGameObject::Update();
 
@@ -36,7 +35,7 @@ void Bomb::Update()
 }
 
 
-void Bomb::Render() 
+void Bomb::Render()
 {
 	ConsoleGameObject::Render();
 

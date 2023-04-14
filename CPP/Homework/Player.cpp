@@ -1,15 +1,13 @@
 #include "Player.h"
 #include <conio.h>
 #include <Windows.h>
-#include <GameEngineConsole/ConsoleGameScreen.h>
-#include "ConsoleObjectManager.h"
+#include <GameEngineConsole/ConsoleGameScreen.h> 
+#include <GameEngineConsole/ConsoleObjectManager.h> // AllObject
 #include "Bomb.h"
 #include "GameEnum.h"
-#include "ConsoleObjectManager.h"
 
 bool Player::IsGameUpdate = true;
 
-// 시작할때 정함
 Player::Player()
 {
 	RenderChar = '*';
@@ -17,31 +15,63 @@ Player::Player()
 
 }
 
-// 숙제 수정
-// Player 객체는 ConsoleGameObject에서 업캐스팅 되었음
 bool Player::IsBomb(int2 _NextPos)
 {
-	// 폭탄이 설치되었다면 못통과하게 만들어놓으세요.
-	GameEngineArray<ConsoleGameObject*>& BombGroup // BombGroup이라는 변수를 생성
-		= ConsoleObjectManager::GetGroup(ObjectOrder::Bomb); // 참조형 폭탄 그룹을 얻음
+	std::list<ConsoleGameObject*>& BombGroup
+		= ConsoleObjectManager::GetGroup(ObjectOrder::Bomb);
 
-	for (size_t i = 0; i < BombGroup.Count(); i++) // 폭탄 그룹 해제된것까지 반복
+	// Ranged for 라는 문법이에요
+
+	// 절대절대절대. 내부에서 구조나 개수가 바뀌는 행동을 하면 안되요.
+	// push_back
+	// push_front
+	// erase
+	for (ConsoleGameObject* Ptr : BombGroup)
 	{
-		ConsoleGameObject* Ptr = BombGroup[i];
-
-		if (nullptr == Ptr) // 해제됐으면 수행안함
+		// 터질때가 있습니다.
+		if (nullptr == Ptr)
 		{
 			continue;
 		}
 
-		if (_NextPos == Ptr->GetPos()) // Player에서 입력받은 위치가 폭탄이랑 겹치면
+		int2 BombPos = Ptr->GetPos();
+		if (_NextPos == BombPos)
 		{
-			return true; // bool값 반환
+			return true;
 		}
 	}
 
 	return false;
 }
+
+bool Player::isItem(const int2 const_NextPos)
+{
+	std::list<ConsoleGameObject*>& ItemGroup
+		= ConsoleObjectManager::GetGroup(ObjectOrder::Item);
+
+	std::list<ConsoleGameObject*>::iterator Start = ItemGroup.begin();
+	std::list<ConsoleGameObject*>::iterator End = ItemGroup.end();
+
+	for (;Start != End; Start++)
+	{
+		ConsoleGameObject* Ptr = *Start;
+		if (nullptr == Ptr)
+		{
+			continue;
+		}
+
+		int2 ItemPos = Ptr->GetPos();
+		if (const_NextPos == ItemPos)
+		{
+			Ptr->Off();
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
 
 // 화면바깥으로 못나가게 하세요. 
 void Player::Update()
@@ -62,53 +92,62 @@ void Player::Update()
 	case 'A':
 		NextPos = Pos;
 		NextPos.X -= 1;
-		if (false == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) && 
-			false == IsBomb(NextPos))
+		if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) || true == IsBomb(NextPos))
 		{
-			Pos.X -= 1;
+			return;
+		}
+		Pos.X -= 1;
+		if (true == isItem(NextPos))
+		{
+			BombPower++;
 		}
 		break;
 	case 'd':
 	case 'D':
 		NextPos = Pos;
 		NextPos.X += 1;
-		if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) || 
-			true == IsBomb(NextPos))
+		if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) || true == IsBomb(NextPos))
 		{
 			return;
 		}
 		Pos.X += 1;
+		if (true == isItem(NextPos))
+		{
+			BombPower++;
+		}
 		break;
 	case 'w':
 	case 'W':
-		NextPos = Pos;
-		NextPos.Y -= 1;
-		// 다음위치가 넘어 갈려거나, 다음위치에 폭탄이 있을때
-		if (false == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) && false == IsBomb(NextPos))
+		if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) || true == IsBomb(NextPos))
 		{
-			Pos.Y -= 1;
+			return;
+		}
+		Pos.Y -= 1;
+		if (true == isItem(NextPos))
+		{
+			BombPower++;
 		}
 		break;
 	case 's':
 	case 'S':
 		NextPos = Pos;
 		NextPos.Y += 1;
-		if (false == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) && false == IsBomb(NextPos))
+		if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(NextPos) || true == IsBomb(NextPos))
 		{
-			Pos.Y += 1;
+			return;
+		}
+		Pos.Y += 1;
+		if (true == isItem(NextPos))
+		{
+			BombPower++;
 		}
 		break;
 	case 'f':
 	case 'F':
 	{
-		// 여기 이상황에서 보면
-		// ConsoleObjectManager 있고
-		// Player 
-		// Bomb 포인터형 NewBomb에 = ConsoleObjectManager에서 만든 AllObject Group배열의 NewObject 객체를 넣음
 		Bomb* NewBomb = ConsoleObjectManager::CreateConsoleObject<Bomb>(ObjectOrder::Bomb);
 		NewBomb->Init(BombPower);
 		NewBomb->SetPos(GetPos());
-		// 폭탄설치 
 		break;
 	}
 	case 'q':
