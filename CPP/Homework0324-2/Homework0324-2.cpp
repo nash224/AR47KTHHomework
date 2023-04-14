@@ -63,7 +63,7 @@ public:
 
 
 //	지도 생성
-inline void MapComposition() 
+inline void MapComposition()
 {
 	//Arr[2][2] = 'b';
 

@@ -17,7 +17,7 @@ Player::Player()
 
 }
 
-// 숙제
+// 숙제 수정
 // Player 객체는 ConsoleGameObject에서 업캐스팅 되었음
 bool Player::IsBomb(int2 _NextPos)
 {
@@ -27,12 +27,14 @@ bool Player::IsBomb(int2 _NextPos)
 
 	for (size_t i = 0; i < BombGroup.Count(); i++) // 폭탄 그룹 해제된것까지 반복
 	{
-		if (nullptr == BombGroup[i]) // 해제됐으면 수행안함
+		ConsoleGameObject* Ptr = BombGroup[i];
+
+		if (nullptr == Ptr) // 해제됐으면 수행안함
 		{
 			continue;
 		}
 
-		if (_NextPos == BombGroup[i]->GetPos()) // Player에서 입력받은 위치가 폭탄이랑 겹치면
+		if (_NextPos == Ptr->GetPos()) // Player에서 입력받은 위치가 폭탄이랑 겹치면
 		{
 			return true; // bool값 반환
 		}

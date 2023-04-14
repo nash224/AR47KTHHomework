@@ -15,6 +15,7 @@
 
 // 어떤 클래스가 자신내부에 자기자신의 
 // 참조형(보통은 포인터)을 n개 들고 있으면
+// 이터레이터구조라고 합니다.
 // 그걸 노드형식이라고 합니다.
 
 
@@ -24,32 +25,68 @@
 // 하이데의 큰 불탑   
 // 매듀라
 
+// Skill 
+// {
+//    Skill*
+//    virtual void SkillEffect() 
+//    {
+//    }
+// }
+
+
+// 아래베기 : public Skill
+// {
+//    virtual void SkillEffect() 
+//    {
+//    }
+// {
+
+// Skill* Skill1;
+// Skill* Skill2;
+// Skill* Skill3;
+// Skill* Skill4;
+// Skill* Skill5;
+// Skill* Skill6;
+// Skill* Skill7;
+// Skill* Skill8;
+// Skill* Skill9;
+
+// *
+// **
+// ***
+// ****
+// *****
+
+// GameEngineArray<Skill*>
+
+
 class MapZone
 {
 public:
     MapZone* SelectNext()
     {
         system("cls");
-        printf_s("현재 이곳은 %s 입니다.\n", GetName());
+        printf_s("현재 이곳은 %s 입니다.\n", this->GetName());
         printf_s("어디로 가시겠습니까?\n");
 
         for (int i = 0; i < LinkZone.Count(); i++)
         {
-            printf("%d. %s\n", i + 1, LinkZone[i]->GetName());
+            printf("%d. %s\n", i + 1, this->LinkZone[i]->GetName());
         }
 
         int Select = _getch();
         int SelectIndex = Select - '1';
 
-        if (SelectIndex >= LinkZone.Count())
+        if (SelectIndex >= LinkZone.Count()) 
         {
             return this;
         }
 
-        return LinkZone[SelectIndex];
+        return this->LinkZone[SelectIndex];
 
     }
 
+    // 
     const char* GetName()
     {
         return Name;
@@ -67,8 +104,8 @@ public:
             return;
         }
 
-        LinkZone.ReSize(LinkZone.Count() + 1);
-        LinkZone[LinkZone.Count() - 1] = _OtherZone;
+        this->LinkZone.ReSize(this->LinkZone.Count() + 1);
+        this->LinkZone[this->LinkZone.Count() - 1] = _OtherZone;
 
         _OtherZone->LinkZone.ReSize(_OtherZone->LinkZone.Count() + 1);
         _OtherZone->LinkZone[_OtherZone->LinkZone.Count() - 1] = this;
@@ -92,7 +129,7 @@ public:
 
     int GetValue()
     {
-        return Value;
+        return this->Value;
     }
 
     Node* GetNext()
@@ -106,6 +143,7 @@ public:
     }
 
 
+
     void NextLinkPointer(Node* _Next)
     {
         Next = _Next;
@@ -114,7 +152,7 @@ public:
 
     void NextLinkRef(Node& _Next)
     {
-        Next = &_Next;
+        this->Next = &_Next;
         _Next.Prev = this;
     }
 
@@ -126,6 +164,12 @@ private:
 
     DataType Value;
 };
+
+// 이 배열을 좀더 효율적으로 관리하기 위한 클래스
+// 이 node를 좀더 효율적으로 관리하기 위한 클래스
+// 언어에서 지원해줍니다.
+// 신뢰성이 있는 배열과 이 노드를 관리해주는 클래스를 만들었습니다.
+// std
 
 int main()
 {
@@ -153,7 +197,7 @@ int main()
             //CurMap = CurMap->GetLink();
         }
 
-        return 1;
+        //return 1;
 
     }
 
@@ -179,7 +223,6 @@ int main()
         Map1.Link(&Map2);
         Map1.Link(&Map4);
         Map1.Link(&Map3);
-
         Map2.Link(&Map5);
 
         // 100번지
