@@ -199,6 +199,7 @@ int main()
         //// 그중 한 지점의 노드의 주소를 알아야만 돌수 있다.
         //// 그걸 Node를 직접 외부에 공개하지 않습니다.
 
+
         GameEngineList::iterator Start = NewList.begin();
         GameEngineList::iterator End = NewList.end();
 
@@ -246,9 +247,5 @@ int main()
         {
             printf_s("%d\n", *Start);
         }
-
     }
-
-
-
 }

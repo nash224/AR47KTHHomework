@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b4bf80fd-ef3f-4669-9044-2c05ebbfa926}</ProjectGuid>
-    <RootNamespace>Homework0413</RootNamespace>
+    <ProjectGuid>{ee2bbc89-1762-48b2-a228-6a523fae0b03}</ProjectGuid>
+    <RootNamespace>Homework0414</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Homework0413.cpp" />
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Head.cpp" />
+    <ClCompile Include="Homework0414.cpp" />
+    <ClCompile Include="Parts.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Head.h" />
+    <ClInclude Include="Parts.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
+      <Project>{76a80769-e155-49ad-a0e1-fba8d347d5f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngineConsole\GameEngineConsole.vcxproj">
+      <Project>{3e1727da-0ab6-4aa4-9086-cab9bf80ed51}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

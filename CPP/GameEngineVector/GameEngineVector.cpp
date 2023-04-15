@@ -41,7 +41,7 @@ public:
         ++Size;
     }
 
-    void reserve(size_t _Value)
+    void reserve(const size_t _Value)
     {
         DataType* NewPtr = new DataType[_Value];
         size_t CopySize = _Value < Capacity ? _Value : Capacity;
