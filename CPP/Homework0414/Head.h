@@ -20,6 +20,7 @@ public:
 
 protected:
 	bool isBody(int2 _NextPos);
+	void HeadtoBodyLink(const ConsoleGameObject* _Body);
 	void CreateBody();
 	void Update() override;
 	void IsBodyCheck();

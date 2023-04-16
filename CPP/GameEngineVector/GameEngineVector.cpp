@@ -115,38 +115,38 @@ private:
 int main()
 {
 
-    {
-        MyVector Test;
+    //{
+    //    MyVector Test;
 
-        /*Test.reserve(10);*/
-
-
-        //for (size_t i = 0; i < Test.size(); i++)
-        //{
-        //    printf("Value %d\n", Test[i]);
-        //}
-
-        Test.resize(20);
+    //    /*Test.reserve(10);*/
 
 
-        for (size_t i = 0; i < 13; i++)
-        {
-            Test.push_back(i);
-            printf("Capacity %d\n", Test.capacity());
-            printf("Size %d\n", Test.size());
-        }
+    //    //for (size_t i = 0; i < Test.size(); i++)
+    //    //{
+    //    //    printf("Value %d\n", Test[i]);
+    //    //}
 
-        for (size_t i = 0; i < Test.capacity(); i++)
-        {
-            Test.PrintTest(i);
-        }
+    //    Test.resize(20);
 
 
+    //    for (size_t i = 0; i < 13; i++)
+    //    {
+    //        Test.push_back(i);
+    //        printf("Capacity %d\n", Test.capacity());
+    //        printf("Size %d\n", Test.size());
+    //    }
 
-        printf_s("size : %d", (int)Test.size());
-    }
+    //    for (size_t i = 0; i < Test.capacity(); i++)
+    //    {
+    //        Test.PrintTest(i);
+    //    }
 
-    return 1;
+
+
+    //    printf_s("size : %d", (int)Test.size());
+    //}
+
+    //return 1;
 
     {
         std::vector<int> Test;
@@ -195,6 +195,8 @@ int main()
             // [0][0][0]
             Test.push_back(0);
             // [0][0][0][0]
+
+            Test.resize(0);
 
             printf_s("size : %d", (int)Test.size());
         }

@@ -9,7 +9,9 @@
 #include <GameEngineConsole/ConsoleObjectManager.h>
 #include "Head.h"
 #include "Body.h"
+#include "Parts.h"
 #include <conio.h>
+
 
 int main()
 {
@@ -21,7 +23,9 @@ int main()
 	GameEngineDebug::LeckCheck();
 
 	int2 ScreenSize = { 5, 5 };
+	int ScreenElementCount = ScreenSize.Y * ScreenSize.X;
 	ConsoleGameScreen::GetMainScreen().SetScreenSize(ScreenSize);
+	ConsoleGameScreen::GetMainScreen().SetArrDataSize();
 
 	ConsoleObjectManager::CreateConsoleObject<Head>(0);
 
@@ -49,9 +53,14 @@ int main()
 
 	while (true == Head::IsPlay)
 	{
+		ConsoleGameScreen::GetMainScreen().ArrDataClear();
+		ConsoleGameScreen::GetMainScreen().SetArrData();
+		Parts::SetUnitNumberArray(ScreenElementCount);
+
 		ConsoleObjectManager::ConsoleAllObjectUpdate();
 		ConsoleObjectManager::ConsoleAllObjectRender();
 		ConsoleObjectManager::ConsoleAllObjectRelease();
+		Parts::ClearUnitNumberArray();
 		Sleep(200);
 	}
 

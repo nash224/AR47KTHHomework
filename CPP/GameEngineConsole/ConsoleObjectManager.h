@@ -1,5 +1,4 @@
 #pragma once
-#include "GameEngineArray.h"
 #include "ConsoleGameObject.h"
 #include <vector>
 #include <list>
@@ -39,10 +38,12 @@ public:
 		return CreateConsoleObject<ObjectType>((int)_Order);
 	}
 
+
 	static void ConsoleAllObjectUpdate();
 	static void ConsoleAllObjectRender();
 	static void ConsoleAllObjectRelease();
 	static void ConsoleAllObjectDelete();
+
 
 	template<typename EnumType>
 	static std::list<ConsoleGameObject*>& GetGroup(EnumType _Order)
@@ -54,6 +55,12 @@ public:
 	{
 		return AllObject[_Order];
 	}
+
+	static size_t GetObjectCount()
+	{
+		return ObjectCount;
+	}
+
 
 private:
 	// constrcuter destructer
@@ -67,5 +74,6 @@ private:
 	ConsoleObjectManager& operator=(ConsoleObjectManager&& _Other) noexcept = delete;
 
 	static std::vector<std::list<ConsoleGameObject*>> AllObject;
+	static size_t ObjectCount;
 };
 

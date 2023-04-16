@@ -1,6 +1,8 @@
 #pragma once
+#include "ConsoleGameObject.h"
 #include "ConsoleGameMath.h"
 #include "GameEngineArray.h"
+#include <vector>
 
 // 이게 1단계
 // 근본오브 근본 수학 물리 
@@ -22,8 +24,10 @@ public:
 	int2 GetScreenSize();
 
 	void SetScreenSize(int2 _Size);
+	void SetArrDataSize();
 
 	void ScreenClear();
+	void ArrDataClear();
 
 	// 나의 사이즈 크기
 	void ScreenPrint() const;
@@ -33,6 +37,17 @@ public:
 
 	// 누구(상속받은 자식)의 _Pos와 _Ch를 받아 나의 ArrScreen의 요소에 _Ch를 저장함
 	void SetScreenCharacter(const int2& _Pos, char _Ch);
+	
+	// ArrData에 Parts위치 좌표 찍기
+	void PutArrDataPartsPos(ConsoleGameObject* _PartsPos);
+
+	void SetArrData();
+
+	GameEngineArray<GameEngineArray<int>> GetArrData() const
+	{
+		return ArrData;
+	}
+
 
 protected:
 
@@ -46,6 +61,8 @@ private:
 	GameEngineArray<GameEngineArray<char>> ArrScreen;
 
 	int2 Size;
+
+	GameEngineArray<GameEngineArray<int>> ArrData;
 
 	// 캐릭터의 배열을 가진 또다른 배열이라고 할수 있어요.
 

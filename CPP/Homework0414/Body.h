@@ -1,6 +1,8 @@
 #pragma once
 #include <GameEngineConsole/ConsoleGameObject.h>
+#include <GameEngineConsole/ConsoleGameScreen.h>
 #include "Parts.h"
+#include <vector>
 
 class ConsoleGameScreen;
 class Body : public Parts
@@ -16,12 +18,12 @@ public:
 	Body& operator=(const Body& _Other) = delete;
 	Body& operator=(Body&& _Other) noexcept = delete;
 
-	void CreateBody();
-
+	
 
 protected:
 
 private:
+
 	static const bool isFirst = true;
 
 };

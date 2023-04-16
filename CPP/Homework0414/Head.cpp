@@ -23,15 +23,34 @@ bool Head::isBody(const int2 _NextPos)
 		= ConsoleObjectManager::GetGroup(1);
 
 	std::list<ConsoleGameObject*>::iterator Start = BodyGroup.begin();
+	std::list<ConsoleGameObject*>::iterator End = BodyGroup.end();
+	
 
-	ConsoleGameObject* Ptr = *Start;
-
-	if (Ptr->GetPos() == _NextPos)
+	for (; Start != End; Start++)
 	{
-		return true;
+		if (nullptr == *Start)
+		{
+			continue;
+		}
+
+		ConsoleGameObject* Ptr = *Start;
+
+		/*ConsoleGameScreen::GetMainScreen().SetArrData(Ptr);*/
+
+		if (Ptr->GetPos() == _NextPos)
+		{
+			return true;
+		}
+
 	}
 
+
 	return false;
+}
+
+void Head::HeadtoBodyLink(const ConsoleGameObject* _Body)
+{
+
 }
 
 void Head::CreateBody()
@@ -39,13 +58,21 @@ void Head::CreateBody()
 	ConsoleObjectManager::CreateConsoleObject<Body>(1);
 }
 
+// 충돌확인
 void Head::IsBodyCheck()
 {
-
 }
 
+//
 void Head::NewBodyCreateCheck()
 {
+	//NextPos = Ptr->GetPos();
+	//NextPos.X -= 1;
+	//if (true == Head::isBody(NextPos))
+	//{
+	//	// 링크 로직
+	//	Head::CreateBody();
+	//}
 
 }
 
@@ -61,19 +88,21 @@ void Head::Update()
 	if (0 == _kbhit())
 	{
 		 //SetPos(GetPos() + Dir);
-		 //IsBodyCheck();
-		 //NewBodyCreateCheck();
+		 IsBodyCheck();
+		 NewBodyCreateCheck();
 		return;
 	}
 
 	char Ch = _getch();
 
-	std::list<ConsoleGameObject*>& HeadGroup
-		= ConsoleObjectManager::GetGroup(0);
+	//std::list<ConsoleGameObject*>& HeadGroup
+	//	= ConsoleObjectManager::GetGroup(0);
 
-	std::list<ConsoleGameObject*>::iterator Start = HeadGroup.begin();
+	//std::list<ConsoleGameObject*>::iterator Start = HeadGroup.begin();
 
-	ConsoleGameObject* Ptr = *Start;
+	//ConsoleGameObject* Ptr = *Start;
+
+	//ConsoleGameScreen::GetMainScreen().SetArrData(Ptr);
 
 	int2 NextPos = { 0 , 0 };
 
@@ -82,13 +111,6 @@ void Head::Update()
 	case 'a':
 	case 'A':
 		Dir = int2::Left;
-		NextPos = Ptr->GetPos();
-		NextPos.X -= 1;
-		if (true == Head::isBody(NextPos))
-		{
-			// 링크 로직
-			Head::CreateBody();
-		}
 		break;
 	case 'd':
 	case 'D':
