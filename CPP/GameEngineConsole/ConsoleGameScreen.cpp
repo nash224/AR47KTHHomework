@@ -71,21 +71,21 @@ void ConsoleGameScreen::SetScreenSize(int2 _Size)
 	Size = _Size;
 
 	// 크기에 맞게 할당받은 배열의 크기를 늘려줌
-	ArrScreen.ReSize(Size.Y);
+	ArrScreen.resize(Size.Y);
 
 	for (size_t i = 0; i < Size.Y; i++)
 	{
-		ArrScreen[i].ReSize(Size.X);
+		ArrScreen[i].resize(Size.X);
 	}
 }
 
 void ConsoleGameScreen::SetArrDataSize()
 {
-	ArrData.ReSize(Size.Y);
+	ArrData.resize(Size.Y);
 
 	for (size_t i = 0; i < Size.Y; i++)
 	{
-		ArrData[i].ReSize(Size.X);
+		ArrData[i].resize(Size.X);
 	}
 }
 

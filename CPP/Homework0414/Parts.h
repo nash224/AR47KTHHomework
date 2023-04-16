@@ -33,12 +33,12 @@ public:
 		return PartsCount;
 	}
 
-	static void SetUnitNumberArray(size_t _value)
+	static void SetUnitNumberArray(int _value)
 	{
 		NonUnitNumberArray.reserve(_value - PartsCount);
 	}
 
-	static void UnitNumberPushback(size_t _value)
+	static void UnitNumberPushback(int _value)
 	{
 		NonUnitNumberArray.push_back(_value);
 	}

@@ -23,19 +23,20 @@ void Link(Parts* _Other1, Parts* _Other2)
 static void PutNonUnitNumber()
 {
 	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
-	//ConsoleGameScreen::GetMainScreen().
 
 	int count = -1;
 
-	for (size_t i = 0; i < ScreenSize.Y; i++)
+
+	for (size_t y = 0; y < ScreenSize.Y; y++)
 	{
-		for (size_t i = 0; i < ScreenSize.X; i++)
+		std::vector<int> ArrPtr = ConsoleGameScreen::GetMainScreen().GetArrData(y);
+		for (size_t x = 0; x < ScreenSize.X; x++)
 		{
 			count++;
 			
-			if ()
+			if (0 == ArrPtr[x])
 			{
-
+				Parts::UnitNumberPushback(count);
 			}
 		}
 
