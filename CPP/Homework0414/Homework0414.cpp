@@ -58,6 +58,8 @@ int main()
 		ConsoleGameScreen::GetMainScreen().ArrDataClear();
 		ConsoleGameScreen::GetMainScreen().SetArrData();
 		Parts::SetUnitNumberArray(ScreenElementCount);
+		Parts::PutNonUnitNumber();
+		Parts::RandomUnitPos();
 
 		ConsoleObjectManager::ConsoleAllObjectUpdate();
 		ConsoleObjectManager::ConsoleAllObjectRender();

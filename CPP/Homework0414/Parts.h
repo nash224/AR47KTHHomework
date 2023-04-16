@@ -50,6 +50,8 @@ public:
 
 	static void PutNonUnitNumber();
 
+	static int2 RandomUnitPos();
+
 
 protected:
 	void Link(Parts* _Other, Parts* _Other2);
@@ -62,4 +64,3 @@ private:
 
 	static std::vector<int> NonUnitNumberArray;
 };
-

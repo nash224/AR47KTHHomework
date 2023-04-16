@@ -1,5 +1,6 @@
 #include "Parts.h"
 #include <GameEngineConsole/ConsoleGameScreen.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 size_t Parts::PartsCount = 0;
 
@@ -20,7 +21,7 @@ void Link(Parts* _Other1, Parts* _Other2)
 {
 }
 
-static void PutNonUnitNumber()
+void Parts::PutNonUnitNumber()
 {
 	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
 
@@ -41,6 +42,24 @@ static void PutNonUnitNumber()
 		}
 
 	}
+}
+
+int2 Parts::RandomUnitPos()
+{
+
+	int2 Screensize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
+	int RandomMax = Screensize.Y * Screensize.X - PartsCount;
+
+	int DrawNumberOder = GameEngineRandom::MainRandom.RandomInt(0, RandomMax - 1);
+
+	int DrawNumber = NonUnitNumberArray[DrawNumberOder];
+
+	int X = DrawNumber % Screensize.X;
+	int Y = DrawNumber / Screensize.X;
+
+	int2 BodyCreatePos = { X , Y };
+
+	return BodyCreatePos;
 }
 
 

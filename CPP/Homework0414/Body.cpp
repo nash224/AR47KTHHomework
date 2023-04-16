@@ -5,16 +5,24 @@
 
 Body::Body() 
 {
-	RenderChar = 'i';
+	RenderChar = 'i'; 
 
-	
-
-	int X = GameEngineRandom::MainRandom.RandomInt(0, ConsoleGameScreen::GetMainScreen().GetScreenSize().X - 1);
-	int Y = GameEngineRandom::MainRandom.RandomInt(0, ConsoleGameScreen::GetMainScreen().GetScreenSize().Y - 1);
-	SetPos({ X, Y });
+	NewBodyCreate();
 }
 
 Body::~Body() 
 {
 }
 
+void Body::NewBodyCreate()
+{
+	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
+	int ScreenElementCount = ScreenSize.Y * ScreenSize.X;
+
+	ConsoleGameScreen::GetMainScreen().ArrDataClear();
+	ConsoleGameScreen::GetMainScreen().SetArrData();
+	Parts::SetUnitNumberArray(ScreenElementCount);
+	Parts::PutNonUnitNumber();
+	this->SetPos(Parts::RandomUnitPos());
+	Parts::ClearUnitNumberArray();
+}

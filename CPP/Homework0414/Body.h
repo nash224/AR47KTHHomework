@@ -23,8 +23,9 @@ public:
 protected:
 
 private:
-
+	
 	static const bool isFirst = true;
 
+	void NewBodyCreate();
 };
 
