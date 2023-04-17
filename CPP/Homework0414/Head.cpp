@@ -51,6 +51,17 @@ void Head::CreateBody()
 // 충돌확인
 void Head::IsBodyCheck()
 {
+	std::list<ConsoleGameObject*>& BodyGroup =
+		ConsoleObjectManager::GetGroup(1);
+
+	for (ConsoleGameObject* BodyPtr : BodyGroup)
+	{
+		if (true == BodyPtr->GetisFollow() && 
+			Pos == BodyPtr->GetPos())
+		{
+			IsPlay = false;
+		}
+	}
 }
 
 //
@@ -100,8 +111,8 @@ void Head::Update()
 	if (0 == _kbhit())
 	{
 		 SetPos(GetPos() + Dir);
-		 NewBodyCreateCheck();
 		 IsBodyCheck();
+		 NewBodyCreateCheck();
 		 //CreateBody();
 		 return;
 	}
