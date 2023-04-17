@@ -7,7 +7,7 @@ int Body::BodyCount = 0;
 Body::Body() 
 {
 	BodyCount++;
-	RenderChar = 'i'; 
+	RenderChar = '#'; 
 
 	NewBodyCreate();
 
@@ -40,6 +40,7 @@ void Body::Update()
 {
 	if (true == this->GetisFollow())
 	{
+		RenderChar = 'i';
 		SetBeforePos(Pos);
 		ConsoleGameObject* PrevPtr = this->GetPrev();
 		int2 BodyNextPos = PrevPtr->GetPos();
