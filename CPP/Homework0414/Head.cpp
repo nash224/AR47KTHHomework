@@ -134,8 +134,6 @@ void Head::Update()
 	{
 		IsPlay = false;
 	}
-	
-	SetBeforePos(Pos);
 
 	if (0 == _kbhit())
 	{

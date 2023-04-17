@@ -43,7 +43,6 @@ void Body::Update()
 	if (true == this->GetisFollow())
 	{
 		RenderChar = 'i';
-		SetBeforePos(Pos);
 		ConsoleGameObject* PrevPtr = this->GetPrev();
 		int2 BodyNextPos = PrevPtr->GetPos();
 

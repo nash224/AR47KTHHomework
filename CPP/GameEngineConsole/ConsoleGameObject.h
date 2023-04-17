@@ -6,7 +6,7 @@ class ConsoleGameObject
 {
 public:
 	// 매개변수의 값으로 내위치를 설정함
-	inline void SetPos(const int2& _Value)
+	virtual inline void SetPos(const int2& _Value)
 	{
 		Pos = _Value;
 	}

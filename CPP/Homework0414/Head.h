@@ -17,12 +17,12 @@ public:
 
 	static bool IsPlay;
 
-	int2 GetDir()
+	inline int2 GetDir() const
 	{
 		return Dir;
 	}
 
-	static bool GetWintrigger()
+	inline static bool GetWintrigger()
 	{
 		return Wintrigger;
 	}
