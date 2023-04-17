@@ -5,6 +5,7 @@
 #include <GameEngineConsole/ConsoleObjectManager.h>
 
 bool Head::IsPlay = true;
+bool Head::Wintrigger = false;
 
 Head::Head() 
 {
@@ -101,6 +102,14 @@ void Head::NewBodyCreateCheck()
 
 void Head::Update()
 {
+	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
+	int ScreenElement = ScreenSize.X * ScreenSize.Y;
+
+	if (ScreenElement == Parts::GetPartsCount())
+	{
+		Wintrigger = true;
+	}
+
 	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
 	{
 		IsPlay = false;
@@ -159,6 +168,7 @@ void Head::Update()
 	{
 		IsPlay = false;
 	}
+
 
 
 

@@ -24,7 +24,7 @@ int main()
 
 	GameEngineDebug::LeckCheck();
 
-	int2 ScreenSize = { 7, 7 };
+	int2 ScreenSize = { 3, 3 };
 	ConsoleGameScreen::GetMainScreen().SetScreenSize(ScreenSize);
 	ConsoleGameScreen::GetMainScreen().SetArrDataSize();
 
@@ -58,6 +58,15 @@ int main()
 		ConsoleObjectManager::ConsoleAllObjectRender();
 		ConsoleObjectManager::ConsoleAllObjectRelease();
 		Sleep(200);
+
+		if (true == Head::GetWintrigger())
+		{
+			system("cls");
+			
+			std::cout << "Your Win!!!" << std::endl;
+
+			break;
+		}
 	}
 
 	ConsoleObjectManager::ConsoleAllObjectDelete();

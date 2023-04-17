@@ -22,6 +22,11 @@ public:
 		return Dir;
 	}
 
+	static bool GetWintrigger()
+	{
+		return Wintrigger;
+	}
+
 protected:
 	bool isBody(int2 _NextPos);
 	void CreateBody();
@@ -34,6 +39,8 @@ private:
 	int2 Dir = int2::Up;
 
 	bool FirstEatBody = false;
+
+	static bool Wintrigger;
 
 };
 
