@@ -40,8 +40,10 @@ void Body::Update()
 {
 	if (true == this->GetisFollow())
 	{
+		SetBeforePos(Pos);
 		ConsoleGameObject* PrevPtr = this->GetPrev();
-		//this->SetPos(PrevPtr->GetPos());
+		int2 BodyNextPos = PrevPtr->GetPos();
+		this->SetPos(PrevPtr->GetBeforePos());
 
 	}
 }

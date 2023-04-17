@@ -77,12 +77,12 @@ void Head::NewBodyCreateCheck()
 
 	if (true == Head::isBody(Pos))
 	{
-		if (true == FirstEatBody)
+		if (false == FirstEatBody)
 		{
 			ConsoleGameObject::LinktoNext(LastBodyPtr);
 		}
 
-		FirstEatBody = false;
+		FirstEatBody = true;
 
 		Head::CreateBody();
 	}
@@ -94,6 +94,8 @@ void Head::Update()
 	{
 		IsPlay = false;
 	}
+	
+	SetBeforePos(Pos);
 
 	if (0 == _kbhit())
 	{

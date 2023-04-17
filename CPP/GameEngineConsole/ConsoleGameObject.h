@@ -48,7 +48,7 @@ public:
 		UpdateValue = false;
 	}
 
-	bool GetisFollow()
+	bool GetisFollow() const
 	{
 		return isFollow;
 	}
@@ -58,12 +58,12 @@ public:
 		isFollow = _boolean;
 	}
 
-	ConsoleGameObject* GetNext()
+	ConsoleGameObject* GetNext() const
 	{
 		return Next;
 	}
 
-	ConsoleGameObject* GetPrev()
+	ConsoleGameObject* GetPrev() const
 	{
 		return Prev;
 	}
@@ -72,6 +72,11 @@ public:
 	virtual void Update();
 	virtual void Render();
 
+	int2 GetBeforePos() const
+	{
+		return BeforePos;
+	}
+
 
 protected:
 	int2 Pos;
@@ -79,10 +84,16 @@ protected:
 
 	void LinktoNext(ConsoleGameObject* _OtherPtr);
 	void LinktoPrev(ConsoleGameObject* _OtherPtr);
+	void SetBeforePos(int2 _BeforePos)
+	{
+		BeforePos = _BeforePos;
+	}
 
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;
+
+	int2 BeforePos = { 0 , 0 };
 
 	bool isFollow = false;
 

@@ -50,7 +50,6 @@ public:
 protected:
 	void Update() override;
 
-
 private:
 
 	static size_t PartsCount;

@@ -17,6 +17,11 @@ public:
 
 	static bool IsPlay;
 
+	int2 GetDir()
+	{
+		return Dir;
+	}
+
 protected:
 	bool isBody(int2 _NextPos);
 	void CreateBody();
