@@ -62,3 +62,16 @@ void Parts::Update()
 {
 	ConsoleGameObject::Update();
 }
+
+
+void Parts::LinktoNext(Parts* _OtherParts)
+{
+	this->Next = _OtherParts;
+	_OtherParts->Prev = this;
+}
+
+void Parts::LinktoPrev(Parts* _OtherParts)
+{
+	this->Prev = _OtherParts;
+	_OtherParts->Next = this;
+}

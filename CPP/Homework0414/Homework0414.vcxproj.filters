@@ -10,5 +10,6 @@
     <ClInclude Include="Head.h" />
     <ClInclude Include="Parts.h" />
     <ClInclude Include="Body.h" />
+    <ClInclude Include="GameEnum.h" />
   </ItemGroup>
 </Project>

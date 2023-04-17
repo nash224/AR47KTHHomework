@@ -17,6 +17,20 @@ public:
 	Parts& operator=(const Parts& _Other) = delete;
 	Parts& operator=(Parts&& _Other) noexcept = delete;
 
+	Parts* GetNext() const
+	{
+		return Next;
+	}
+
+	Parts* GetPrev() const
+	{
+		return Prev;
+	}
+
+	int2 GetBeforePos() const
+	{
+		return BeforePos;
+	}
 
 	// 스네이크의 머리와 몸통을 합한 수를 알려줌
 	static size_t GetPartsCount()
@@ -47,12 +61,26 @@ public:
 	// NonUnitNumberArray의 요소의 수를 리롤해서 좌표값을 반환
 	static int2 RandomUnitPos();
 
+
 protected:
 	void Update() override;
 
+	void LinktoNext(Parts* _OtherPtr);
+	void LinktoPrev(Parts* _OtherPtr);
+
+	void SetBeforePos(int2 _BeforePos)
+	{
+		BeforePos = _BeforePos;
+	}
+
+
 private:
+	Parts* Next = nullptr;
+	Parts* Prev = nullptr;
+
+
+	int2 BeforePos = { 0 , 0 };
 
 	static size_t PartsCount;
-
 	static std::vector<int> NonUnitNumberArray;
 };

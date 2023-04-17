@@ -1,6 +1,8 @@
 #include <GameEngineConsole/ConsoleObjectManager.h>
 #include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineBase/GameEngineDebug.h>
+#include "GameEnum.h"
 #include "Body.h"
 
 int Body::BodyCount = 0;
@@ -44,7 +46,9 @@ void Body::Update()
 		SetBeforePos(Pos);
 		ConsoleGameObject* PrevPtr = this->GetPrev();
 		int2 BodyNextPos = PrevPtr->GetPos();
-		this->SetPos(PrevPtr->GetBeforePos());
+
+		Parts* PrevParts = dynamic_cast<Parts*>(PrevPtr);
+		this->SetPos(PrevParts->GetBeforePos());
 
 	}
 }
@@ -52,14 +56,14 @@ void Body::Update()
 
 void Body::LinktoPrevBody()
 {
-
 	std::list<ConsoleGameObject*>& BodyGroup =
-		ConsoleObjectManager::GetGroup(1);
+		ConsoleObjectManager::GetGroup(ObjectOrder::Body);
 
 	std::list<ConsoleGameObject*>::iterator BodyStart = BodyGroup.begin();
 
 	if (nullptr == *BodyStart)
 	{
+		MsgBoxAssert("바디 그룹에서 nullptr을 참조했습니다. -> Body::LinkPrevBody()")
 		return;
 	}
 
@@ -70,7 +74,9 @@ void Body::LinktoPrevBody()
 
 	ConsoleGameObject* BodyEndPrevPtr = *BodyStart;
 
-	this->LinktoPrev(BodyEndPrevPtr);
+	Parts* LastBodyParts = dynamic_cast<Parts*>(BodyEndPrevPtr);
+
+	this->LinktoPrev(LastBodyParts);
 
 	BodyEndPrevPtr->SetisFollow(true);
 }

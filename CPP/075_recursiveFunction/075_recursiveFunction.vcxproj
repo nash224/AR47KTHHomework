@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ee2bbc89-1762-48b2-a228-6a523fae0b03}</ProjectGuid>
-    <RootNamespace>Homework0414</RootNamespace>
+    <ProjectGuid>{21f5db59-4e04-41a0-ba44-a430025113ac}</ProjectGuid>
+    <RootNamespace>My075recursiveFunction</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,18 +70,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -139,24 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Body.cpp" />
-    <ClCompile Include="Head.cpp" />
-    <ClCompile Include="Homework0414.cpp" />
-    <ClCompile Include="Parts.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Body.h" />
-    <ClInclude Include="GameEnum.h" />
-    <ClInclude Include="Head.h" />
-    <ClInclude Include="Parts.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
-      <Project>{76a80769-e155-49ad-a0e1-fba8d347d5f0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\GameEngineConsole\GameEngineConsole.vcxproj">
-      <Project>{3e1727da-0ab6-4aa4-9086-cab9bf80ed51}</Project>
-    </ProjectReference>
+    <ClCompile Include="075_recursiveFunction.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

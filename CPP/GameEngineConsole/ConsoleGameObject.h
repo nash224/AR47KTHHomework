@@ -58,47 +58,22 @@ public:
 		isFollow = _boolean;
 	}
 
-	ConsoleGameObject* GetNext() const
-	{
-		return Next;
-	}
-
-	ConsoleGameObject* GetPrev() const
-	{
-		return Prev;
-	}
-
 	// 나만의 특성을 가짐
 	virtual void Update();
 	virtual void Render();
 
-	int2 GetBeforePos() const
-	{
-		return BeforePos;
-	}
 
 
 protected:
 	int2 Pos;
 	char RenderChar = ' ';
 
-	void LinktoNext(ConsoleGameObject* _OtherPtr);
-	void LinktoPrev(ConsoleGameObject* _OtherPtr);
-	void SetBeforePos(int2 _BeforePos)
-	{
-		BeforePos = _BeforePos;
-	}
-
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;
 
-	int2 BeforePos = { 0 , 0 };
-
 	bool isFollow = false;
 
-	ConsoleGameObject* Next = nullptr;
-	ConsoleGameObject* Prev = nullptr;
 
 };
 

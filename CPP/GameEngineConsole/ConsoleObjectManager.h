@@ -1,5 +1,6 @@
 #pragma once
 #include "ConsoleGameObject.h"
+#include <GameEngineBase/GameEngineDebug.h>
 #include <vector>
 #include <list>
 
