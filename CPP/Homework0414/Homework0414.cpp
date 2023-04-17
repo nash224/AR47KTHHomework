@@ -24,8 +24,7 @@ int main()
 
 	GameEngineDebug::LeckCheck();
 
-	int2 ScreenSize = { 5, 5 };
-	int ScreenElementCount = ScreenSize.Y * ScreenSize.X;
+	int2 ScreenSize = { 7, 7 };
 	ConsoleGameScreen::GetMainScreen().SetScreenSize(ScreenSize);
 	ConsoleGameScreen::GetMainScreen().SetArrDataSize();
 
@@ -55,16 +54,9 @@ int main()
 
 	while (true == Head::IsPlay)
 	{
-		ConsoleGameScreen::GetMainScreen().ArrDataClear();
-		ConsoleGameScreen::GetMainScreen().SetArrData();
-		Parts::SetUnitNumberArray(ScreenElementCount);
-		Parts::PutNonUnitNumber();
-		Parts::RandomUnitPos();
-
 		ConsoleObjectManager::ConsoleAllObjectUpdate();
 		ConsoleObjectManager::ConsoleAllObjectRender();
 		ConsoleObjectManager::ConsoleAllObjectRelease();
-		Parts::ClearUnitNumberArray();
 		Sleep(200);
 	}
 

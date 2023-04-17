@@ -16,11 +16,6 @@ Parts::~Parts()
 	PartsCount--;
 }
 
-
-void Link(Parts* _Other1, Parts* _Other2)
-{
-}
-
 void Parts::PutNonUnitNumber()
 {
 	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
@@ -50,7 +45,7 @@ int2 Parts::RandomUnitPos()
 	int2 Screensize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
 	int RandomMax = Screensize.Y * Screensize.X - PartsCount;
 
-	int DrawNumberOder = GameEngineRandom::MainRandom.RandomInt(0, RandomMax - 1);
+	int DrawNumberOder = GameEngineRandom::MainRandom.RandomInt(0, RandomMax);
 
 	int DrawNumber = NonUnitNumberArray[DrawNumberOder];
 

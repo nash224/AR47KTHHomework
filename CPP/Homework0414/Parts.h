@@ -18,48 +18,41 @@ public:
 	Parts& operator=(Parts&& _Other) noexcept = delete;
 
 
-	Parts* GetNext()
-	{
-		return Next;
-	}
-
-	Parts* GetPrev()
-	{
-		return Prev;
-	}
-
+	// 스네이크의 머리와 몸통을 합한 수를 알려줌
 	static size_t GetPartsCount()
 	{
 		return PartsCount;
 	}
 
+	// ArrData의 요소의 수에 스네이크 단위의 수를 빼준만큼 NonUnitNumberArray 공간을 확보함
 	static void SetUnitNumberArray(int _value)
 	{
 		NonUnitNumberArray.reserve(_value - PartsCount);
 	}
 
+	// NonUnitNumberArray에 빈칸의 수를 집어넣음
 	static void UnitNumberPushback(int _value)
 	{
 		NonUnitNumberArray.push_back(_value);
 	}
 
+	// ClearUnitNumberArray을 초기화
 	static void ClearUnitNumberArray()
 	{
 		NonUnitNumberArray.resize(0);
 	}
 
+	// ArrData의 좌표값을 NonUnitNumberArray에 넣어줌
 	static void PutNonUnitNumber();
-
+	// NonUnitNumberArray의 요소의 수를 리롤해서 좌표값을 반환
 	static int2 RandomUnitPos();
 
-
 protected:
-	void Link(Parts* _Other, Parts* _Other2);
 	void Update() override;
 
+
 private:
-	Parts* Next;
-	Parts* Prev;
+
 	static size_t PartsCount;
 
 	static std::vector<int> NonUnitNumberArray;

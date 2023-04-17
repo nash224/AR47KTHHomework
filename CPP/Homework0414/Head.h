@@ -15,19 +15,20 @@ public:
 	Head& operator=(const Head& _Other) = delete;
 	Head& operator=(Head&& _Other) noexcept = delete;
 
-
 	static bool IsPlay;
 
 protected:
 	bool isBody(int2 _NextPos);
-	void HeadtoBodyLink(const ConsoleGameObject* _Body);
 	void CreateBody();
 	void Update() override;
 	void IsBodyCheck();
 	void NewBodyCreateCheck();
+	//void FirstBodyLink();
 
 private:
 	int2 Dir = int2::Up;
+
+	bool FirstEatBody = false;
 
 };
 

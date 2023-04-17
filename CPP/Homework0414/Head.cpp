@@ -25,7 +25,6 @@ bool Head::isBody(const int2 _NextPos)
 	std::list<ConsoleGameObject*>::iterator Start = BodyGroup.begin();
 	std::list<ConsoleGameObject*>::iterator End = BodyGroup.end();
 	
-
 	for (; Start != End; Start++)
 	{
 		if (nullptr == *Start)
@@ -35,22 +34,13 @@ bool Head::isBody(const int2 _NextPos)
 
 		ConsoleGameObject* Ptr = *Start;
 
-		/*ConsoleGameScreen::GetMainScreen().SetArrData(Ptr);*/
-
 		if (Ptr->GetPos() == _NextPos)
 		{
-			return true;
+			return  true;
 		}
-
 	}
 
-
 	return false;
-}
-
-void Head::HeadtoBodyLink(const ConsoleGameObject* _Body)
-{
-
 }
 
 void Head::CreateBody()
@@ -66,17 +56,38 @@ void Head::IsBodyCheck()
 //
 void Head::NewBodyCreateCheck()
 {
-	//NextPos = Ptr->GetPos();
-	//NextPos.X -= 1;
-	//if (true == Head::isBody(NextPos))
-	//{
-	//	// 링크 로직
-	//	Head::CreateBody();
-	//}
 
+	std::list<ConsoleGameObject*>& BodyGroup =
+		ConsoleObjectManager::GetGroup(1);
+
+	std::list<ConsoleGameObject*>::iterator BodyStart = BodyGroup.begin();
+	std::list<ConsoleGameObject*>::iterator BodyEnd = BodyGroup.end();
+
+	for (size_t i = 0; i < Parts::GetPartsCount() - 2; i++)
+	{
+		BodyStart++;
+	}
+
+	ConsoleGameObject* LastBodyPtr = *BodyStart;
+
+	if (true == LastBodyPtr->GetisFollow())
+	{
+		return;
+	}
+
+	if (true == Head::isBody(Pos))
+	{
+		if (true == FirstEatBody)
+		{
+			ConsoleGameObject::LinktoNext(LastBodyPtr);
+		}
+
+		FirstEatBody = false;
+
+		Head::CreateBody();
+	}
 }
 
-// 화면바깥으로 못나가게 하세요. 
 void Head::Update()
 {
 	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
@@ -84,25 +95,16 @@ void Head::Update()
 		IsPlay = false;
 	}
 
-
 	if (0 == _kbhit())
 	{
-		 //SetPos(GetPos() + Dir);
-		 IsBodyCheck();
+		 SetPos(GetPos() + Dir);
 		 NewBodyCreateCheck();
-		return;
+		 IsBodyCheck();
+		 //CreateBody();
+		 return;
 	}
 
 	char Ch = _getch();
-
-	//std::list<ConsoleGameObject*>& HeadGroup
-	//	= ConsoleObjectManager::GetGroup(0);
-
-	//std::list<ConsoleGameObject*>::iterator Start = HeadGroup.begin();
-
-	//ConsoleGameObject* Ptr = *Start;
-
-	//ConsoleGameScreen::GetMainScreen().SetArrData(Ptr);
 
 	int2 NextPos = { 0 , 0 };
 
@@ -110,6 +112,10 @@ void Head::Update()
 	{
 	case 'a':
 	case 'A':
+		if (Dir == int2::Right)
+		{
+			return;
+		}
 		Dir = int2::Left;
 		break;
 	case 'd':

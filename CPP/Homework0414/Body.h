@@ -18,14 +18,18 @@ public:
 	Body& operator=(const Body& _Other) = delete;
 	Body& operator=(Body&& _Other) noexcept = delete;
 
-	
+	void Update() override;
 
 protected:
 
 private:
-	
-	static const bool isFirst = true;
+	bool isFirst = true;
 
+	static int BodyCount;
+
+	// 泅犁 按眉客 捞傈 按眉甫 楷搬矫糯
+	void LinktoPrevBody();
+	// 个烹 按眉 积己
 	void NewBodyCreate();
 };
 

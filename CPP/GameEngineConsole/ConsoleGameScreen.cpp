@@ -136,7 +136,7 @@ void ConsoleGameScreen::PutArrDataPartsPos(ConsoleGameObject* _PartsPos)
 void ConsoleGameScreen::SetArrData()
 {
 	std::list<ConsoleGameObject*>& HeadGroup
-		= ConsoleObjectManager::GetGroup(1);
+		= ConsoleObjectManager::GetGroup(0);
 
 	std::list<ConsoleGameObject*>::iterator StartHeadGroup = HeadGroup.begin();
 

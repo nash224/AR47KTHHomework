@@ -17,6 +17,7 @@ public:
 		return Pos;
 	}
 
+
 	// 내가 죽었는지 알려줌
 	bool IsDeath()
 	{
@@ -47,17 +48,46 @@ public:
 		UpdateValue = false;
 	}
 
+	bool GetisFollow()
+	{
+		return isFollow;
+	}
+
+	void SetisFollow(bool _boolean)
+	{
+		isFollow = _boolean;
+	}
+
+	ConsoleGameObject* GetNext()
+	{
+		return Next;
+	}
+
+	ConsoleGameObject* GetPrev()
+	{
+		return Prev;
+	}
+
 	// 나만의 특성을 가짐
 	virtual void Update();
 	virtual void Render();
+
 
 protected:
 	int2 Pos;
 	char RenderChar = ' ';
 
+	void LinktoNext(ConsoleGameObject* _OtherPtr);
+	void LinktoPrev(ConsoleGameObject* _OtherPtr);
+
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;
+
+	bool isFollow = false;
+
+	ConsoleGameObject* Next = nullptr;
+	ConsoleGameObject* Prev = nullptr;
 
 };
 
