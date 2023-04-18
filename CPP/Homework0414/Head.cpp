@@ -11,7 +11,7 @@ bool Head::Wintrigger = false;
 
 Head::Head() 
 {
-	RenderChar = '$';
+	RenderChar = L'¡ã';
 	SetPos(ConsoleGameScreen::GetMainScreen().GetScreenSize().Half());
 
 }
@@ -82,7 +82,6 @@ void Head::NewBodyCreateCheck()
 		ConsoleObjectManager::GetGroup(1);
 
 	std::list<ConsoleGameObject*>::iterator BodyStart = BodyGroup.begin();
-	std::list<ConsoleGameObject*>::iterator BodyEnd = BodyGroup.end();
 
 	for (size_t i = 0; i < Parts::GetPartsCount() - 2; i++)
 	{
@@ -108,15 +107,19 @@ void Head::NewBodyCreateCheck()
 		if (false == FirstEatBody)
 		{
 			Parts::LinktoNext(LastBodyParts);
+			FirstEatBody = true;
 		}
 
-		FirstEatBody = true;
-
-		if (true == LastBodyParts->GetisFollow())
+		if (false == LastBodyParts->GetisFollow())
 		{
-			return;
+			if (false == IsPlay)
+			{
+				return;
+			}
+
+			Head::CreateBody();
 		}
-		Head::CreateBody();
+
 	}
 }
 
@@ -152,23 +155,23 @@ void Head::Update()
 	{
 	case 'a':
 	case 'A':
-		if (Dir == int2::Right)
-		{
-			return;
-		}
 		Dir = int2::Left;
+		this->RenderChar = L'¢¸';
 		break;
 	case 'd':
 	case 'D':
 		Dir = int2::Right;
+		this->RenderChar = L'¢º';
 		break;
 	case 'w':
 	case 'W':
 		Dir = int2::Up;
+		this->RenderChar = L'¡ã';
 		break;
 	case 's':
 	case 'S':
 		Dir = int2::Down;
+		this->RenderChar = L'¡å';
 		break;
 	case 'q':
 	case 'Q':

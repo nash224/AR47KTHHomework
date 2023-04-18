@@ -35,7 +35,7 @@ public:
 	bool IsScreenOver(const int2& _Pos) const;
 
 	// 누구(상속받은 자식)의 _Pos와 _Ch를 받아 나의 ArrScreen의 요소에 _Ch를 저장함
-	void SetScreenCharacter(const int2& _Pos, char _Ch);
+	void SetScreenCharacter(const int2& _Pos, wchar_t _Ch);
 	
 	// ArrData에 Parts위치 좌표 찍기
 	void PutArrDataPartsPos(ConsoleGameObject* _PartsPos);
@@ -52,7 +52,7 @@ public:
 protected:
 
 private:
-	std::vector<std::vector<char>> ArrScreen;
+	std::vector<std::vector<wchar_t>> ArrScreen;
 
 	int2 Size;
 

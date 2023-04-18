@@ -36,11 +36,8 @@ protected:
 	//void FirstBodyLink();
 
 private:
-	int2 Dir = int2::Up;
-
 	bool FirstEatBody = false;
 
 	static bool Wintrigger;
-
 };
 

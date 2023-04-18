@@ -85,7 +85,6 @@ void Player::Update()
 
 	int2 NextPos = { 0, 0 };
 
-
 	switch (Ch)
 	{
 	case 'a':

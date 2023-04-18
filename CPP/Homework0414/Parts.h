@@ -72,10 +72,12 @@ protected:
 
 	void LinktoNext(Parts* _OtherPtr);
 	void LinktoPrev(Parts* _OtherPtr);
+	int2 Dir = int2::Up;
 
 private:
 	Parts* Next = nullptr;
 	Parts* Prev = nullptr;
+
 
 
 	int2 BeforePos = { 0 , 0 };

@@ -66,7 +66,7 @@ public:
 
 protected:
 	int2 Pos;
-	char RenderChar = ' ';
+	wchar_t RenderChar = ' ';
 
 private:
 	bool UpdateValue = true;
