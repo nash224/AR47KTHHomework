@@ -27,10 +27,10 @@ private:
 
 	static int BodyCount;
 
-	// 현재 객체와 이전 객체를 연결시킴
-	void LinktoPrevBody();
 	// 몸통 객체 생성
 	void NewBodyCreateLocation();
+	// 현재 객체와 이전 객체를 연결시킴
+	void LinktoPrevBody();
 	// 진행방향을 알려줌
 	void SetDirection();
 	// 정해진 기호를 줌

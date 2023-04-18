@@ -17,11 +17,6 @@ public:
 
 	static bool IsPlay;
 
-	inline int2 GetDir() const
-	{
-		return Dir;
-	}
-
 	inline static bool GetWintrigger()
 	{
 		return Wintrigger;
@@ -30,10 +25,9 @@ public:
 protected:
 	bool isBody(int2 _NextPos);
 	void CreateBody();
-	void Update() override;
 	void IsBodyCheck();
 	void NewBodyCreateCheck();
-	//void FirstBodyLink();
+	void Update() override;
 
 private:
 	bool FirstEatBody = false;

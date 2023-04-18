@@ -41,6 +41,36 @@ void Body::Update()
 	}
 }
 
+Parts* Body::GetLastFollowBody()
+{
+	std::list<ConsoleGameObject*>& BodyGroup = ConsoleObjectManager::GetGroup(ObjectOrder::Body);
+	
+	std::list<ConsoleGameObject*>::iterator Start = BodyGroup.begin();
+
+	for (size_t i = 0; i < BodyCount - 1; i++)
+	{
+		Start++;
+	}
+
+	ConsoleGameObject* LastFollowBody = *Start;
+	Parts* LastFollowBodyParts = dynamic_cast<Parts*>(LastFollowBody);
+
+	return LastFollowBodyParts;
+}
+
+void Body::NewBodyCreateLocation()
+{
+	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
+	int ScreenElementCount = ScreenSize.Y * ScreenSize.X;
+
+	ConsoleGameScreen::GetMainScreen().ArrDataClear();
+	ConsoleGameScreen::GetMainScreen().SetArrData();
+	Parts::SetUnitNumberArray(ScreenElementCount);
+	Parts::PutNonUnitNumber();
+	this->SetPos(Parts::RandomUnitPos());
+	Parts::ClearUnitNumberArray();
+}
+
 void Body::LinktoPrevBody()
 {
 	std::list<ConsoleGameObject*>& BodyGroup =
@@ -64,20 +94,9 @@ void Body::LinktoPrevBody()
 
 	this->LinktoPrev(LastBodyParts);
 
-	BodyEndPrevPtr->SetisFollow(true);
-}
+	Parts* PartsEndPrevPtr = dynamic_cast<Parts*>(BodyEndPrevPtr);
 
-void Body::NewBodyCreateLocation()
-{
-	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
-	int ScreenElementCount = ScreenSize.Y * ScreenSize.X;
-
-	ConsoleGameScreen::GetMainScreen().ArrDataClear();
-	ConsoleGameScreen::GetMainScreen().SetArrData();
-	Parts::SetUnitNumberArray(ScreenElementCount);
-	Parts::PutNonUnitNumber();
-	this->SetPos(Parts::RandomUnitPos());
-	Parts::ClearUnitNumberArray();
+	PartsEndPrevPtr->SetisFollow(true);
 }
 
 void Body::SetDirection()
@@ -85,12 +104,15 @@ void Body::SetDirection()
 	Parts* PrevPartsPtr = this->GetPrev();
 	if (nullptr == PrevPartsPtr)
 	{
-		MsgBoxAssert("바디 그룹에서 nullptr을 참조했습니다. -> Body::GetDirection()");
+		MsgBoxAssert("Body에 링크된 이전 주소가 nullptr입니다. -> Body::GetDirection()");
 		return;
 	}
 
 	int2 PrevBeforePos = PrevPartsPtr->GetBeforePos();
-	this->Dir = PrevBeforePos - this->Pos;
+	if (true == this->GetisFollow())
+	{
+		this->Dir = PrevBeforePos - this->Pos;
+	}
 }
 
 wchar_t Body::GetSign(const int2 _Dir)

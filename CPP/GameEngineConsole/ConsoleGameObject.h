@@ -48,21 +48,9 @@ public:
 		UpdateValue = false;
 	}
 
-	bool GetisFollow() const
-	{
-		return isFollow;
-	}
-
-	void SetisFollow(bool _boolean)
-	{
-		isFollow = _boolean;
-	}
-
 	// 나만의 특성을 가짐
 	virtual void Update();
 	virtual void Render();
-
-
 
 protected:
 	int2 Pos;
@@ -71,9 +59,5 @@ protected:
 private:
 	bool UpdateValue = true;
 	bool DeathValue = false;
-
-	bool isFollow = false;
-
-
 };
 

@@ -25,7 +25,7 @@ int main()
 
 	GameEngineDebug::LeckCheck();
 
-	int2 ScreenSize = { 5, 5 };
+	int2 ScreenSize = { 8, 8 };
 	ConsoleGameScreen::GetMainScreen().SetScreenSize(ScreenSize);
 	ConsoleGameScreen::GetMainScreen().SetArrDataSize();
 
@@ -64,7 +64,7 @@ int main()
 		{
 			system("cls");
 			
-			std::cout << "Your Win!!!" << std::endl;
+			std::cout << "Your Win!!" << std::endl;
 
 			break;
 		}

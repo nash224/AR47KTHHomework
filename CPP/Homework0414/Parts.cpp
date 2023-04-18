@@ -22,7 +22,6 @@ void Parts::PutNonUnitNumber()
 
 	int count = -1;
 
-
 	for (size_t y = 0; y < ScreenSize.Y; y++)
 	{
 		std::vector<int> ArrPtr = ConsoleGameScreen::GetMainScreen().GetArrData(y);
@@ -56,7 +55,6 @@ int2 Parts::RandomUnitPos()
 
 	return BodyCreatePos;
 }
-
 
 void Parts::Update() 
 {

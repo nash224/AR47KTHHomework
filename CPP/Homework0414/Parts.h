@@ -17,14 +17,10 @@ public:
 	Parts& operator=(const Parts& _Other) = delete;
 	Parts& operator=(Parts&& _Other) noexcept = delete;
 
-	inline Parts* GetNext() const
+	inline void SetPos(const int2& _Pos) override
 	{
-		return Next;
-	}
-
-	inline Parts* GetPrev() const
-	{
-		return Prev;
+		BeforePos = this->GetPos();
+		ConsoleGameObject::SetPos(_Pos);
 	}
 
 	inline int2 GetBeforePos() const
@@ -32,20 +28,39 @@ public:
 		return BeforePos;
 	}
 
+	inline Parts* GetPrev() const
+	{
+		return Prev;
+	}
+
+	inline Parts* GetNext() const
+	{
+		return Next;
+	}
+
 	// 스네이크의 머리와 몸통을 합한 수를 알려줌
 	inline static size_t GetPartsCount()
 	{
 		return PartsCount;
 	}
+	bool GetisFollow() const
+	{
+		return isFollow;
+	}
+
+	void SetisFollow(bool _boolean)
+	{
+		isFollow = _boolean;
+	}
 
 	// ArrData의 요소의 수에 스네이크 단위의 수를 빼준만큼 NonUnitNumberArray 공간을 확보함
-	inline static void SetUnitNumberArray(int _value)
+	inline static void SetUnitNumberArray(const int _value)
 	{
 		NonUnitNumberArray.reserve(_value - PartsCount);
 	}
 
 	// NonUnitNumberArray에 빈칸의 수를 집어넣음
-	inline static void UnitNumberPushback(int _value)
+	inline static void UnitNumberPushback(const int _value)
 	{
 		NonUnitNumberArray.push_back(_value);
 	}
@@ -61,12 +76,6 @@ public:
 	// NonUnitNumberArray의 요소의 수를 리롤해서 좌표값을 반환
 	static int2 RandomUnitPos();
 
-	inline void SetPos(const int2& _Pos) override
-	{
-		BeforePos = this->GetPos();
-		ConsoleGameObject::SetPos(_Pos);
-	}
-
 protected:
 	void Update() override;
 
@@ -75,10 +84,10 @@ protected:
 	int2 Dir = int2::Up;
 
 private:
-	Parts* Next = nullptr;
 	Parts* Prev = nullptr;
+	Parts* Next = nullptr;
 
-
+	bool isFollow = false;
 
 	int2 BeforePos = { 0 , 0 };
 

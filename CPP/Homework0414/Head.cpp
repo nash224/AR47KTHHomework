@@ -62,11 +62,12 @@ void Head::IsBodyCheck()
 	{
 		if (nullptr == BodyPtr)
 		{
-			MsgBoxAssert("Body 그룹이 nullptr을 참조하려고 했습니다. -> Head::IsBodyCheck")
+			MsgBoxAssert("Body 그룹이 nullptr을 참조하려고 했습니다. -> Head::IsBodyCheck()");
 			return;
 		}
 
-		if (true == BodyPtr->GetisFollow() && 
+		Parts* BodyPartsPtr = dynamic_cast<Parts*>(BodyPtr);
+		if (true == BodyPartsPtr->GetisFollow() &&
 			Pos == BodyPtr->GetPos())
 		{
 			IsPlay = false;
@@ -95,7 +96,9 @@ void Head::NewBodyCreateCheck()
 		return;
 	}
 
-	if (true == LastBodyPtr->GetisFollow())
+	Parts* LastPartsPtr = dynamic_cast<Parts*>(LastBodyPtr);
+
+	if (true == LastPartsPtr->GetisFollow())
 	{
 		return;
 	}
@@ -119,19 +122,19 @@ void Head::NewBodyCreateCheck()
 
 			Head::CreateBody();
 		}
-
 	}
 }
 
 void Head::Update()
 {
-	//int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
-	//int ScreenElement = ScreenSize.X * ScreenSize.Y;
+	int2 ScreenSize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
+	int ScreenElement = ScreenSize.X * ScreenSize.Y;
 
-	//if (ScreenElement == Parts::GetPartsCount())
-	//{
-	//	Wintrigger = true;
-	//}
+	if (ScreenElement == Parts::GetPartsCount())
+	{
+		Wintrigger = true;
+		return;
+	}
 
 	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
 	{
@@ -143,7 +146,12 @@ void Head::Update()
 		 SetPos(GetPos() + Dir);
 		 IsBodyCheck();
 		 NewBodyCreateCheck();
-		 //CreateBody();
+
+		 if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
+		 {
+			 IsPlay = false;
+		 }
+
 		 return;
 	}
 

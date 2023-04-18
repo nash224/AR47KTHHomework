@@ -52,10 +52,9 @@ public:
 protected:
 
 private:
-	std::vector<std::vector<wchar_t>> ArrScreen;
-
 	int2 Size;
 
+	std::vector<std::vector<wchar_t>> ArrScreen;
 	std::vector<std::vector<int>> ArrData;
 
 	ConsoleGameScreen();
