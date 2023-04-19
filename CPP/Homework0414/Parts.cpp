@@ -76,7 +76,6 @@ void Parts::PutNonUnitNumber()
 
 int2 Parts::RandomUnitPos()
 {
-
 	int2 Screensize = ConsoleGameScreen::GetMainScreen().GetScreenSize();
 	int RandomMax = Screensize.Y * Screensize.X - PartsCount;
 
