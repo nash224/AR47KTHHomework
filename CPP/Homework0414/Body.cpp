@@ -27,17 +27,18 @@ Body::~Body()
 
 void Body::Update()
 {
+
 	if (true == this->GetisFollow())
 	{
-		SetDirection();
-
-		RenderChar = GetSign(Dir);
-
 		ConsoleGameObject* PrevPtr = this->GetPrev();
 		int2 BodyNextPos = PrevPtr->GetPos();
 		Parts* PrevParts = dynamic_cast<Parts*>(PrevPtr);
 
 		this->SetPos(PrevParts->GetBeforePos());
+
+		SetDirection();
+
+		RenderChar = GetSign(Dir);
 	}
 }
 
@@ -108,10 +109,10 @@ void Body::SetDirection()
 		return;
 	}
 
-	int2 PrevBeforePos = PrevPartsPtr->GetBeforePos();
+	int2 PrevPos = PrevPartsPtr->GetPos();
 	if (true == this->GetisFollow())
 	{
-		this->Dir = PrevBeforePos - this->Pos;
+		this->Dir = PrevPos - this->Pos;
 	}
 }
 
