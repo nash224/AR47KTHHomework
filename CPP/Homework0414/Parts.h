@@ -91,6 +91,6 @@ private:
 
 	int2 BeforePos = { 0 , 0 };
 
-	static size_t PartsCount;
+	static int PartsCount;
 	static std::vector<int> NonUnitNumberArray;
 };

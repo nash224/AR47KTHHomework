@@ -2,7 +2,7 @@
 #include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineBase/GameEngineRandom.h>
 
-size_t Parts::PartsCount = 0;
+int Parts::PartsCount = 0;
 
 std::vector<int> Parts::NonUnitNumberArray;
 

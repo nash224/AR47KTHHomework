@@ -27,6 +27,7 @@ private:
 
 	static int BodyCount;
 
+	Parts* GetLastFollowBody();
 	// 몸통 객체 생성
 	void NewBodyCreateLocation();
 	// 현재 객체와 이전 객체를 연결시킴
@@ -35,6 +36,7 @@ private:
 	void SetDirection();
 	// 정해진 기호를 줌
 	wchar_t GetSign(const int2 _Dir);
+
 
 };
 
