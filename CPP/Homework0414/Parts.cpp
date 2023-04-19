@@ -5,7 +5,6 @@
 #include "Parts.h"
 
 int Parts::PartsCount = 0;
-
 std::vector<int> Parts::NonUnitNumberArray;
 
 Parts::Parts() 
