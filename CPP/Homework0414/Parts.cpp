@@ -1,6 +1,8 @@
-#include "Parts.h"
 #include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineConsole/ConsoleObjectManager.h>
+#include <list>
+#include "Parts.h"
 
 int Parts::PartsCount = 0;
 
@@ -14,6 +16,40 @@ Parts::Parts()
 Parts::~Parts() 
 {
 	PartsCount--;
+}
+
+void Parts::SetArrData()
+{
+	std::list<ConsoleGameObject*>& HeadGroup
+		= ConsoleObjectManager::GetGroup(0);
+
+	std::list<ConsoleGameObject*>::iterator StartHeadGroup = HeadGroup.begin();
+
+	ConsoleGameObject* HeadPtr = *StartHeadGroup;
+
+	Parts* HeadParts = dynamic_cast<Parts*>(HeadPtr);
+
+	int2 HeadBeforePos = HeadParts->GetBeforePos();
+
+	ConsoleGameScreen::GetMainScreen().PutArrDataPartsPos(HeadBeforePos);
+
+	std::list<ConsoleGameObject*>& BodyGroup
+		= ConsoleObjectManager::GetGroup(1);
+
+	std::list<ConsoleGameObject*>::iterator BodyGroupStart = BodyGroup.begin();
+	std::list<ConsoleGameObject*>::iterator BodyGroupEnd = BodyGroup.end();
+
+	for (; BodyGroupStart != BodyGroupEnd; BodyGroupStart++)
+	{
+		ConsoleGameObject* CurrentBodyPtr = *BodyGroupStart;
+
+		if (nullptr == CurrentBodyPtr)
+		{
+			continue;
+		}
+		int2 CurretnBodyPos = CurrentBodyPtr->GetPos();
+		ConsoleGameScreen::GetMainScreen().PutArrDataPartsPos(CurretnBodyPos);
+	}
 }
 
 void Parts::PutNonUnitNumber()

@@ -127,44 +127,10 @@ void ConsoleGameScreen::SetScreenCharacter(const int2& _Pos, wchar_t _Ch)
 	ArrScreen[_Pos.Y][_Pos.X] = _Ch;
 }
 
-void ConsoleGameScreen::PutArrDataPartsPos(ConsoleGameObject* _PartsPos)
+void ConsoleGameScreen::PutArrDataPartsPos(int2& _PartsPos)
 {
-	int2 PartsPos = _PartsPos->GetPos();
-	ArrData[PartsPos.Y][PartsPos.X] = 1;
-	
+	ArrData[_PartsPos.Y][_PartsPos.X] = 1;
 }
-
-void ConsoleGameScreen::SetArrData()
-{
-	std::list<ConsoleGameObject*>& HeadGroup
-		= ConsoleObjectManager::GetGroup(0);
-
-	std::list<ConsoleGameObject*>::iterator StartHeadGroup = HeadGroup.begin();
-
-	ConsoleGameObject* HeadPtr = *StartHeadGroup;
-
-	ConsoleGameScreen::GetMainScreen().PutArrDataPartsPos(HeadPtr);
-
-
-	std::list<ConsoleGameObject*>& BodyGroup
-		= ConsoleObjectManager::GetGroup(1);
-
-	std::list<ConsoleGameObject*>::iterator BodyGroupStart = BodyGroup.begin();
-	std::list<ConsoleGameObject*>::iterator BodyGroupEnd = BodyGroup.end();
-
-	for (; BodyGroupStart != BodyGroupEnd; BodyGroupStart++)
-	{
-		ConsoleGameObject* CurrentBodyPtr = *BodyGroupStart;
-
-		if (nullptr == CurrentBodyPtr)
-		{
-			continue;
-		}
-
-		ConsoleGameScreen::GetMainScreen().PutArrDataPartsPos(CurrentBodyPtr);
-	}
-}
-
 
 ConsoleGameScreen::ConsoleGameScreen()
 {

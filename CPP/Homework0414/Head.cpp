@@ -129,11 +129,6 @@ void Head::Update()
 		return;
 	}
 
-	if (true == ConsoleGameScreen::GetMainScreen().IsScreenOver(GetPos()))
-	{
-		IsPlay = false;
-	}
-
 	if (0 == _kbhit())
 	{
 		 SetPos(GetPos() + Dir);

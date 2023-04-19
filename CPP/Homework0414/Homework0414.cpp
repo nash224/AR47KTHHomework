@@ -25,14 +25,11 @@ int main()
 
 	GameEngineDebug::LeckCheck();
 
-	int2 ScreenSize = { 8, 8 };
+	int2 ScreenSize = { 6, 6 };
 	ConsoleGameScreen::GetMainScreen().SetScreenSize(ScreenSize);
 	ConsoleGameScreen::GetMainScreen().SetArrDataSize();
 
 	ConsoleObjectManager::CreateConsoleObject<Head>(ObjectOrder::Head);
-
-
-
 
 
 	// 1번째 

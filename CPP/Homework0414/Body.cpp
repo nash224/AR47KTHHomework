@@ -9,9 +9,10 @@ int Body::BodyCount = 0;
 Body::Body() 
 {
 	BodyCount++;
+	NewBodyCreateLocation();
+
 	RenderChar = L'¡Ú'; 
 
-	NewBodyCreateLocation();
 
 	if (2 > BodyCount)
 	{
@@ -27,7 +28,6 @@ Body::~Body()
 
 void Body::Update()
 {
-
 	if (true == this->GetisFollow())
 	{
 		ConsoleGameObject* PrevPtr = this->GetPrev();
@@ -71,7 +71,7 @@ void Body::NewBodyCreateLocation()
 	int ScreenElementCount = ScreenSize.Y * ScreenSize.X;
 
 	ConsoleGameScreen::GetMainScreen().ArrDataClear();
-	ConsoleGameScreen::GetMainScreen().SetArrData();
+	Parts::SetArrData();
 	Parts::SetUnitNumberArray(ScreenElementCount);
 	Parts::PutNonUnitNumber();
 	this->SetPos(Parts::RandomUnitPos());

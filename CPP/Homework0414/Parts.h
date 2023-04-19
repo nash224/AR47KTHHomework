@@ -71,10 +71,13 @@ public:
 		NonUnitNumberArray.resize(0);
 	}
 
+	void SetArrData();
+
 	// ArrData의 좌표값을 NonUnitNumberArray에 넣어줌
 	static void PutNonUnitNumber();
 	// NonUnitNumberArray의 요소의 수를 리롤해서 좌표값을 반환
 	static int2 RandomUnitPos();
+
 
 protected:
 	void Update() override;

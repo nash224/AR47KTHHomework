@@ -38,9 +38,7 @@ public:
 	void SetScreenCharacter(const int2& _Pos, wchar_t _Ch);
 	
 	// ArrData¿¡ PartsÀ§Ä¡ ÁÂÇ¥ Âï±â
-	void PutArrDataPartsPos(ConsoleGameObject* _PartsPos);
-
-	void SetArrData();
+	void PutArrDataPartsPos(int2& _PartsPos);
 
 	std::vector<int>& GetArrData(size_t _value)
 	{
