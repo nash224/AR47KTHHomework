@@ -43,12 +43,12 @@ public:
 	{
 		return PartsCount;
 	}
-	bool GetisFollow() const
+	inline bool GetisFollow() const
 	{
 		return isFollow;
 	}
 
-	void SetisFollow(bool _boolean)
+	inline void SetisFollow(bool _boolean)
 	{
 		isFollow = _boolean;
 	}

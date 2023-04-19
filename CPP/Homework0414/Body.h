@@ -32,11 +32,9 @@ private:
 	void NewBodyCreateLocation();
 	// 현재 객체와 이전 객체를 연결시킴
 	void LinktoPrevBody();
-	// 진행방향을 알려줌
+	// 진행방향을 바꿈
 	void SetDirection();
 	// 정해진 기호를 줌
 	wchar_t GetSign(const int2 _Dir);
-
-
 };
 
