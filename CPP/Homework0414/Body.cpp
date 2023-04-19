@@ -42,19 +42,25 @@ void Body::Update()
 	}
 }
 
-Parts* Body::GetLastFollowBody()
+Parts* Body::NotFollowBody()
 {
 	std::list<ConsoleGameObject*>& BodyGroup = ConsoleObjectManager::GetGroup(ObjectOrder::Body);
-	
-	std::list<ConsoleGameObject*>::iterator Start = BodyGroup.begin();
 
-	for (size_t i = 0; i < BodyCount - 1; i++)
+	ConsoleGameObject* LastBody = BodyGroup.back();
+	Parts* LastBodyParts = dynamic_cast<Parts*>(LastBody);
+
+	return LastBodyParts;
+}
+
+Parts* Body::GetLastFollowBody()
+{
+	if (1 == BodyCount)
 	{
-		Start++;
+		MsgBoxAssert("따라다니는 몸통이 존재하지 않습니다. -> Body::GetLastFollowBody()");
 	}
 
-	ConsoleGameObject* LastFollowBody = *Start;
-	Parts* LastFollowBodyParts = dynamic_cast<Parts*>(LastFollowBody);
+	Parts* Feed = Body::NotFollowBody();
+	Parts* LastFollowBodyParts = Feed->GetPrev();
 
 	return LastFollowBodyParts;
 }

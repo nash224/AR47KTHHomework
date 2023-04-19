@@ -19,6 +19,8 @@ public:
 	Body& operator=(Body&& _Other) noexcept = delete;
 
 	void Update() override;
+	static Parts* NotFollowBody();
+	static Parts* GetLastFollowBody();
 
 protected:
 
@@ -27,7 +29,6 @@ private:
 
 	static int BodyCount;
 
-	Parts* GetLastFollowBody();
 	// 个烹 按眉 积己
 	void NewBodyCreateLocation();
 	// 泅犁 按眉客 捞傈 按眉甫 楷搬矫糯
