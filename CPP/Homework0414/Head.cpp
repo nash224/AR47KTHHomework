@@ -163,23 +163,35 @@ void Head::Update()
 	{
 	case 'a':
 	case 'A':
-		Dir = int2::Left;
-		this->RenderChar = L'¢¸';
+		if (Dir != int2::Right)
+		{
+			Dir = int2::Left;
+			this->RenderChar = L'¢¸';
+		}
 		break;
 	case 'd':
 	case 'D':
-		Dir = int2::Right;
-		this->RenderChar = L'¢º';
+		if (Dir != int2::Left)
+		{
+			Dir = int2::Right;
+			this->RenderChar = L'¢º';
+		}
 		break;
 	case 'w':
 	case 'W':
-		Dir = int2::Up;
-		this->RenderChar = L'¡ã';
+		if (Dir != int2::Down)
+		{
+			Dir = int2::Up;
+			this->RenderChar = L'¡ã';
+		}
 		break;
 	case 's':
 	case 'S':
-		Dir = int2::Down;
-		this->RenderChar = L'¡å';
+		if (Dir != int2::Up)
+		{
+			Dir = int2::Down;
+			this->RenderChar = L'¡å';
+		}
 		break;
 	case 'q':
 	case 'Q':
