@@ -4,16 +4,16 @@
 //  15, 20 
 
 #include <iostream>
+#include <conio.h>
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineRandom.h>
 #include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineConsole/ConsoleGameObject.h>
 #include <GameEngineConsole/ConsoleObjectManager.h>
 #include "GameEnum.h"
+#include "Parts.h"
 #include "Head.h"
 #include "Body.h"
-#include "Parts.h"
-#include <conio.h>
 
 
 int main()

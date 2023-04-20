@@ -134,5 +134,13 @@ int main()
         {
             std::cout << StartIter->first << std::endl;
         }
+
+        GameEngineMap::iterator ReverseStartIter = Test.rbegin();
+        GameEngineMap::iterator ReverseEndIter = Test.rend();
+
+        for (; ReverseStartIter != ReverseEndIter; --ReverseEndIter)
+        {
+            std::cout << ReverseEndIter->first << std::endl;
+        }
     }
 }

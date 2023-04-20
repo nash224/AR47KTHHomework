@@ -1,5 +1,5 @@
-#include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineConsole/ConsoleGameScreen.h>
 #include <GameEngineConsole/ConsoleObjectManager.h>
 #include <list>
 #include "Parts.h"

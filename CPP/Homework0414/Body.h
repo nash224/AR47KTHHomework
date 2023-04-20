@@ -1,8 +1,8 @@
 #pragma once
-#include <GameEngineConsole/ConsoleGameObject.h>
 #include <GameEngineConsole/ConsoleGameScreen.h>
-#include "Parts.h"
+#include <GameEngineConsole/ConsoleGameObject.h>
 #include <vector>
+#include "Parts.h"
 
 class ConsoleGameScreen;
 class Body : public Parts

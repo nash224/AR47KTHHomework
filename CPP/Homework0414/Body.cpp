@@ -1,7 +1,7 @@
-#include <GameEngineConsole/ConsoleObjectManager.h>
-#include <GameEngineConsole/ConsoleGameScreen.h>
-#include <GameEngineBase/GameEngineRandom.h>
 #include <GameEngineBase/GameEngineDebug.h>
+#include <GameEngineBase/GameEngineRandom.h>
+#include <GameEngineConsole/ConsoleGameScreen.h>
+#include <GameEngineConsole/ConsoleObjectManager.h>
 #include "GameEnum.h"
 #include "Body.h"
 

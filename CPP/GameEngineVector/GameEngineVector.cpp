@@ -151,29 +151,29 @@ int main()
     {
         std::vector<int> Test;
 
-        //{
-        //    // 배열 크기를 10개 할당함
-        //    /*Test.reserve(10);*/
+        {
+            // 배열 크기를 10개 할당함
+            /*Test.reserve(10);*/
 
-        //    for (size_t i = 0; i < 10; i++)
-        //    {
-        //        // 요소를 추가하고 값을 넣음
-        //        Test.push_back(i);
-        //        // Test의 용량을 출력
-        //        printf("Capacity %d\n", Test.capacity());
-        //        // Test의 요소의 수를 출력
-        //        printf("Size %d\n", Test.size());
-        //    }
+            for (size_t i = 0; i < 10; i++)
+            {
+                // 요소를 추가하고 값을 넣음
+                Test.push_back(i);
+                // Test의 용량을 출력
+                printf("Capacity %d\n", Test.capacity());
+                // Test의 요소의 수를 출력
+                printf("Size %d\n", Test.size());
+            }
 
-        //    //for (size_t i = 0; i < Test.size(); i++)
-        //    //{
-        //    //    printf("%d\n", Test[i]);
-        //    //}
+            //for (size_t i = 0; i < Test.size(); i++)
+            //{
+            //    printf("%d\n", Test[i]);
+            //}
 
-        //    // printf_s("size : %d", (int)Test.size());
+            // printf_s("size : %d", (int)Test.size());
 
-        //    return 1;
-        //}
+            return 1;
+        }
 
 
         {

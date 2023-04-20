@@ -35,9 +35,73 @@ public:
 		MapNode* RightChild = nullptr;
 		GameEnginePair Pair;
 
+		bool isLeaf()
+		{
+			return nullptr == LeftChild && nullptr == RightChild;
+		}
+
+		MapNode* OverParentNode()
+		{
+			if (this == Parent->RightChild)
+			{
+				return Parent->OverParentNode();
+			}
+
+			return Parent;
+		}
+
+		MapNode* ReverseOverParentNode()
+		{
+			if (nullptr == Parent)
+			{
+				return nullptr;
+			}
+
+			if (this == Parent->LeftChild)
+			{
+
+				return Parent->ReverseOverParentNode();
+			}
+
+			return Parent;
+		}
+
+		MapNode* PrevNode()
+		{
+			if (nullptr == this)
+			{
+				return this;
+			}
+
+			if (nullptr != LeftChild)
+			{
+				return LeftChild->MaxNode();
+			}
+
+			if (nullptr != Parent)
+			{
+				return ReverseOverParentNode();
+			}
+
+			return nullptr;
+		}
+
 		MapNode* NextNode()
 		{
-			return nullptr;
+			if (nullptr == this)
+			{
+				return this;
+			}
+
+			if (nullptr != RightChild)
+			{
+				return RightChild->MinNode();
+			}
+
+			if (nullptr != Parent)
+			{
+				return OverParentNode();
+			}
 		}
 
 		MapNode* MinNode()
@@ -48,6 +112,16 @@ public:
 			}
 
 			return LeftChild->MinNode();
+		}
+
+		MapNode* MaxNode()
+		{
+			if (nullptr == RightChild)
+			{
+				return this;
+			}
+
+			return RightChild->MaxNode();
 		}
 
 		bool insert(MapNode* _NewNode)
@@ -126,7 +200,7 @@ public:
 			return &Node->Pair;
 		}
 
-		GameEngineMap::iterator& operator++()
+		iterator& operator++()
 		{
 			if (nullptr == Node)
 			{
@@ -140,8 +214,6 @@ public:
 				{
 					Node = Node->LeftChild;
 				}
-
-				return *this;
 			}
 			else
 			{
@@ -152,8 +224,15 @@ public:
 				}
 				
 				Node = ParentNode;
-				return *this;
 			}
+
+			return *this;
+		}
+
+		iterator& operator--()
+		{
+			Node = Node->PrevNode();
+			return *this;
 		}
 
 
@@ -167,14 +246,10 @@ public:
 			return Node == _Other.Node;
 		}
 
-		
-
 	private:
 		// 전방선언
 		class MapNode* Node = nullptr;
 	};
-
-
 
 	iterator begin()
 	{
@@ -189,6 +264,16 @@ public:
 	iterator end()
 	{
 		return iterator();
+	}
+
+	iterator rbegin()
+	{
+		return iterator();
+	}
+
+	iterator rend()
+	{
+		return iterator(Root->MaxNode());
 	}
 
 	iterator find(KeyType _Key)
