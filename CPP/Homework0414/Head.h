@@ -23,15 +23,16 @@ public:
 	}
 
 protected:
-	bool isBody(int2 _NextPos);
-	void CreateBody();
-	void IsBodyCheck();
-	void NewBodyCreateCheck();
 	void Update() override;
 
 private:
 	bool FirstEatBody = false;
 
 	static bool Wintrigger;
+
+	bool isBody(int2 _NextPos);
+	void CreateBody();
+	void IsBodyCheck();
+	void NewBodyCreateCheck();
 };
 

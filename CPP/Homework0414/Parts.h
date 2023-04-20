@@ -78,12 +78,12 @@ public:
 	// NonUnitNumberArray의 요소의 수를 리롤해서 좌표값을 반환
 	static int2 RandomUnitPos();
 
-
 protected:
 	void Update() override;
 
 	void LinktoNext(Parts* _OtherPtr);
 	void LinktoPrev(Parts* _OtherPtr);
+
 	int2 Dir = int2::Up;
 
 private:

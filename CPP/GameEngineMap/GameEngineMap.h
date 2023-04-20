@@ -126,6 +126,36 @@ public:
 			return &Node->Pair;
 		}
 
+		GameEngineMap::iterator& operator++()
+		{
+			if (nullptr == Node)
+			{
+				return *this;
+			}
+			else if (nullptr != Node->RightChild)
+			{
+				Node = Node->RightChild;
+
+				while (nullptr != Node->LeftChild)
+				{
+					Node = Node->LeftChild;
+				}
+
+				return *this;
+			}
+			else
+			{
+				MapNode* ParentNode = Node->Parent;
+				while (ParentNode != nullptr && Node->Pair.first > ParentNode->Pair.first)
+				{
+					ParentNode = ParentNode->Parent;
+				}
+				
+				Node = ParentNode;
+				return *this;
+			}
+		}
+
 
 		bool operator!=(const iterator& _Other) const
 		{
@@ -136,6 +166,8 @@ public:
 		{
 			return Node == _Other.Node;
 		}
+
+		
 
 	private:
 		// 전방선언

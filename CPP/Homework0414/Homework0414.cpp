@@ -18,11 +18,6 @@
 
 int main()
 {
-	//while (true)
-	//{
-	//	printf_s("%d\n", GameEngineRandom::MainRandom.RandomInt(0, 100));
-	//}
-
 	GameEngineDebug::LeckCheck();
 
 	int2 ScreenSize = { 6, 6 };
@@ -53,9 +48,6 @@ int main()
 	while (true == Head::IsPlay)
 	{
 		ConsoleObjectManager::ConsoleAllObjectUpdate();
-		ConsoleObjectManager::ConsoleAllObjectRender();
-		ConsoleObjectManager::ConsoleAllObjectRelease();
-		Sleep(200);
 
 		if (true == Head::GetWintrigger())
 		{
@@ -65,6 +57,11 @@ int main()
 
 			break;
 		}
+
+		ConsoleObjectManager::ConsoleAllObjectRender();
+		ConsoleObjectManager::ConsoleAllObjectRelease();
+		Sleep(200);
+
 	}
 
 	ConsoleObjectManager::ConsoleAllObjectDelete();
