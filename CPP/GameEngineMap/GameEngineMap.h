@@ -1,8 +1,8 @@
 #pragma once
+#include <GameEngineBase/GameEngineDebug.h>
+#include <iostream>
 
-typedef int KeyType;
-typedef int ValueType;
-
+template<typename KeyType, typename ValueType>
 class GameEnginePair
 {
 public:
@@ -23,6 +23,7 @@ public:
 };
 
 // 설명 :
+template<typename Key, typename Value>
 class GameEngineMap
 {
 public:
@@ -33,7 +34,7 @@ public:
 		MapNode* Parent = nullptr;
 		MapNode* LeftChild = nullptr;
 		MapNode* RightChild = nullptr;
-		GameEnginePair Pair;
+		GameEnginePair<Key, Value> Pair;
 
 		bool isLeaf()
 		{
@@ -59,7 +60,6 @@ public:
 
 			if (this == Parent->LeftChild)
 			{
-
 				return Parent->ReverseOverParentNode();
 			}
 
@@ -82,8 +82,6 @@ public:
 			{
 				return ReverseOverParentNode();
 			}
-
-			return nullptr;
 		}
 
 		MapNode* NextNode()
@@ -152,7 +150,7 @@ public:
 			return false;
 		}
 
-		MapNode* find(KeyType _Key)
+		MapNode* find(Key _Key)
 		{
 			if (Pair.first > _Key)
 			{
@@ -175,6 +173,167 @@ public:
 
 			return this;
 		}
+
+		void DisconnectAll(MapNode* _CurrentNode)
+		{
+			this->LeftChild = nullptr;
+			this->RightChild = nullptr;
+			this->Parent = nullptr;
+		}
+
+		static void ConnectNodeToNode(MapNode* _CurrentNode, MapNode* _LeftChildNode, MapNode* _RightChildNode)
+		{
+			if (nullptr != _LeftChildNode)
+			{
+				_LeftChildNode->Parent = _CurrentNode;
+				_CurrentNode->LeftChild = _LeftChildNode;
+			}
+
+			if (nullptr != _RightChildNode)
+			{
+				_RightChildNode->Parent = _CurrentNode;
+				_CurrentNode->RightChild = _RightChildNode;
+			}
+		}
+		void Release()
+		{
+			if (nullptr == Parent)
+			{
+				return;
+			}
+
+			if (this == Parent->LeftChild)
+			{
+				Parent->LeftChild = nullptr;
+				return;
+			}
+
+			if (this == Parent->RightChild)
+			{
+				Parent->RightChild = nullptr;
+				return;
+			}
+		}
+
+		void Detach()
+		{
+			MapNode* DetachParent = Parent;
+			MapNode* DetachLeftChild = LeftChild;
+			MapNode* DetachRightChild = RightChild;
+
+			if (nullptr != DetachParent && this == DetachParent->LeftChild)
+			{
+				DetachParent->LeftChild = DetachRightChild;
+				if (nullptr != DetachRightChild)
+				{
+					DetachRightChild->Parent = DetachParent;
+				}
+			}
+			else if (nullptr != DetachParent && this == DetachParent->RightChild)
+			{
+				DetachParent->RightChild = DetachLeftChild;
+				if (nullptr != DetachLeftChild)
+				{
+					DetachLeftChild->Parent = DetachParent;
+				}
+			}
+		}
+
+		void ChangeChild(MapNode* _OldChild, MapNode* _NewChild)
+		{
+			if (_OldChild == LeftChild)
+			{
+				LeftChild = _NewChild;
+				if (nullptr != _NewChild)
+				{
+					_NewChild->Parent = this;
+				}
+				return;
+			}
+
+			if (_OldChild == RightChild)
+			{
+				RightChild = _NewChild;
+				if (nullptr != _NewChild)
+				{
+					_NewChild->Parent = this;
+				}
+				return;
+			}
+		}
+
+		void FirstOrder()
+		{
+			std::cout << Pair.first << std::endl;
+			if (nullptr != LeftChild)
+			{
+				LeftChild->FirstOrder();
+			}
+			if (nullptr != RightChild)
+			{
+				RightChild->FirstOrder();
+			}
+		}
+
+		void MidOrder()
+		{
+			if (nullptr != LeftChild)
+			{
+				LeftChild->MidOrder();
+			}
+			std::cout << Pair.first << std::endl;
+			if (nullptr != RightChild)
+			{
+				RightChild->MidOrder();
+			}
+		}
+
+		void LastOrder()
+		{
+			if (nullptr != LeftChild)
+			{
+				LeftChild->LastOrder();
+			}
+			if (nullptr != RightChild)
+			{
+				RightChild->LastOrder();
+			}
+			std::cout << Pair.first << std::endl;
+		}
+
+		void DeleteAll(MapNode* _Root)
+		{
+			if (nullptr != LeftChild)
+			{
+				LeftChild->DeleteAll(_Root);
+			}
+			if (nullptr != RightChild)
+			{
+				RightChild->DeleteAll(_Root);
+			}
+
+			std::cout << Pair.first << " : Delete!!" << std::endl;
+
+			if (nullptr == Parent)
+			{
+				delete this;
+				_Root = nullptr;
+				return;
+			}
+
+			if (Parent->LeftChild == this)
+			{
+				Parent->LeftChild = nullptr;
+			}
+
+			if (Parent->RightChild == this)
+			{
+				Parent->RightChild = nullptr;
+			}
+
+			Parent = nullptr;
+			delete this;
+		}
 	};
 
 	class iterator
@@ -195,7 +354,7 @@ public:
 
 		}
 
-		GameEnginePair* operator->()
+		GameEnginePair<Key, Value>* operator->()
 		{
 			return &Node->Pair;
 		}
@@ -276,7 +435,7 @@ public:
 		return iterator(Root->MaxNode());
 	}
 
-	iterator find(KeyType _Key)
+	iterator find(Key _Key)
 	{
 		if (nullptr == Root)
 		{
@@ -288,9 +447,102 @@ public:
 		return iterator(FindNode);
 	}
 
+	iterator erase(const iterator& _EraseIter)
+	{
+		if (_EraseIter == end())
+		{
+			MsgBoxAssert("앤드를 삭제하려고 했습니다.");
+		}
+
+		MapNode* CurNode = _EraseIter.Node;
+		MapNode* ParentNode = CurNode->Parent;
+		MapNode* RightChild = CurNode->RightChild;
+		MapNode* LeftChild = CurNode->LeftChild;
+
+		MapNode* ChangeNode = nullptr;
+		MapNode* ChangeNodeParent = nullptr;
+		MapNode* NextNode = CurNode->NextNode();
+
+		if (true == CurNode->isLeaf())
+		{
+			ParentNode->ChangeChild(CurNode, nullptr);
+			if (nullptr != CurNode)
+			{
+				delete CurNode;
+				CurNode = nullptr;
+			}
+			return NextNode;
+		}
+
+
+		// 교체될 노드는 절대로 양쪽을 모두 가진 노드일수 없다.
+		MapNode* ChangeChild = nullptr;
+		MapNode* ChangeParent = nullptr;
+
+		if (nullptr != LeftChild)
+		{
+			ChangeNode = LeftChild->MaxNode();
+			ChangeChild = ChangeNode->LeftChild;
+			ChangeParent = ChangeNode->Parent;
+		}
+		else if (nullptr != RightChild)
+		{
+			ChangeNode = RightChild->MinNode();
+			ChangeChild = ChangeNode->RightChild;
+			ChangeParent = ChangeNode->Parent;
+		}
+
+		if (nullptr == ChangeNode)
+		{
+			MsgBoxAssert("말도안돼");
+			return nullptr;
+		}
+
+		// 루트노드일 경우를 대비해서
+		// 체인지 노드의 뒷정리를 하는 기간
+		if (nullptr != ChangeParent)
+		{
+			ChangeParent->ChangeChild(ChangeNode, ChangeChild);
+		}
+
+
+		// 교체할 노드와 지워질 노드의 정보 교체를 한다.
+
+		if (nullptr != ParentNode)
+		{
+			ParentNode->ChangeChild(CurNode, ChangeNode);
+		}
+		else
+		{
+			ChangeNode->Parent = nullptr;
+			Root = ChangeNode;
+			// RootNode 
+		}
+
+
+		ChangeNode->LeftChild = LeftChild;
+		if (nullptr != LeftChild)
+		{
+			LeftChild->Parent = ChangeNode;
+		}
+		ChangeNode->RightChild = RightChild;
+		if (nullptr != RightChild)
+		{
+			RightChild->Parent = ChangeNode;
+		}
+
+		if (nullptr != CurNode)
+		{
+			delete CurNode;
+			CurNode = nullptr;
+		}
+
+		return NextNode;
+	}
+
 
 	// 안들어가면 false리턴
-	bool insert(const GameEnginePair& _Pair)
+	bool insert(const GameEnginePair<Key, Value>& _Pair)
 	{
 		if (nullptr == Root)
 		{
@@ -309,6 +561,29 @@ public:
 		}
 
 		return true;
+	}
+
+	void FirstOrder()
+	{
+		Root->FirstOrder();
+	}
+
+	void MidOrder()
+	{
+		Root->MidOrder();
+	}
+
+	void LastOrder()
+	{
+		Root->LastOrder();
+	}
+
+	void DeleteAll()
+	{
+		if (nullptr != Root)
+		{
+			Root->DeleteAll(Root);
+		}
 	}
 
 	MapNode* Root = nullptr;
