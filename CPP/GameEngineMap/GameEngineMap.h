@@ -301,15 +301,15 @@ public:
 			std::cout << Pair.first << std::endl;
 		}
 
-		void DeleteAll(MapNode* _Root)
+		void DeleteAll()
 		{
 			if (nullptr != LeftChild)
 			{
-				LeftChild->DeleteAll(_Root);
+				LeftChild->DeleteAll();
 			}
 			if (nullptr != RightChild)
 			{
-				RightChild->DeleteAll(_Root);
+				RightChild->DeleteAll();
 			}
 
 			std::cout << Pair.first << " : Delete!!" << std::endl;
@@ -317,7 +317,6 @@ public:
 			if (nullptr == Parent)
 			{
 				delete this;
-				_Root = nullptr;
 				return;
 			}
 
@@ -578,11 +577,20 @@ public:
 		Root->LastOrder();
 	}
 
+	void MidOrderDelete()
+	{
+		if (nullptr != Root)
+		{
+			Root->MidOrderDelete();
+		}
+	}
+
 	void DeleteAll()
 	{
 		if (nullptr != Root)
 		{
-			Root->DeleteAll(Root);
+			Root->DeleteAll();
+			Root = nullptr;
 		}
 	}
 
