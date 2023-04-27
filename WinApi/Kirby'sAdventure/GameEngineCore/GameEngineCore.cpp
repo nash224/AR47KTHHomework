@@ -15,7 +15,6 @@ GameEngineCore::~GameEngineCore()
 
 void GameEngineCore::CoreStart(HINSTANCE _Inst)
 {
-
     GameEngineWindow::MainWindow.Open(Title, _Inst);
 }
 
