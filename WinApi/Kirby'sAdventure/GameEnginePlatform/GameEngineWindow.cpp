@@ -28,8 +28,15 @@ void GameEngineWindow::Open(const std::string& _Title, HINSTANCE hInstance)
 
 void GameEngineWindow::MyRegisterClass()
 {
-    WNDCLASSEXA wcex;
 
+    static bool Check = false;
+
+    if (true == Check)
+    {
+        return;
+    }
+
+    WNDCLASSEXA wcex;
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = GameEngineWindow::WndProc;
@@ -50,6 +57,8 @@ void GameEngineWindow::MyRegisterClass()
         MsgBoxAssert("윈도우 클래스를 등록하는데 실패했습니다.");
         return;
     }
+
+    Check = true;
 
 }
 

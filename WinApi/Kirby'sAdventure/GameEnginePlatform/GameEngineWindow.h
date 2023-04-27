@@ -24,7 +24,7 @@ protected:
 
 private:
 	static HINSTANCE Instance;
-	std::string Title = "";
+	std::string Title = " ";
 	HWND hWnd = nullptr;
 
 
