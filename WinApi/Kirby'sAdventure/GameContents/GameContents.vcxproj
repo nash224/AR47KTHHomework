@@ -158,7 +158,107 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbillityEffect.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Bomber.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BonusGameSubScreens.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BroomHatter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Cappy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CraneFever.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EggCatcher.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndingLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameOverLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="HealthJuice.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="HpLadyBug.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="HubSprites.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IceCreamIslandsHub.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IceCreamIslandsMap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Kabu.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Kirby.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="KirbySAbillity.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LaserBall.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MrSunMrMoon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Museums.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NomalEnemies.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="OneCoinUp.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Parasol.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PauseLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -170,13 +270,165 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PoppyBrosJr.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PowerEnemy.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SirKibble.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sparky.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StarStick.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StarStickEffectFrame.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sword Knight.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UFO.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="VegetableValleyHub.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="VegetableValleyMap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WaddleDee.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WaddleDoo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="WhispyWood.h">
       <SubType>
       </SubType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbillityEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Bomber.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BonusGameSubScreens.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BroomHatter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Cappy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CraneFever.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EggCatcher.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameOverLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="HealthJuice.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="HpLadyBug.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="HubSprites.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IceCreamIslandsHub.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IceCreamIslandsMap.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Kabu.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Kirby.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="KirbySAbillity.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="LaserBall.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MrSunMrMoon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Museums.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="NomalEnemies.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="OneCoinUp.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Parasol.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PauseLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -188,7 +440,59 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PoppyBrosJr.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PowerEnemy.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SirKibble.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sparky.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StarStick.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StarStickEffectFrame.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sword Knight.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UFO.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="VegetableValleyHub.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="VegetableValleyMap.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WaddleDee.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WaddleDoo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WhispyWood.cpp">
       <SubType>
       </SubType>
     </ClCompile>
