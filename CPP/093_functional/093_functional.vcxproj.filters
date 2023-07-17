@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="092_functional.cpp">
+    <ClCompile Include="093_Ramda.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

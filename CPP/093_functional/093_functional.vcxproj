@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6467c343-b6a3-4176-9b05-1475295e113e}</ProjectGuid>
-    <RootNamespace>My092functional</RootNamespace>
+    <ProjectGuid>{bad4cbc9-6ae2-4640-8c0d-fe2431bcf35f}</ProjectGuid>
+    <RootNamespace>My093functional</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>092_functional</ProjectName>
+    <ProjectName>093_Ramda</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="092_functional.cpp" />
+    <ClCompile Include="093_Ramda.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
